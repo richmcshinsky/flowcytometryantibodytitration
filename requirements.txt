@@ -2,3 +2,4 @@ streamlit>=1.26.0
 altair==4
 streamlit_pandas
 openpyxl
+st-gsheets-connection

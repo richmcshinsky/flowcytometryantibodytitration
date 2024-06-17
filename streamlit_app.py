@@ -15,14 +15,19 @@ st.set_page_config(page_title='Flow Cytometry Antibody Titration Repositry')
 import streamlit as st
 import pandas as pd
 import streamlit_pandas as sp
+from streamlit_gsheets import GSheetsConnection
 
-@st.cache_data
+"""@st.cache_data
 def load_data():
     df = pd.read_excel(file)
     return df
 
 file = "data/sample.xlsx"
-df = load_data()
+df = load_data()"""
+
+# Create a connection object.
+conn = st.connection("gsheets", type=GSheetsConnection)
+df = conn.read(ttl="30m")
 
 create_data = { "Source":            "multiselect",
                 "Target Species":    "multiselect",
