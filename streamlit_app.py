@@ -3,8 +3,12 @@ import pandas as pd
 import streamlit_pandas as sp
 from streamlit_gsheets import GSheetsConnection
 
-# Page title
-st.set_page_config(page_title='Flow Cytometry Antibody Titration Repositry')
+# set up config for page
+st.set_page_config(
+    page_title='Flow Cytometry Antibody Titration Repository',
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 #with st.expander('About this app'):
 #  st.markdown('**What can this app do?**')
