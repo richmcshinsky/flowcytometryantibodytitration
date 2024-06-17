@@ -1,7 +1,5 @@
 import streamlit as st
-import numpy as np
 import pandas as pd
-import altair as alt
 
 # Page title
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repositry')
@@ -48,8 +46,12 @@ res = sp.filter_df(df, all_widgets)
 
 st.title("Demo")
 
-st.header("Result DataFrame")
+st.header("Repository")
 st.write(res)
 
-st.header("Original Table")
-st.write(df)
+st.header("Contribute")
+uploaded_file = st.file_uploader("Upload a CSV file following instructions")
+if uploaded_file is not None:
+    df_new = pd.read_csv(uploaded_file)
+    st.write(df_new)
+
