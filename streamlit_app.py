@@ -2,6 +2,12 @@ import streamlit as st
 import pandas as pd
 import streamlit_pandas as sp
 from streamlit_gsheets import GSheetsConnection
+# from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
+
+# TODO: make a google private sheet for CRUD operations
+# TODO: make 2 sheets, one for data and one for review
+# TODO: add styling/theming
+# TODO: 
 
 # set up config for page
 st.set_page_config(
@@ -9,12 +15,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
-#with st.expander('About this app'):
-#  st.markdown('**What can this app do?**')
-#  st.info('This app shows the use of Pandas for data wrangling, Altair for chart creation and editable dataframe for data interaction.')
-#  st.markdown('**How to use the app?**')
-#  st.warning('To engage with the app, 1. Select genres of your interest in the drop-down selection box and then 2. Select the year duration from the slider widget. As a result, this should generate an updated editable DataFrame and line plot.')
 
 # Removes download button on tables
 st.markdown(
@@ -28,9 +28,18 @@ st.markdown(
                 unsafe_allow_html=True
             )
 
-# Create a connection object.
+
+#st.title("Streamlit Keycloak example")
+#keycloak = login(
+#    url="http://localhost:8080",
+#    realm="myrealm",
+#    client_id="myclient",
+#) 
+# def main():
+
+# Create a connection object.  https://docs.streamlit.io/develop/tutorials/databases/private-gsheet
 conn = st.connection("gsheets", type=GSheetsConnection)
-df = conn.read(ttl="30m")
+df = conn.read(worksheet="reviewed", ttl="30m")
 
 # Add filters
 create_data = { "Source":            "multiselect",
@@ -59,36 +68,55 @@ st.title("Demo")
 st.header("Repository")
 st.write(res)
 
+# adding new data
 st.header("Contribute")
 
 def update_google_sheet():
     # update google sheet
-    a = 1
+    data=pd.DataFrame([[source, targetspecies, antigen, clone, con, hostspecies,
+          isotype, supplier, cat, rrid, concentration, testtissue,
+          testcelltype, testamount, testprep, amounttested]],
+          columns=["Source", "Target Species", "Antigen", "Clone", 
+                   "Conjugate", "Host Species", "Isotype", "Supplier", 
+                   "Catalougue #", "RRID", "Concentration", 
+                   "Test Tissue", "Test Cell Type", "Test Amount", 
+                   "Test Preparation", "Amount Tested (uL)"])
+    df_old = conn.read(worksheet="to-review")
+    df_old = pd.concat([df_old, data])
+    d = conn.update(worksheet="to-review",data=df_old)
+    st.cache_data.clear()
 
-with st.expander("Option 1: Fill out Form for review"):
-    with st.form('Form1'):
-        st.text_input("Source")
-        st.text_input("Target Species")
-        st.text_input("Antigen")
-        st.text_input("Clone")
-        st.text_input("Conjugate")
-        st.text_input("Host Species")
-        st.text_input("Isotype")
-        st.text_input("Supplier")
-        st.text_input("Catalougue #")
-        st.text_input("RRID")
-        st.text_input("Concentration")
-        st.text_input("Test Tissue")
-        st.text_input("Test Cell Type")
-        st.text_input("Test Amount")
-        st.text_input("Test Preparation")
-        st.text_input("Amount Tested (uL)")
-        st.form_submit_button('Add for review into Repository', on_click=update_google_sheet)
-
-with st.expander("Option 2: Upload a CSV file for review with matching column names"):
+with st.expander("Option 1: Upload a CSV file for review with matching column names"):
     uploaded_file = st.file_uploader("Once you upload a file it will be automatically sent for review")
     if uploaded_file is not None:
         df_new = pd.read_csv(uploaded_file)
-        st.write(df_new)
-        # TODO: instead of write have it update the google sheet?
+        df_old = conn.read(worksheet="to-review")
+        df_old = pd.concat([df_old, df_new])
+        d = conn.update(worksheet="to-review",data=df_old)
+        st.cache_data.clear()
 
+with st.expander("Option 2: Fill out Form for review"):
+    with st.form('Form1'):
+        source = st.text_input("Source", key='label_input')
+        targetspecies = st.text_input("Target Species")
+        antigen = st.text_input("Antigen")
+        clone = st.text_input("Clone")
+        con = st.text_input("Conjugate")
+        hostspecies = st.text_input("Host Species")
+        isotype = st.text_input("Isotype")
+        supplier = st.text_input("Supplier")
+        cat = st.text_input("Catalougue #")
+        rrid = st.text_input("RRID")
+        concentration = st.text_input("Concentration")
+        testtissue = st.text_input("Test Tissue")
+        testcelltype = st.text_input("Test Cell Type")
+        testamount = st.text_input("Test Amount")
+        testprep = st.text_input("Test Preparation")
+        amounttested = st.text_input("Amount Tested (uL)")
+        st.form_submit_button('Add for review into Repository: for now this needs to be clicked twice to work', on_click=update_google_sheet)
+
+
+with st.expander("Option 3: Connect over email"):
+    st.write("fcat.repository@gmail.com")
+# if keycloak.authenticated:
+#     main()
