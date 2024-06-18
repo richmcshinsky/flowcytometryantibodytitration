@@ -16,6 +16,8 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+tab1, tab2, tab3, tab4 = st.tabs(["Repository", "Contribute", "Insights", "FAQ"])
+
 # Removes download button on tables
 st.markdown(
                 """
@@ -62,61 +64,68 @@ create_data = { "Source":            "multiselect",
 all_widgets = sp.create_widgets(df, create_data)
 res = sp.filter_df(df, all_widgets)
 
-# Visual Page
-st.title("Demo")
+with tab1:
+    # st.title("Demo")
+    # st.header("Repository")
+    st.write(res)
 
-st.header("Repository")
-st.write(res)
-
+with tab2:
 # adding new data
-st.header("Contribute")
-
-def update_google_sheet():
-    # update google sheet
-    data=pd.DataFrame([[source, targetspecies, antigen, clone, con, hostspecies,
-          isotype, supplier, cat, rrid, concentration, testtissue,
-          testcelltype, testamount, testprep, amounttested]],
-          columns=["Source", "Target Species", "Antigen", "Clone", 
-                   "Conjugate", "Host Species", "Isotype", "Supplier", 
-                   "Catalougue #", "RRID", "Concentration", 
-                   "Test Tissue", "Test Cell Type", "Test Amount", 
-                   "Test Preparation", "Amount Tested (uL)"])
-    df_old = conn.read(worksheet="to-review")
-    df_old = pd.concat([df_old, data])
-    d = conn.update(worksheet="to-review",data=df_old)
-    st.cache_data.clear()
-
-with st.expander("Option 1: Upload a CSV file for review with matching column names"):
-    uploaded_file = st.file_uploader("Once you upload a file it will be automatically sent for review")
-    if uploaded_file is not None:
-        df_new = pd.read_csv(uploaded_file)
+    # st.header("Contribute")
+    def update_google_sheet():
+        # update google sheet
+        data=pd.DataFrame([[source, targetspecies, antigen, clone, con, hostspecies,
+            isotype, supplier, cat, rrid, concentration, testtissue,
+            testcelltype, testamount, testprep, amounttested]],
+            columns=["Source", "Target Species", "Antigen", "Clone", 
+                    "Conjugate", "Host Species", "Isotype", "Supplier", 
+                    "Catalougue #", "RRID", "Concentration", 
+                    "Test Tissue", "Test Cell Type", "Test Amount", 
+                    "Test Preparation", "Amount Tested (uL)"])
         df_old = conn.read(worksheet="to-review")
-        df_old = pd.concat([df_old, df_new])
+        df_old = pd.concat([df_old, data])
         d = conn.update(worksheet="to-review",data=df_old)
         st.cache_data.clear()
 
-with st.expander("Option 2: Fill out Form for review"):
-    with st.form('Form1'):
-        source = st.text_input("Source", key='label_input')
-        targetspecies = st.text_input("Target Species")
-        antigen = st.text_input("Antigen")
-        clone = st.text_input("Clone")
-        con = st.text_input("Conjugate")
-        hostspecies = st.text_input("Host Species")
-        isotype = st.text_input("Isotype")
-        supplier = st.text_input("Supplier")
-        cat = st.text_input("Catalougue #")
-        rrid = st.text_input("RRID")
-        concentration = st.text_input("Concentration")
-        testtissue = st.text_input("Test Tissue")
-        testcelltype = st.text_input("Test Cell Type")
-        testamount = st.text_input("Test Amount")
-        testprep = st.text_input("Test Preparation")
-        amounttested = st.text_input("Amount Tested (uL)")
-        st.form_submit_button('Add for review into Repository: for now this needs to be clicked twice to work', on_click=update_google_sheet)
+    with st.expander("Option 1: Upload a CSV file for review with matching column names"):
+        uploaded_file = st.file_uploader("Once you upload a file it will be automatically sent for review")
+        if uploaded_file is not None:
+            df_new = pd.read_csv(uploaded_file)
+            df_old = conn.read(worksheet="to-review")
+            df_old = pd.concat([df_old, df_new])
+            d = conn.update(worksheet="to-review",data=df_old)
+            st.cache_data.clear()
+
+    with st.expander("Option 2: Fill out Form for review"):
+        with st.form('Form1'):
+            source = st.text_input("Source", key='label_input')
+            targetspecies = st.text_input("Target Species")
+            antigen = st.text_input("Antigen")
+            clone = st.text_input("Clone")
+            con = st.text_input("Conjugate")
+            hostspecies = st.text_input("Host Species")
+            isotype = st.text_input("Isotype")
+            supplier = st.text_input("Supplier")
+            cat = st.text_input("Catalougue #")
+            rrid = st.text_input("RRID")
+            concentration = st.text_input("Concentration")
+            testtissue = st.text_input("Test Tissue")
+            testcelltype = st.text_input("Test Cell Type")
+            testamount = st.text_input("Test Amount")
+            testprep = st.text_input("Test Preparation")
+            amounttested = st.text_input("Amount Tested (uL)")
+            st.form_submit_button('Add for review into Repository: for now this needs to be clicked twice to work', on_click=update_google_sheet)
 
 
-with st.expander("Option 3: Connect over email"):
-    st.write("fcat.repository@gmail.com")
+    with st.expander("Option 3: Connect over email"):
+        st.write("fcat.repository@gmail.com")
+
+with tab3:
+    st.write("WIP")
+
+with tab4:
+    st.write("WIP")
+
+
 # if keycloak.authenticated:
 #     main()
