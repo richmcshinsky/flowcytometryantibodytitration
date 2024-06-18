@@ -16,6 +16,8 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+st.title("Metrdy")
+
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Repository", "Contribute", "Insights", "FAQ", "Contact", "Pricing"])
 
 # Removes download button on tables
