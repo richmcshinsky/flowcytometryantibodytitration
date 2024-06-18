@@ -19,17 +19,7 @@ st.set_page_config(
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Repository", "Contribute", "Insights", "FAQ", "Contact", "Pricing"])
 
 # Removes download button on tables
-st.markdown(
-                """
-                <style>
-                [data-testid="stElementToolbar"] {
-                    display: none;
-                }
-                </style>
-                """,
-                unsafe_allow_html=True
-            )
-
+st.markdown("""<style> [data-testid="stElementToolbar"] {display: none;} </style>""", unsafe_allow_html=True)
 
 #st.title("Streamlit Keycloak example")
 #keycloak = login(
@@ -45,6 +35,9 @@ df = conn.read(worksheet="reviewed", ttl="30m")
 
 # Add filters
 create_data = { "Source":            "multiselect",
+                "Publisher":         "multiselect",
+                "Paper":             "multiselect",
+                "Journal":           "multiselect",
                 "Target Species":    "multiselect",
                 "Antigen":           "multiselect",
                 "Clone":             "multiselect",
@@ -59,8 +52,11 @@ create_data = { "Source":            "multiselect",
                 "Test Cell Type":    "multiselect",
                 "Test Amount":       "multiselect",
                 "Test Preparation":  "multiselect",
-                "Amount Tested (uL)":"text"}
-
+                "Amount Tested (uL)":"multiselect",
+                "Seperation Index":  "multiselect",
+                "Samples/vial":      "multiselect",
+                "Cost/sample":       "multiselect",
+                "Image":             "multiselect"}
 all_widgets = sp.create_widgets(df, create_data)
 res = sp.filter_df(df, all_widgets)
 
@@ -74,14 +70,16 @@ with tab2:
     # st.header("Contribute")
     def update_google_sheet():
         # update google sheet
-        data=pd.DataFrame([[source, targetspecies, antigen, clone, con, hostspecies,
-            isotype, supplier, cat, rrid, concentration, testtissue,
-            testcelltype, testamount, testprep, amounttested]],
-            columns=["Source", "Target Species", "Antigen", "Clone", 
+        data=pd.DataFrame([[source, pub, pap, jour, targetspecies, antigen, clone, con, hostspecies,
+                            isotype, supplier, cat, rrid, concentration, testtissue,
+                            testcelltype, testamount, testprep, amounttested, sep, samp, cost, image]],
+            columns=["Source", "Publisher", "Paper", "Journal", 
+                     "Target Species", "Antigen", "Clone", 
                     "Conjugate", "Host Species", "Isotype", "Supplier", 
                     "Catalougue #", "RRID", "Concentration", 
                     "Test Tissue", "Test Cell Type", "Test Amount", 
-                    "Test Preparation", "Amount Tested (uL)"])
+                    "Test Preparation", "Amount Tested (uL)",
+                    "Seperation Index", "Samples/vial", "Cost/sample", "Image"])
         df_old = conn.read(worksheet="to-review")
         df_old = pd.concat([df_old, data])
         d = conn.update(worksheet="to-review",data=df_old)
@@ -98,7 +96,10 @@ with tab2:
 
     with st.expander("Option 2: Fill out Form for review"):
         with st.form('Form1'):
-            source = st.text_input("Source", key='label_input')
+            source = st.text_input("Source")
+            pub = st.text_input("Publisher")
+            pap = st.text_input("Paper")
+            jour = st.text_input("Journal")
             targetspecies = st.text_input("Target Species")
             antigen = st.text_input("Antigen")
             clone = st.text_input("Clone")
@@ -114,6 +115,10 @@ with tab2:
             testamount = st.text_input("Test Amount")
             testprep = st.text_input("Test Preparation")
             amounttested = st.text_input("Amount Tested (uL)")
+            sep = st.text_input("Seperation Index")
+            samp = st.text_input("Samples/vial")
+            cost = st.text_input("Cost/sample")
+            image = st.text_input("Image")
             st.form_submit_button('Add for review into Repository: for now this needs to be clicked twice to work', on_click=update_google_sheet)
 
 
