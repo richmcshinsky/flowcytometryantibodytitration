@@ -16,7 +16,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-tab1, tab2, tab3, tab4 = st.tabs(["Repository", "Contribute", "Insights", "FAQ"])
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Repository", "Contribute", "Insights", "FAQ", "Contact", "Pricing"])
 
 # Removes download button on tables
 st.markdown(
@@ -121,9 +121,15 @@ with tab2:
         st.write("fcat.repository@gmail.com")
 
 with tab3:
-    st.write("WIP")
+    st.bar_chart(res["Antigen"].value_counts())
 
 with tab4:
+    st.write("WIP")
+
+with tab5:
+    st.write("EMAIL: fcat.repository@gmail.com")
+
+with tab6:
     st.write("WIP")
 
 
