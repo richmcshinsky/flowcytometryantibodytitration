@@ -59,6 +59,8 @@ create_data = { "Source":            "multiselect",
                 "Image":             "multiselect"}
 all_widgets = sp.create_widgets(df, create_data)
 res = sp.filter_df(df, all_widgets)
+cols_to_move = ['Amount Tested (uL)', 'Seperation Index', "Samples/vial", "Cost/sample", "Image"]
+res = res[cols_to_move + [col for col in res.columns if col not in cols_to_move]]
 
 with tab1:
     # st.title("Demo")
