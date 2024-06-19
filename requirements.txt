@@ -3,5 +3,4 @@ altair==4
 streamlit_pandas
 openpyxl
 st-gsheets-connection
-# streamlit-authenticator
-# streamlit-keycloak
+plotly-express

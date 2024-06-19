@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import streamlit_pandas as sp
 from streamlit_gsheets import GSheetsConnection
+import plotly.express as px
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
 # TODO: make a google private sheet for CRUD operations
@@ -65,8 +66,6 @@ cols_to_move = ['Amount Tested (uL)', 'Seperation Index', "Samples/vial", "Cost/
 res = res[cols_to_move + [col for col in res.columns if col not in cols_to_move]]
 
 with tab1:
-    # st.title("Demo")
-    # st.header("Repository")
     st.write(res)
 
 with tab2:
@@ -130,7 +129,17 @@ with tab2:
         st.write("fcat.repository@gmail.com")
 
 with tab3:
-    st.bar_chart(res["Antigen"].value_counts())
+    fig = px.bar(res["Antigen"].value_counts()[:20])
+    st.plotly_chart(fig, use_container_width=True)
+    fig = px.bar(res["Conjugate"].value_counts()[:20])
+    st.plotly_chart(fig, use_container_width=True)
+    fig = px.bar(res["Clone"].value_counts()[:20])
+    st.plotly_chart(fig, use_container_width=True)
+    fig = px.bar(res["Supplier"].value_counts()[:20])
+    st.plotly_chart(fig, use_container_width=True)
+    fig = px.bar(res["Concentration"].value_counts()[:20])
+    st.plotly_chart(fig, use_container_width=True)
+    # st.bar_chart(res["Antigen"].value_counts())
 
 with tab4:
     st.write("WIP")
@@ -139,7 +148,7 @@ with tab5:
     st.write("EMAIL: fcat.repository@gmail.com")
 
 with tab6:
-    st.write("WIP")
+    st.write("Currently this Repository is implemented as a demo. Consider adding to the repository through the contribute tab if you found this Repository useful. ")
 
 
 # if keycloak.authenticated:
