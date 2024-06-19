@@ -128,7 +128,8 @@ with tab2:
     with st.expander("Option 3: Connect over email"):
         st.write("fcat.repository@gmail.com")
 
-with tab3:
+with tab3:   
+    st.write("Plot data comming from " + str(len(res["Source"].unique())) + " data sources.")
     fig = px.bar(res["Antigen"].value_counts()[:20])
     st.plotly_chart(fig, use_container_width=True)
     fig = px.bar(res["Conjugate"].value_counts()[:20])
