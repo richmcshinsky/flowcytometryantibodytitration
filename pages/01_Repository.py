@@ -34,12 +34,14 @@ def main():
     df = df[columns]
     all_widgets = sp.create_widgets(df, create_data)
     res = sp.filter_df(df, all_widgets)
-    st.session_state['res'] = res
-    st.session_state['columns'] = columns
+    if 'res' not in st.session_state:
+        st.session_state['res'] = res
+    if 'columns' not in st.session_state:
+        st.session_state['columns'] = columns
 
     st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 
-    st.dataframe(st.session_state['res'], column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
+    st.dataframe(res, column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
                                         "Source": st.column_config.LinkColumn(display_text="Source")},
                         height=1000, column_order=st.session_state['columns'])
     
