@@ -19,7 +19,8 @@ def main():
     st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
     st.divider()
 
-    st.write("Subscription benefits:")
+    st.write("By typing in the Catalougue # from the repository this will redirect you to the supplier purchase page.")
+    
 
 if __name__ == '__main__':
     main()

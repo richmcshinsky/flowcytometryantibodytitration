@@ -56,7 +56,7 @@ def main():
                                         "Source": st.column_config.LinkColumn(display_text="Source")},
                         height=1000, column_order=columns)
     
-    st.session_state['res'] = res
+    # st.session_state['res'] = res
     
 if __name__ == '__main__':
     main()
