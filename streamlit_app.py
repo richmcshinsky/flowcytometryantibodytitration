@@ -66,7 +66,8 @@ cols_to_move = ['Amount Tested (uL)', 'Seperation Index', "Samples/vial", "Cost/
 res = res[cols_to_move + [col for col in res.columns if col not in cols_to_move]]
 
 with tab1:
-    st.write(res)
+    st.dataframe(res, column_config={"Image": st.column_config.LinkColumn()})
+    #st.write(res)
 
 with tab2:
 # adding new data
@@ -129,6 +130,7 @@ with tab2:
         st.write("fcat.repository@gmail.com")
 
 with tab3:   
+    # maybe plot comparison to overall data? In percentages?
     st.write("Plot data comming from " + str(len(res["Source"].unique())) + " data sources.")
     fig = px.bar(res["Antigen"].value_counts()[:20])
     st.plotly_chart(fig, use_container_width=True)
@@ -140,7 +142,6 @@ with tab3:
     st.plotly_chart(fig, use_container_width=True)
     fig = px.bar(res["Concentration"].value_counts()[:20])
     st.plotly_chart(fig, use_container_width=True)
-    # st.bar_chart(res["Antigen"].value_counts())
 
 with tab4:
     st.write("WIP")
