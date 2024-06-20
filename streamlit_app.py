@@ -76,7 +76,8 @@ res = res[cols_to_move + [col for col in res.columns if col not in cols_to_move]
 
 with tab1: # repository
     st.dataframe(res, column_config={"Image": st.column_config.LinkColumn(),
-                                     "Source": st.column_config.LinkColumn()})
+                                     "Source": st.column_config.LinkColumn()},
+                    height=1000)
     #st.write(res)
 
 with tab2: # contribute
