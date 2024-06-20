@@ -2,6 +2,12 @@ import streamlit as st
 import streamlit_pandas as sp
 from streamlit_gsheets import GSheetsConnection
 
+st.set_page_config(
+        page_title='Flow Cytometry Antibody Titration Repository',
+        layout="wide",
+        #initial_sidebar_state="expanded"
+    )
+
 def main():
     st.markdown("""<style> [data-testid="stElementToolbar"] {display: none;} </style>""", unsafe_allow_html=True)
     with st.sidebar:

@@ -3,6 +3,12 @@ import plotly.express as px
 import streamlit_pandas as sp
 from streamlit_gsheets import GSheetsConnection
 
+st.set_page_config(
+        page_title='Flow Cytometry Antibody Titration Repository',
+        layout="wide",
+        #initial_sidebar_state="expanded"
+    )
+
 def main():
     with st.sidebar:
         st.page_link('streamlit_app.py', label='Home')
