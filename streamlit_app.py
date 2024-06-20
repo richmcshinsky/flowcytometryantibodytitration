@@ -1,6 +1,4 @@
 import streamlit as st
-import streamlit_pandas as sp
-from streamlit_gsheets import GSheetsConnection
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
 # TODO: add styling/theming
@@ -27,36 +25,7 @@ def main():
         st.page_link('pages/04_Contact.py', label='Contact')
         st.page_link('pages/05_Pricing.py', label='Pricing')
 
-    conn = st.connection("gsheets", type=GSheetsConnection)
-    df = conn.read(worksheet="reviewed", ttl="30m")
-
-    columns = ["Antigen", "Clone", "Conjugate", "Test Tissue",
-            "Test Cell Type", "Test Preparation", "Test Amount",
-            "Image", "Target Species", "Host Species", "Isotype",
-            "Supplier", "Catalougue #", "RRID", "Concentration",
-            "Concentration (ug/mL)", "Titeration (ug/mL)",
-            "Amount Tested (uL)", "Seperation Index", "Samples/vial",
-            "Cost/sample", "Metal", "Metal Source", "Metal Catalogue #",
-            "Detector", "Staining", "Source", "Publisher", "Paper",
-            "Journal"]
-
-    create_data = {}
-    for c in columns:
-        create_data[c] = "multiselect"
-
-    # Add filters
-    df = df[columns]
-    all_widgets = sp.create_widgets(df, create_data)
-    res = sp.filter_df(df, all_widgets)
-    if 'res' not in st.session_state:
-        st.session_state['res'] = res
-    if 'columns' not in st.session_state:
-        st.session_state['columns'] = columns
-
     st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
-
-    # Removes download button on tables
-    st.markdown("""<style> [data-testid="stElementToolbar"] {display: none;} </style>""", unsafe_allow_html=True)
 
     #st.title("Streamlit Keycloak example")
     #keycloak = login(
