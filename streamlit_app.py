@@ -66,7 +66,8 @@ cols_to_move = ['Amount Tested (uL)', 'Seperation Index', "Samples/vial", "Cost/
 res = res[cols_to_move + [col for col in res.columns if col not in cols_to_move]]
 
 with tab1:
-    st.dataframe(res, column_config={"Image": st.column_config.LinkColumn()})
+    st.dataframe(res, column_config={"Image": st.column_config.LinkColumn(),
+                                     "Source": st.column_config.LinkColumn()})
     #st.write(res)
 
 with tab2:
