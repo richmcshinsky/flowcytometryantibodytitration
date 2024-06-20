@@ -15,6 +15,14 @@ def main():
 
     st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
     st.divider()
+    st.write("This repository data has several filtering and search options:")
+    lst = ['click on a column name to sort values', 
+           'filter using the menu on the left', 
+           'search using keywords by typing in the filter box on the left menu']
+    s = ''
+    for i in lst:
+        s += "- " + i + "\n"
+    st.markdown(s)
 
     conn = st.connection("gsheets", type=GSheetsConnection)
     df = conn.read(worksheet="reviewed", ttl="30m")
