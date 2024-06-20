@@ -46,8 +46,8 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 df = conn.read(worksheet="reviewed", ttl="30m")
 
 columns = ["Antigen", "Clone", "Conjugate", "Test Tissue",
-           "Test Cell Type", "Test Amount", "Test Preparation",
-           "Target Species", "Host Species", "Isotype",
+           "Test Cell Type", "Test Preparation", "Test Amount",
+           "Image", "Target Species", "Host Species", "Isotype",
            "Supplier", "Catalougue #", "RRID", "Concentration",
            "Concentration (ug/mL)", "Titeration (ug/mL)",
            "Amount Tested (uL)", "Seperation Index", "Samples/vial",
@@ -58,46 +58,15 @@ columns = ["Antigen", "Clone", "Conjugate", "Test Tissue",
 create_data = {}
 for c in columns:
     create_data[c] = "multiselect"
+
 # Add filters
-"""create_data = { "Antigen":           "multiselect",
-                "Clone":             "multiselect",
-                "Conjugate":         "multiselect",
-                "Test Tissue":       "multiselect",
-                "Test Cell Type":    "multiselect",
-                "Test Amount":       "multiselect",
-                "Test Preparation":  "multiselect",
-                "Target Species":    "multiselect",
-                "Host Species":      "multiselect",
-                "Isotype":           "multiselect",
-                "Supplier":          "multiselect",
-                "Catalougue #":      "multiselect",
-                "RRID":              "multiselect",
-                "Concentration":     "multiselect",
-                "Concentration (ug/mL)":"multiselect",
-                "Titeration (ug/mL)":"multiselect",
-                "Amount Tested (uL)":"multiselect",
-                "Seperation Index":  "multiselect",
-                "Samples/vial":      "multiselect",
-                "Cost/sample":       "multiselect",
-                "Metal":             "multiselect",
-                "Metal Source":      "multiselect",
-                "Metal Catalogue #": "multiselect",
-                "Detector":          "multiselect",
-                "Staining":          "multiselect",
-                "Source":            "multiselect",
-                "Publisher":         "multiselect",
-                "Paper":             "multiselect",
-                "Journal":           "multiselect"}"""
 all_widgets = sp.create_widgets(df, create_data)
 res = sp.filter_df(df, all_widgets)
-cols_to_move = ['Amount Tested (uL)', 'Seperation Index', "Samples/vial", "Cost/sample", "Image"]
-res = res[cols_to_move + [col for col in res.columns if col not in cols_to_move]]
 
 with tab1: # repository
     st.dataframe(res, column_config={"Image": st.column_config.LinkColumn(),
                                      "Source": st.column_config.LinkColumn()},
-                    height=1000)
-    # column_order (sorts and filter out columns not in it!)
+                    height=1000, column_order=columns)
 
 with tab2: # contribute
 # adding new data
