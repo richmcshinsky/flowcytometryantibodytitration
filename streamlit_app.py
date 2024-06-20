@@ -5,10 +5,11 @@ from streamlit_gsheets import GSheetsConnection
 import plotly.express as px
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
-# TODO: make a google private sheet for CRUD operations
-# TODO: make 2 sheets, one for data and one for review
 # TODO: add styling/theming
-# TODO: 
+# TODO: contact form
+# TODO: finish adding images 
+# TODO: review data with Tony
+# TODO: update contribute to only have essential columns as options
 
 # set up config for page
 st.set_page_config(
@@ -19,7 +20,7 @@ st.set_page_config(
 
 st.title("Metrdy")
 
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Repository", "Contribute", "Insights", "FAQ", "Contact", "Pricing"])
+tab1, tab2, tab3, tab5, tab6 = st.tabs(["Repository", "Contribute", "Insights", "Contact", "Pricing"]) #  tab4, "FAQ"
 
 # Removes download button on tables
 st.markdown("""<style> [data-testid="stElementToolbar"] {display: none;} </style>""", unsafe_allow_html=True)
@@ -65,12 +66,12 @@ res = sp.filter_df(df, all_widgets)
 cols_to_move = ['Amount Tested (uL)', 'Seperation Index', "Samples/vial", "Cost/sample", "Image"]
 res = res[cols_to_move + [col for col in res.columns if col not in cols_to_move]]
 
-with tab1:
+with tab1: # repository
     st.dataframe(res, column_config={"Image": st.column_config.LinkColumn(),
                                      "Source": st.column_config.LinkColumn()})
     #st.write(res)
 
-with tab2:
+with tab2: # contribute
 # adding new data
     # st.header("Contribute")
     def update_google_sheet():
@@ -130,7 +131,7 @@ with tab2:
     with st.expander("Option 3: Connect over email"):
         st.write("fcat.repository@gmail.com")
 
-with tab3:   
+with tab3: # insights 
     # maybe plot comparison to overall data? In percentages?
     st.write("Plot data comming from " + str(len(res["Source"].unique())) + " data sources.")
     fig = px.bar(res["Antigen"].value_counts()[:20])
@@ -144,10 +145,10 @@ with tab3:
     fig = px.bar(res["Concentration"].value_counts()[:20])
     st.plotly_chart(fig, use_container_width=True)
 
-with tab4:
-    st.write("WIP")
+# with tab4: # FAQ
+#     st.write("WIP")
 
-with tab5:
+with tab5: # Contact
     st.write("submitting this form doesn't do anything yet FYI")
     with st.form("form2", clear_on_submit=True):
         name = st.text_input("Enter name")
@@ -156,7 +157,7 @@ with tab5:
         submit = st.form_submit_button("Submit")
     st.write("Or send email to: fcat.repository@gmail.com (can add file attachments this way)")
 
-with tab6:
+with tab6: # Pricing
     st.write("Subscription benefits:")
     lst = ['access to the entire repository data', 
            'access to insights charts', 
