@@ -2,7 +2,6 @@ import streamlit as st
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
 # TODO: add page for purchase options (maybe affiliate link income?)
-# TODO: add styling/theming
 # TODO: contact form
 # TODO: finish adding images 
 # TODO: review data with Tony
