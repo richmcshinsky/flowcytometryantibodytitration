@@ -41,38 +41,32 @@ def main():
                 You can look up titration data for planning experiments and making 
                 informed purchasing decisions. Data is collected from various publications
                 and through user contributions. """)
-    # st.divider()
+
     st.subheader("What brings you here today?")
-    #if st.button("Repository"):
-    #    st.switch_page("pages/01_Repository.py")
-    #if st.button("Contribute"):
-    #    st.switch_page("pages/02_Contribute.py")
-    #if st.button("Insights"):
-    #    st.switch_page("pages/03_Insights.py")
-    #if st.button("Contact"):
-    #    st.switch_page("pages/04_Contact.py")
-    #if st.button("Pricing"):
-    #    st.switch_page("pages/05_Pricing.py")
-    #if st.button("Purchase"):
-    #    st.switch_page("pages/06_Purchase.py")
     # if keycloak.authenticated:
     #     main()
     
     col1, col2 = st.columns(2, gap="small")
     with col1:
-        st.button(label="Repository", use_container_width=True, help="""Click here to go explore the repository data. 
-                  Filters will appear in the same navigation tab on the left.""")
+        if st.button(label="Repository", use_container_width=True, help="""Click here to go explore the repository data. 
+                  Filters will appear in the same navigation tab on the left."""):
+            st.switch_page("pages/01_Repository.py")
     with col2:
-        st.button(label="Contribute", use_container_width=True, help="""Add to the repository usign your own data. 
-                  Free subscriptions are offered for accepted contributions!""")
+        if st.button(label="Contribute", use_container_width=True, help="""Add to the repository usign your own data. 
+                  Free subscriptions are offered for accepted contributions!"""):
+            st.switch_page("pages/02_Contribute.py")
     with col1:
-        st.button(label="Insights", use_container_width=True, help="See visualizations and summaries about repository data.")
+        if st.button(label="Insights", use_container_width=True, help="See visualizations and summaries about repository data."):
+            st.switch_page("pages/03_Insights.py")
     with col2:
-        st.button(label="Contact", use_container_width=True, help="Form to send an email.")
+        if st.button(label="Contact", use_container_width=True, help="Form to send an email."):
+            st.switch_page("pages/04_Contact.py")
     with col1:
-        st.button(label="Pricing", use_container_width=True, help="Explanations on subscription pricing and benefits")
+        if st.button(label="Pricing", use_container_width=True, help="Explanations on subscription pricing and benefits"):
+            st.switch_page("pages/05_Pricing.py")
     with col2:
-        st.button(label="Purchase", use_container_width=True, help="Use identifier to link directly to supplier purchase page.")
+        if st.button(label="Purchase", use_container_width=True, help="Use identifier to link directly to supplier purchase page."):
+            st.switch_page("pages/06_Purchase.py")
 
 if __name__ == '__main__':
     main()
