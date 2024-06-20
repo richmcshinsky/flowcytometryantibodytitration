@@ -8,6 +8,7 @@ def main():
         st.page_link('pages/03_Insights.py', label='Insights')
         st.page_link('pages/04_Contact.py', label='Contact')
         st.page_link('pages/05_Pricing.py', label='Pricing')
+        st.page_link('pages/06_Purchase.py', label='Purchase')
     st.write("Subscription benefits:")
     lst = ['access to the entire repository data', 
             'access to insights charts', 

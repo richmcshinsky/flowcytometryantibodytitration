@@ -1,6 +1,7 @@
 import streamlit as st
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
+# TODO: add page for purchase options (maybe affiliate link income?)
 # TODO: add styling/theming
 # TODO: contact form
 # TODO: finish adding images 
@@ -24,6 +25,7 @@ def main():
         st.page_link('pages/03_Insights.py', label='Insights')
         st.page_link('pages/04_Contact.py', label='Contact')
         st.page_link('pages/05_Pricing.py', label='Pricing')
+        st.page_link('pages/06_Purchase.py', label='Purchase')
 
     st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 
@@ -51,6 +53,8 @@ def main():
         st.switch_page("pages/04_Contact.py")
     if st.button("Pricing"):
         st.switch_page("pages/05_Pricing.py")
+    if st.button("Purchase"):
+        st.switch_page("pages/06_Purchase.py")
     # if keycloak.authenticated:
     #     main()
 
