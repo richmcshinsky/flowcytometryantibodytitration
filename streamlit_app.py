@@ -11,6 +11,11 @@ import plotly.express as px
 # TODO: review data with Tony
 # TODO: update contribute to only have essential columns as options
 
+# TODO: The links could be condensed to "Image here" links. 
+# TODO: I think we need a generic search box so someone can enter whatever is on their mind and see what we have to offer.
+# TODO: In time, we will need a reference for any published data, DOI and/or PMCID may be sufficient.
+# TODO: I am visioning a home page that shows an intro/how to, something like "What brings you here today, button for add titration data, button for look up an antibody I already have, button for shop for antibodies based on price/test, etc."
+
 # set up config for page
 st.set_page_config(
     page_title='Flow Cytometry Antibody Titration Repository',
@@ -60,12 +65,17 @@ for c in columns:
     create_data[c] = "multiselect"
 
 # Add filters
+df = df[columns]
 all_widgets = sp.create_widgets(df, create_data)
 res = sp.filter_df(df, all_widgets)
 
+import plotly.graph_objects as go
+def create_link(url:str) -> str:
+    return f'''<a href="{url}">🔗</a>'''
+
 with tab1: # repository
-    st.dataframe(res, column_config={"Image": st.column_config.LinkColumn(),
-                                     "Source": st.column_config.LinkColumn()},
+    st.dataframe(res, column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
+                                     "Source": st.column_config.LinkColumn(display_text="Source")},
                     height=1000, column_order=columns)
 
 with tab2: # contribute
