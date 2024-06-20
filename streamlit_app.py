@@ -18,7 +18,15 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.title("Metrdy")
+st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
+# st.image(logo_url, width=100) 
+# st.title("Metrdy")
+#col1, mid, col2 = st.columns([1,1,20])
+#with col1:
+#    st.image('row_2_col_1.jpg') #, width=60)
+#with col2:
+#    st.header('A Name')
+
 
 tab1, tab2, tab3, tab5, tab6 = st.tabs(["Repository", "Contribute", "Insights", "Contact", "Pricing"]) #  tab4, "FAQ"
 
