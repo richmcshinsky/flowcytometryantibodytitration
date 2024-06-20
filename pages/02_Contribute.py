@@ -2,11 +2,7 @@ import streamlit as st
 import pandas as pd
 from streamlit_gsheets import GSheetsConnection
 
-st.set_page_config(
-        page_title='Flow Cytometry Antibody Titration Repository',
-        layout="wide",
-        #initial_sidebar_state="expanded"
-    )
+st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
 def main():
     with st.sidebar:

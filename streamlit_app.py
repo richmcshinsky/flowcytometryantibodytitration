@@ -9,11 +9,14 @@ import streamlit as st
 
 # TODO: I think we need a generic search box so someone can enter whatever is on their mind and see what we have to offer.
 # TODO: In time, we will need a reference for any published data, DOI and/or PMCID may be sufficient.
-st.set_page_config(
-        page_title='Flow Cytometry Antibody Titration Repository',
-        layout="wide",
-        #initial_sidebar_state="expanded"
-    )
+
+st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
+
+#keycloak = login(url="http://localhost:8080",
+#    realm="myrealm", client_id="myclient") 
+# def main():
+#    if keycloak
+#    main()
 
 def main():
     # builds the sidebar menu
@@ -25,17 +28,12 @@ def main():
         st.page_link('pages/04_Contact.py', label='Contact')
         st.page_link('pages/05_Pricing.py', label='Pricing')
         st.page_link('pages/06_Purchase.py', label='Purchase')
+        #st.page_link('pages/07_Tools.py', label='Tools')
+        #st.page_link('pages/08_FAQ.py', label='FAQ')
 
     st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
     st.divider()
 
-    #st.title("Streamlit Keycloak example")
-    #keycloak = login(
-    #    url="http://localhost:8080",
-    #    realm="myrealm",
-    #    client_id="myclient",
-    #) 
-    # def main():
     st.subheader("Welcome")
     st.write("""This is a database of flow cytometry antibody titration data.
                 You can look up titration data for planning experiments and making 
