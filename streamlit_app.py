@@ -28,6 +28,7 @@ def main():
         st.page_link('pages/06_Purchase.py', label='Purchase')
 
     st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
+    st.divider()
 
     #st.title("Streamlit Keycloak example")
     #keycloak = login(

@@ -14,6 +14,9 @@ def main():
         st.page_link('pages/05_Pricing.py', label='Pricing')
         st.page_link('pages/06_Purchase.py', label='Purchase')
 
+    st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
+    st.divider()
+
     conn = st.connection("gsheets", type=GSheetsConnection)
     df = conn.read(worksheet="reviewed", ttl="30m")
 

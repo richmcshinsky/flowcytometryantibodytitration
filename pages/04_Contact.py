@@ -10,6 +10,9 @@ def main():
         st.page_link('pages/05_Pricing.py', label='Pricing')
         st.page_link('pages/06_Purchase.py', label='Purchase')
 
+    st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
+    st.divider()
+
     st.write("submitting this form doesn't do anything yet FYI")    
     with st.form("form2", clear_on_submit=True):
         name = st.text_input("Enter name")

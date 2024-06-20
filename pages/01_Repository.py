@@ -4,7 +4,6 @@ from streamlit_gsheets import GSheetsConnection
 
 def main():
     st.markdown("""<style> [data-testid="stElementToolbar"] {display: none;} </style>""", unsafe_allow_html=True)
-
     with st.sidebar:
             st.page_link('streamlit_app.py', label='Home')
             st.page_link('pages/01_Repository.py', label='Repository')
@@ -13,6 +12,9 @@ def main():
             st.page_link('pages/04_Contact.py', label='Contact')
             st.page_link('pages/05_Pricing.py', label='Pricing')
             st.page_link('pages/06_Purchase.py', label='Purchase')
+
+    st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
+    st.divider()
 
     conn = st.connection("gsheets", type=GSheetsConnection)
     df = conn.read(worksheet="reviewed", ttl="30m")
@@ -35,8 +37,6 @@ def main():
     df = df[columns]
     all_widgets = sp.create_widgets(df, create_data)
     res = sp.filter_df(df, all_widgets)
-
-    st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 
     st.dataframe(res, column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
                                         "Source": st.column_config.LinkColumn(display_text="Source")},
