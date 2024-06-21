@@ -16,6 +16,8 @@ def main():
 
     st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
     st.divider()
+    st.write("""If you found this repository useful it would greatly benefit everyone using it with any contirbutions you can make. 
+             By adding a successful contribution to the repository, you will recieve a free subscription for x months.""")
 
     conn = st.connection("gsheets", type=GSheetsConnection)
 
@@ -71,7 +73,6 @@ def main():
             cost = st.text_input("Cost/sample")
             image = st.text_input("Image")
             st.form_submit_button('Add for review into Repository: for now this needs to be clicked twice to work', on_click=update_google_sheet)
-
 
     with st.expander("Option 3: Connect over email"):
         st.write("fcat.repository@gmail.com")

@@ -2,8 +2,7 @@ import streamlit as st
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
 # TODO: add page for purchase options (maybe affiliate link income?)
-# TODO: contact form
-# TODO: finish adding images 
+# TODO: contact form: need columns that users would need to fill out
 # TODO: review data with Tony
 # TODO: update contribute to only have essential columns as options
 
