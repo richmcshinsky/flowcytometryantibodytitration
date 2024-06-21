@@ -23,7 +23,7 @@ def main():
     for i in lst:
         s += "- " + i + "\n"
     st.markdown(s)
-    st.write("Pricing")
+    st.write("Pricing:")
     lst = ["$xx/month for individual access", 
             "email about discounts for group and organizational level access",
             "free access for x months for contributing to repository"]

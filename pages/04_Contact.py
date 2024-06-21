@@ -1,4 +1,6 @@
 import streamlit as st
+import smtplib
+from email.mime.text import MIMEText
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
@@ -18,9 +20,25 @@ def main():
     st.write("submitting this form doesn't do anything yet FYI")    
     with st.form("form2", clear_on_submit=True):
         name = st.text_input("Enter name")
-        email = st.text_input("Enter email")
-        message = st.text_area("Enter message")
-        submit = st.form_submit_button("Submit")
+        email_sender = st.text_input("Enter email")
+        body = st.text_area("Enter message")
+        password = ""
+        email_receiver = "fcat.repository@gmail.com"
+        if st.form_submit_button("Send Email"):
+            try:
+                msg = MIMEText(body)
+                msg['From'] = email_sender
+                msg['To'] = email_receiver
+                msg['Subject'] = name
+
+                server = smtplib.SMTP('smtp.gmail.com', 587)
+                server.starttls()
+                server.login(email_sender, password)
+                server.sendmail(email_sender, email_receiver, msg.as_string())
+                server.quit()
+                st.success('Email sent successfully!')
+            except:
+                st.error("Email failed to send")
     st.write("Or send email to: fcat.repository@gmail.com (can add file attachments this way)")
 
 if __name__ == '__main__':
