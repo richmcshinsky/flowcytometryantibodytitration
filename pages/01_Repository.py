@@ -25,6 +25,7 @@ def main():
     for i in lst:
         s += "- " + i + "\n"
     st.markdown(s)
+    st.write("Note: If you are on mobile, you may need to press and hold on links to allow popups.")
 
     conn = st.connection("gsheets", type=GSheetsConnection)
     df = conn.read(worksheet="reviewed", ttl="30m")
