@@ -17,8 +17,13 @@ def main():
     st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
     st.divider()
 
-    st.write("""By typing in the Catalougue # from the repository this will 
-             redirect you to the supplier purchase page.""")
+    st.write("""By typing in the Catalougue # from the repository in the filter on the left navigation,
+             this will filter this table to links of interest. You can 
+             compare between values on the multiselect. These links will 
+             redirect you to the supplier purchase page. Note that not all
+             suppliers have link and not all links may be working. This is 
+             purely for convience from looking up the supplier information
+             by yourself.""")
     
     conn = st.connection("gsheets", type=GSheetsConnection)
     df = conn.read(worksheet="purchase", ttl="30m")
@@ -30,7 +35,8 @@ def main():
     df = df[columns]
     all_widgets = sp.create_widgets(df, create_data)
     res = sp.filter_df(df, all_widgets)
-    st.dataframe(res, column_config={"Link": st.column_config.LinkColumn(display_text="Link")})
+    st.dataframe(res.drop_duplicates().reset_index(drop=True), 
+                 column_config={"Link": st.column_config.LinkColumn(display_text="Link")})
 
 
 if __name__ == '__main__':
