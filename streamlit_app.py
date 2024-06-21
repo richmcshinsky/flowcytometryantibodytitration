@@ -1,10 +1,8 @@
 import streamlit as st
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
-# TODO: add page for purchase options (maybe affiliate link income?)
 # TODO: contact form: need columns that users would need to fill out
 # TODO: review data with Tony
-# TODO: update contribute to only have essential columns as options
 
 # TODO: I think we need a generic search box so someone can enter whatever is on their mind and see what we have to offer.
 # TODO: In time, we will need a reference for any published data, DOI and/or PMCID may be sufficient.
@@ -29,6 +27,8 @@ def main():
         st.page_link('pages/06_Purchase.py', label='Purchase')
         #st.page_link('pages/07_Tools.py', label='Tools')
         #st.page_link('pages/08_FAQ.py', label='FAQ')
+        # References
+        # Search
 
     st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
     st.divider()
@@ -38,6 +38,9 @@ def main():
                 You can look up titration data for planning experiments and making 
                 informed purchasing decisions. Data is collected from various publications
                 and through user contributions. """)
+    st.write("""You can navigate this site by using the bottons below or the navigation
+             menu on the left. This menu also includes filters on certain pages. Click
+             the x to hide the menu and the arrow to reopen it.""")
 
     st.subheader("What brings you here today?")
     # if keycloak.authenticated:
