@@ -4,6 +4,11 @@ from streamlit_gsheets import GSheetsConnection
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
+@st.cache_data
+def convert_df(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode("utf-8")
+
 def main():
     with st.sidebar:
             st.page_link('streamlit_app.py', label='Home')
@@ -16,7 +21,7 @@ def main():
 
     st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
     st.divider()
-    st.write("""If you found this repository useful it would greatly benefit everyone using it with any contirbutions you can make. 
+    st.write("""If you found this repository useful, it would greatly benefit everyone using it with any contirbutions you can make. 
              By adding a successful contribution to the repository, you will recieve a free subscription for x months.""")
 
     conn = st.connection("gsheets", type=GSheetsConnection)
@@ -39,6 +44,12 @@ def main():
         st.cache_data.clear()
 
     with st.expander("Option 1: Upload a CSV file for review with matching column names"):
+        st.write("""Download template file below to have columns 
+                 appropriately structured, otherwise upload with fail.
+                 Essential columns will be in red, the others are nice to have.""")
+        csv = convert_df(pd.read_csv("data/template.csv"))
+        st.download_button(label="Download template as CSV", data=csv,
+                           file_name="template.csv", mime="text/csv")
         uploaded_file = st.file_uploader("Once you upload a file it will be automatically sent for review")
         if uploaded_file is not None:
             df_new = pd.read_csv(uploaded_file)
