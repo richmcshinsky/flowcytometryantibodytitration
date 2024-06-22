@@ -2,6 +2,8 @@ import streamlit as st
 import plotly.express as px
 import streamlit_pandas as sp
 from streamlit_gsheets import GSheetsConnection
+from st_paywall import add_auth
+
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
@@ -42,6 +44,9 @@ res = sp.filter_df(df, all_widgets)
 st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data sources.")
 fig = px.bar(res["Antigen"].value_counts()[:20])
 st.plotly_chart(fig, use_container_width=True)
+
+add_auth(required=True)
+
 fig = px.bar(res["Conjugate"].value_counts()[:20])
 st.plotly_chart(fig, use_container_width=True)
 fig = px.bar(res["Clone"].value_counts()[:20])
