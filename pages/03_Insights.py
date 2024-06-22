@@ -41,6 +41,9 @@ df = df[columns]
 all_widgets = sp.create_widgets(df, create_data)
 res = sp.filter_df(df, all_widgets)
 
+st.write("Visualizations about repository data: Subsribe to see all insights!")
+
+
 st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data sources.")
 fig = px.bar(res["Antigen"].value_counts()[:20])
 st.plotly_chart(fig, use_container_width=True)
