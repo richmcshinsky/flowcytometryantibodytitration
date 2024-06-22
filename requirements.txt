@@ -4,3 +4,4 @@ streamlit_pandas
 openpyxl
 st-gsheets-connection
 plotly-express
+st-paywall
