@@ -1,9 +1,7 @@
 import streamlit as st
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
-# TODO: add webscarper data by pulling sheet and uploading sheet
-
-# TODO: contact form: need columns that users would need to fill out
+# TODO: add webscraper data by pulling sheet and uploading sheet
 # TODO: review data with Tony
 
 # TODO: I think we need a generic search box so someone can enter whatever is on their mind and see what we have to offer.
@@ -37,7 +35,7 @@ def main():
 
     st.subheader("Welcome")
     st.write("""This is a database of flow cytometry antibody titration data.
-                You can look up titration data for planning experiments and making 
+                You can look up titration data for planning experiments and for making 
                 informed purchasing decisions. Data is collected from various publications
                 and through user contributions. """)
     st.write("""You can navigate this site by using the bottons below or the navigation
