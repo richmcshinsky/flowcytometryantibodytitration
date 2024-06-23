@@ -29,13 +29,13 @@ st.markdown(s)
 st.write("Note: If you are on mobile, you may need to press and hold on links to allow popups.")
 
 conn = st.connection("gsheets", type=GSheetsConnection)
-df = conn.read(worksheet="reviewed", ttl="30m")
+df = conn.read(worksheet="testing", ttl="30m")
 
 columns = ["Antigen", "Clone", "Conjugate", "Test Tissue",
         "Test Cell Type", "Test Preparation", "Test Amount",
         "Image", "Target Species", "Host Species", "Isotype",
         "Supplier", "Catalougue #", "RRID", "Concentration for this Lot#",
-        "Concentration for this Lot# (ng/µL)",
+        "Optimal Concentration for this Lot#", "Concentration for this Lot# (ng/µL)",
         "Amount Tested (uL)", "Amount Tested (ng)", "Optimal Amount (µL)", 
         "Seperation Index", "Samples/vial",
         "Cost/sample ($USD)", "Metal", "Metal Source", "Metal Catalogue #",
@@ -52,7 +52,7 @@ all_widgets = sp.create_widgets(df, create_data)
 res = sp.filter_df(df, all_widgets)
 
 with st.expander("Shows 10 rows from Repository: Subscribe to see full repository!"):
-    st.dataframe(res.head(10), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
+    st.dataframe(df.head(10), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
                                     "Source": st.column_config.LinkColumn(display_text="Source")},
                     height=300, column_order=columns)
 
