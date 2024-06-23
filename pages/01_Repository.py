@@ -51,7 +51,7 @@ df = df[columns]
 all_widgets = sp.create_widgets(df, create_data)
 res = sp.filter_df(df, all_widgets)
 
-with st.expander("Shows 10 rows from Repository: Subscribe to see full repository!"):
+with st.expander("Shows example 10 rows from Repository: Subscribe to see full repository! (These rows wont filter FYI)"):
     st.dataframe(df.head(10), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
                                     "Source": st.column_config.LinkColumn(display_text="Source")},
                     height=300, column_order=columns)
