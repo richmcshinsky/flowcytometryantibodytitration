@@ -34,10 +34,11 @@ df = conn.read(worksheet="reviewed", ttl="30m")
 columns = ["Antigen", "Clone", "Conjugate", "Test Tissue",
         "Test Cell Type", "Test Preparation", "Test Amount",
         "Image", "Target Species", "Host Species", "Isotype",
-        "Supplier", "Catalougue #", "RRID", "Concentration",
-        "Concentration (ug/mL)", "Titeration (ug/mL)",
-        "Amount Tested (uL)", "Seperation Index", "Samples/vial",
-        "Cost/sample", "Metal", "Metal Source", "Metal Catalogue #",
+        "Supplier", "Catalougue #", "RRID", "Concentration for this Lot#",
+        "Concentration for this Lot# (ng/µL)",
+        "Amount Tested (uL)", "Amount Tested (ng)", "Optimal Amount (µL)", 
+        "Seperation Index", "Samples/vial",
+        "Cost/sample ($USD)", "Metal", "Metal Source", "Metal Catalogue #",
         "Detector", "Staining", "Source", "Publisher", "Paper",
         "Journal"]
 
