@@ -46,24 +46,24 @@ st.write("Visualizations about repository data: Subsribe to see all insights!")
 
 
 st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data sources.")
-fig = px.bar(res["Antigen"].value_counts()[:20])
+fig = px.bar(res["Antigen"].value_counts(normalize=True)[:20])
 st.plotly_chart(fig, use_container_width=True)
 
 add_auth(required=True)
 
-fig = px.bar(res["Conjugate"].value_counts()[:20])
+fig = px.bar(res["Conjugate"].value_counts(normalize=True)[:20])
 st.plotly_chart(fig, use_container_width=True)
-fig = px.bar(res["Clone"].value_counts()[:20])
+fig = px.bar(res["Clone"].value_counts(normalize=True)[:20])
 st.plotly_chart(fig, use_container_width=True)
-fig = px.bar(res["Supplier"].value_counts()[:20])
+fig = px.bar(res["Supplier"].value_counts(normalize=True)[:20])
 st.plotly_chart(fig, use_container_width=True)
-fig = px.bar(res["Amount Tested (uL)"].value_counts())#[:20])
+fig = px.bar(res["Amount Tested (uL)"].value_counts(normalize=True))#[:20])
 st.plotly_chart(fig, use_container_width=True)
-fig = px.bar(res["Optimal Amount (µL)"].value_counts())#[:20])
+fig = px.bar(res["Optimal Amount (µL)"].value_counts(normalize=True))#[:20])
 st.plotly_chart(fig, use_container_width=True)
-fig = px.bar(res["Concentration for this Lot#"].value_counts())#[:20])
+fig = px.bar(res["Concentration for this Lot#"].value_counts(normalize=True))#[:20])
 st.plotly_chart(fig, use_container_width=True)
-fig = px.bar(res["Optimal Concentration for this Lot#"].value_counts())#[:20])
+fig = px.bar(res["Optimal Concentration for this Lot#"].value_counts(normalize=True))#[:20])
 st.plotly_chart(fig, use_container_width=True)
 
 # if __name__ == '__main__':
