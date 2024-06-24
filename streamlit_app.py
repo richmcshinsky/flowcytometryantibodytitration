@@ -69,6 +69,7 @@ with col2:
         st.switch_page("pages/06_Purchase.py")
 
 st.write("To test login use https://docs.stripe.com/testing#cards")
+add_auth(required=True)
 st.write("Login successful")
 #if __name__ == '__main__':
 #    main()
