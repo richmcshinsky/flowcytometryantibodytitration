@@ -31,5 +31,8 @@ for i in lst:
     s += "- " + i + "\n"
 st.markdown(s)
 
+# For group subscriptions: off coupon that single use and expires
+
+
 #if __name__ == '__main__':
 #    main()

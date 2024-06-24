@@ -29,6 +29,7 @@ with st.sidebar:
     #st.page_link('pages/08_FAQ.py', label='FAQ')
     # References
     # Search
+    # Maybe cahnge purchase into tools?
 
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 st.divider()

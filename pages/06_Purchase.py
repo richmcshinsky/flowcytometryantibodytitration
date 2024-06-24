@@ -35,7 +35,7 @@ def main():
     df = df[columns]
     all_widgets = sp.create_widgets(df, create_data)
     res = sp.filter_df(df, all_widgets)
-    st.dataframe(res.drop_duplicates().reset_index(drop=True), 
+    st.dataframe(res.drop_duplicates().reset_index(drop=True).dropna(), 
                  column_config={"Link": st.column_config.LinkColumn(display_text="Link")})
 
 
