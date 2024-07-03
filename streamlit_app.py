@@ -4,6 +4,8 @@ from st_paywall import add_auth
 
 # TODO: add webscraper data by pulling sheet and uploading sheet
 # TODO: review data with Tony
+# TODO: is user submits data, send a notification email for review
+# TODO: if success on submit, let user know it worked and expected time to get free subscription
 
 # TODO: I think we need a generic search box so someone can enter whatever is on their mind and see what we have to offer.
 # TODO: In time, we will need a reference for any published data, DOI and/or PMCID may be sufficient.
