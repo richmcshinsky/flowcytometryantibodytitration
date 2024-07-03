@@ -33,7 +33,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 df = conn.read(worksheet="testing", ttl="30m")
 
 # st.write("If you aren't able to find your target antigen, try an alternative name! Or add alternate names to your filter for more data.")
-search_target = st.text_input("If you aren't able to find your target antigen, try an alternative name! Or add alternate names to your filter for more data.", "For example: cd279")
+search_target = st.text_input("If you aren't able to find your target antigen, try an alternative name! Or add alternate names to your filter for more data.")
 if search_target:
     df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"])
     st.dataframe(df_terms[df_terms["cd"].str.contains(search_target, case=False)])
