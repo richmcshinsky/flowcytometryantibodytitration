@@ -50,8 +50,6 @@ st.write("""You can navigate this site by using the bottons below or the navigat
             the x to hide the menu and the arrow to reopen it.""")
 
 st.subheader("What brings you here today?")
-# if keycloak.authenticated:
-#     main()
 
 col1, col2 = st.columns(2, gap="small")
 with col1:
@@ -75,8 +73,8 @@ with col2:
     if st.button(label="Purchase", use_container_width=True, help="Use identifier to link directly to supplier purchase page."):
         st.switch_page("pages/06_Purchase.py")
 
+st.subheader("Watch our short demo video to see what you can do!")
+
 st.write("To test login use https://docs.stripe.com/testing#cards")
 add_auth(required=True)
 st.write("Login successful")
-#if __name__ == '__main__':
-#    main()
