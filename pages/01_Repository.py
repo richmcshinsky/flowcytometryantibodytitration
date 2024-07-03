@@ -1,5 +1,6 @@
 import streamlit as st
 import streamlit_pandas as sp
+import pandas as pd
 from streamlit_gsheets import GSheetsConnection
 from st_paywall import add_auth
 
@@ -30,6 +31,10 @@ st.write("Note: If you are on mobile, you may need to press and hold on links to
 
 conn = st.connection("gsheets", type=GSheetsConnection)
 df = conn.read(worksheet="testing", ttl="30m")
+
+df_terms = pd.read_excel("data/CD alternative names.xlsx")
+st.write(df_terms)
+# df["Antigen"] = []
 
 columns = ["Antigen", "Clone", "Fluorescent Conjugate", "Test Tissue",
         "Test Cell Type", "Test Preparation", "Test Cell Count",

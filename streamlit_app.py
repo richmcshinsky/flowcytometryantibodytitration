@@ -2,6 +2,10 @@ import streamlit as st
 from st_paywall import add_auth
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
+# TODO: normalizing terms
+# TODO: metal conjugate check
+# TODO: try get nanograms for papers
+
 # TODO: add webscraper data by pulling sheet and uploading sheet
 # TODO: review data with Tony
 # TODO: is user submits data, send a notification email for review
