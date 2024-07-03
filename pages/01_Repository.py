@@ -36,7 +36,7 @@ df = conn.read(worksheet="testing", ttl="30m")
 search_target = st.text_input("If you aren't able to find your target antigen, try an alternative name! Or add alternate names to your filter for more data.")
 if search_target:
     df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"])
-    st.dataframe(df_terms[df_terms["cd"].str.contains(search_target, case=False)])
+    st.dataframe(df_terms[df_terms["cd"].str.contains(search_target, case=False) | df_terms["alternate"].str.contains(search_target, case=False)])
 
 columns = ["Antigen", "Clone", "Fluorescent Conjugate", "Test Tissue",
         "Test Cell Type", "Test Preparation", "Test Cell Count",
