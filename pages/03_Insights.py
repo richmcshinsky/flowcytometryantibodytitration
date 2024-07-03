@@ -23,11 +23,11 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 df = conn.read(worksheet="testing", ttl="30m")
 
 columns = ["Antigen", "Clone", "Fluorescent Conjugate", "Test Tissue",
-        "Test Cell Type", "Test Preparation", "Test Amount",
+        "Test Cell Type", "Test Preparation", "Test Cell Count",
         "Image", "Target Species", "Host Species", "Isotype",
         "Supplier", "Catalougue #", "RRID", "Concentration for this Lot#",
         "Optimal Concentration for this Lot#", "Concentration for this Lot# (ng/µL)",
-        "Amount Tested (uL)", "Amount Tested (ng)", "Optimal Amount (µL)", 
+        "Amount Tested (uL)", "Amount Tested (ng)", "Optimal Amount (µL/100 µL)", 
         "Seperation Index", "Samples/vial",
         "Cost/sample ($USD)", "Metal Conjugate", "Metal Source", "Metal Catalogue #",
         "Detector", "Staining", "Source", "Publisher", "Paper",
