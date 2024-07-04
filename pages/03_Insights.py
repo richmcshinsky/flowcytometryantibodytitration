@@ -51,7 +51,7 @@ st.plotly_chart(fig, use_container_width=True)
 
 add_auth(required=True)
 
-fig = px.bar(res["Conjugate"].value_counts(normalize=True)[:20])
+fig = px.bar(res["Fluorescent Conjugate"].value_counts(normalize=True)[:20])
 st.plotly_chart(fig, use_container_width=True)
 fig = px.bar(res["Clone"].value_counts(normalize=True)[:20])
 st.plotly_chart(fig, use_container_width=True)
@@ -63,7 +63,7 @@ fig = px.bar(res["Optimal Amount (µL)"].value_counts(normalize=True))#[:20])
 st.plotly_chart(fig, use_container_width=True)
 fig = px.bar(res["Concentration for this Lot#"].value_counts(normalize=True))#[:20])
 st.plotly_chart(fig, use_container_width=True)
-fig = px.bar(res["Optimal Concentration for this Lot#"].value_counts(normalize=True))#[:20])
+fig = px.bar(res["Optimal Amount (µL/100 µL)"].value_counts(normalize=True))#[:20])
 st.plotly_chart(fig, use_container_width=True)
 
 # if __name__ == '__main__':

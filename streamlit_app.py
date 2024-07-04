@@ -2,6 +2,8 @@ import streamlit as st
 from st_paywall import add_auth
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
+# TODO: Filters also filter
+
 # TODO: normalizing terms
 # TODO: try get nanograms for papers
 # TODO: benifit for alphebtizing??
@@ -17,11 +19,6 @@ from st_paywall import add_auth
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
-#keycloak = login(url="http://localhost:8080",
-#    realm="myrealm", client_id="myclient") 
-# def main():
-#    if keycloak
-#    main()
 
 # builds the sidebar menu
 with st.sidebar:
