@@ -3,6 +3,7 @@ from st_paywall import add_auth
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
 # TODO: Filters also filter
+# TODO: paging and only show one page if no filters are applied
 
 # TODO: normalizing terms
 # TODO: try get nanograms for papers

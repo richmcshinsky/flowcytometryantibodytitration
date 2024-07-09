@@ -6,3 +6,4 @@ st-gsheets-connection==0.0.4
 st-paywall==0.1.8
 pandas==1.5.3
 plotly-express==0.4.1
+streamlit-dynamic-filters

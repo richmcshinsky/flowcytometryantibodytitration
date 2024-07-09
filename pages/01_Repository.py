@@ -1,8 +1,9 @@
 import streamlit as st
-import streamlit_pandas as sp
+# import streamlit_pandas as sp
 import pandas as pd
 from streamlit_gsheets import GSheetsConnection
 from st_paywall import add_auth
+from streamlit_dynamic_filters import DynamicFilters
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
@@ -49,14 +50,18 @@ columns = ["Antigen", "Clone", "Fluorescent Conjugate", "Test Tissue",
         "Detector", "Staining", "Source", "Publisher", "Paper",
         "Journal"]
 
-create_data = {}
-for c in columns:
-    create_data[c] = "multiselect"
+# create_data = {}
+# for c in columns:
+#     create_data[c] = "multiselect"
 
 # Add filters
 df = df[columns]
-all_widgets = sp.create_widgets(df, create_data)
-res = sp.filter_df(df, all_widgets)
+# all_widgets = sp.create_widgets(df, create_data)
+# res = sp.filter_df(df, all_widgets)
+
+df_filtered = DynamicFilters(df.fillna(""), filters=columns)
+df_filtered.display_filters(location='columns', num_columns=3, gap='large')
+df_filtered.display_df()
 
 with st.expander("Shows example 10 rows from Repository: Subscribe to see full repository! (These rows wont filter FYI)"):
     st.dataframe(df.head(10), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
@@ -64,9 +69,9 @@ with st.expander("Shows example 10 rows from Repository: Subscribe to see full r
                     height=300, column_order=columns)
 
 add_auth(required=True)
-st.dataframe(res, column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
-                                    "Source": st.column_config.LinkColumn(display_text="Source")},
-                    height=1000, column_order=columns)
+# st.dataframe(res, column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
+#                                     "Source": st.column_config.LinkColumn(display_text="Source")},
+#                     height=1000, column_order=columns)
 
 
 # st.session_state['res'] = res
