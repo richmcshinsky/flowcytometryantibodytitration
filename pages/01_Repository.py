@@ -71,7 +71,8 @@ add_auth(required=True)
 
 df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns)
 df_filtered.display_filters(location='columns', num_columns=3, gap='large')
-st.write(df_filtered.filter_df())
+st.dataframe(df_filtered.filter_df(), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
+             "Source": st.column_config.LinkColumn(display_text="Source")}, height=1000, column_order=columns)
 df_filtered.display_df()
 
 # st.session_state['res'] = res
