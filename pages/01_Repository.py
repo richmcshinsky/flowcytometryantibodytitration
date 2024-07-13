@@ -31,9 +31,9 @@ with st.sidebar:
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 st.divider()
 st.write("This repository data has several filtering and search options:")
-lst = ['click on a column name to sort values', 
-        'filter using the menu on the left', 
-        'search using keywords by typing in the filter box on the left menu']
+lst = ['Select filters of interest below', 
+       'Filters can be text searched by typing in the box',
+       'You can click on a column name to sort values']
 s = ''
 for i in lst:
     s += "- " + i + "\n"

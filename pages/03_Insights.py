@@ -3,6 +3,7 @@ import plotly.express as px
 import streamlit_pandas as sp
 from streamlit_gsheets import GSheetsConnection
 from st_paywall import add_auth
+from streamlit_dynamic_filters import DynamicFilters
 
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
@@ -19,8 +20,11 @@ with st.sidebar:
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 st.divider()
 
-conn = st.connection("gsheets", type=GSheetsConnection)
-df = conn.read(worksheet="testing", ttl="30m")
+@st.cache_data(show_spinner=False)
+def load_data():
+    conn = st.connection("gsheets", type=GSheetsConnection)
+    df = conn.read(worksheet="testing", ttl="30m")
+    return df[columns]
 
 columns = ["Antigen", "Clone", "Fluorescent Conjugate", "Test Tissue",
         "Test Cell Type", "Test Preparation", "Test Cell Count",
@@ -37,11 +41,10 @@ create_data = {}
 for c in columns:
     create_data[c] = "multiselect"
 
-# Add filters
-df = df[columns]
-all_widgets = sp.create_widgets(df, create_data)
-res = sp.filter_df(df, all_widgets)
-
+df = load_data()
+df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns)
+df_filtered.display_filters(location='columns', num_columns=3, gap='large')
+res = df_filtered.filter_df()
 st.write("Visualizations about repository data: Subsribe to see all insights!")
 
 
