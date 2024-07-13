@@ -65,17 +65,10 @@ with st.expander("Shows example 10 rows from Repository: Subscribe to see full r
                     height=300, column_order=columns)
 
 add_auth(required=True)
-# st.dataframe(res, column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
-#                                     "Source": st.column_config.LinkColumn(display_text="Source")},
-#                     height=1000, column_order=columns)
-
 df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns)
 df_filtered.display_filters(location='columns', num_columns=3, gap='large')
 st.dataframe(df_filtered.filter_df(), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
              "Source": st.column_config.LinkColumn(display_text="Source")}, height=1000, column_order=columns)
-df_filtered.display_df()
 
-# st.session_state['res'] = res
-    
 #if __name__ == '__main__':
 #   main()
