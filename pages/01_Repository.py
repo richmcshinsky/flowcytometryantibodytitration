@@ -81,7 +81,8 @@ with bottom_menu[0]:
     st.markdown(f"Page **{current_page}** of **{total_pages}** ")
 
 pages = split_frame(df_filtered.filter_df(), batch_size)
-pagination.dataframe(data=pages[current_page - 1], use_container_width=True)
+pagination.dataframe(data=pages[current_page - 1], use_container_width=True, column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
+             "Source": st.column_config.LinkColumn(display_text="Source")}, height=1000, column_order=columns)
 
 #if __name__ == '__main__':
 #   main()
