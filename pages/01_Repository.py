@@ -66,9 +66,8 @@ add_auth(required=True)
 df = load_data()
 df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns)
 df_filtered.display_filters(location='columns', num_columns=3, gap='large')
-st.dataframe(df_filtered.filter_df(), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
-             "Source": st.column_config.LinkColumn(display_text="Source")}, height=1000, column_order=columns)
-
+# st.dataframe(df_filtered.filter_df(), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
+#              "Source": st.column_config.LinkColumn(display_text="Source")}, height=1000, column_order=columns)
 
 pagination = st.container()
 bottom_menu = st.columns((4, 1, 1))
@@ -82,7 +81,7 @@ with bottom_menu[0]:
 
 pages = split_frame(df_filtered.filter_df(), batch_size)
 pagination.dataframe(data=pages[current_page - 1], use_container_width=True, column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
-             "Source": st.column_config.LinkColumn(display_text="Source")}, height=1000, column_order=columns)
+             "Source": st.column_config.LinkColumn(display_text="Source")}, height=800, column_order=columns)
 
 #if __name__ == '__main__':
 #   main()
