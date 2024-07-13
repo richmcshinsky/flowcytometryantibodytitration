@@ -71,7 +71,7 @@ add_auth(required=True)
 
 df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns)
 df_filtered.display_filters(location='columns', num_columns=3, gap='large')
-st.write(df_filtered)
+st.write(df_filtered.filter_df())
 df_filtered.display_df()
 
 # st.session_state['res'] = res
