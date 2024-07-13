@@ -74,26 +74,21 @@ add_auth(required=True)
 df = load_data()
 df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns)
 df_filtered.display_filters(location='columns', num_columns=3, gap='large')
-st.dataframe(df_filtered.filter_df(), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
-             "Source": st.column_config.LinkColumn(display_text="Source")}, height=1000, column_order=columns)
-
+#st.dataframe(df_filtered.filter_df(), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
+#             "Source": st.column_config.LinkColumn(display_text="Source")}, height=1000, column_order=columns)
 
 pagination = st.container()
-
 bottom_menu = st.columns((4, 1, 1))
 with bottom_menu[2]:
     batch_size = st.selectbox("Page Size", options=[25, 50, 100])
 with bottom_menu[1]:
-    total_pages = (
-        int(len(df_filtered.filter_df()) / batch_size) if int(len(df_filtered.filter_df()) / batch_size) > 0 else 1
-    )
-    current_page = st.number_input(
-        "Page", min_value=1, max_value=total_pages, step=1
-    )
+    total_pages = (int(len(df_filtered.filter_df()) / batch_size) if int(len(df_filtered.filter_df()) / batch_size) > 0 else 1)
+    current_page = st.number_input("Page", min_value=1, max_value=total_pages, step=1)
 with bottom_menu[0]:
     st.markdown(f"Page **{current_page}** of **{total_pages}** ")
 
-pages = split_frame(df_filtered.filter_df(), batch_size)
+pages = split_frame(st.dataframe(df_filtered.filter_df(), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
+             "Source": st.column_config.LinkColumn(display_text="Source")}, height=1000, column_order=columns), batch_size)
 pagination.dataframe(data=pages[current_page - 1], use_container_width=True)
 
 #if __name__ == '__main__':
