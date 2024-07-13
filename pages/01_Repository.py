@@ -7,6 +7,16 @@ from streamlit_dynamic_filters import DynamicFilters
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
+@st.cache_data(show_spinner=False)
+def split_frame(input_df, rows):
+    df = [input_df.loc[i:i+rows-1,:] for i in range(0, len(input_df), rows)]
+    return df
+
+@st.cache_data(show_spinner=False)
+def load_data():
+    conn = st.connection("gsheets", type=GSheetsConnection)
+    df = conn.read(worksheet="testing", ttl="30m")
+    return df[columns]
 
 st.markdown("""<style> [data-testid="stElementToolbar"] {display: none;} </style>""", unsafe_allow_html=True)
 with st.sidebar:
@@ -30,13 +40,6 @@ for i in lst:
 st.markdown(s)
 st.write("Note: If you are on mobile, you may need to press and hold on links to allow popups.")
 
-@st.cache_data()
-def load_data():
-    conn = st.connection("gsheets", type=GSheetsConnection)
-    df = conn.read(worksheet="testing", ttl="30m")
-    return df[columns]
-
-# st.write("If you aren't able to find your target antigen, try an alternative name! Or add alternate names to your filter for more data.")
 search_target = st.text_input("If you aren't able to find your target antigen, try an alternative name! Or add alternate names to your filter for more data.")
 if search_target:
     df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"])
@@ -73,6 +76,25 @@ df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns)
 df_filtered.display_filters(location='columns', num_columns=3, gap='large')
 st.dataframe(df_filtered.filter_df(), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
              "Source": st.column_config.LinkColumn(display_text="Source")}, height=1000, column_order=columns)
+
+
+pagination = st.container()
+
+bottom_menu = st.columns((4, 1, 1))
+with bottom_menu[2]:
+    batch_size = st.selectbox("Page Size", options=[25, 50, 100])
+with bottom_menu[1]:
+    total_pages = (
+        int(len(df_filtered.filter_df()) / batch_size) if int(len(df_filtered.filter_df()) / batch_size) > 0 else 1
+    )
+    current_page = st.number_input(
+        "Page", min_value=1, max_value=total_pages, step=1
+    )
+with bottom_menu[0]:
+    st.markdown(f"Page **{current_page}** of **{total_pages}** ")
+
+pages = split_frame(df_filtered.filter_df(), batch_size)
+pagination.dataframe(data=pages[current_page - 1], use_container_width=True)
 
 #if __name__ == '__main__':
 #   main()
