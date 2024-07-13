@@ -56,14 +56,6 @@ columns = ["Antigen", "Clone", "Fluorescent Conjugate", "Test Tissue",
         "Detector", "Staining", "Source", "Publisher", "Paper",
         "Journal"]
 
-# create_data = {}
-# for c in columns:
-#     create_data[c] = "multiselect"
-
-# Add filters
-# all_widgets = sp.create_widgets(df, create_data)
-# res = sp.filter_df(df, all_widgets)
-
 with st.expander("Shows example 10 rows from Repository: Subscribe to see full repository! (These rows wont filter FYI)"):
     df = load_data()
     st.dataframe(df.head(10), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
@@ -74,8 +66,9 @@ add_auth(required=True)
 df = load_data()
 df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns)
 df_filtered.display_filters(location='columns', num_columns=3, gap='large')
-#st.dataframe(df_filtered.filter_df(), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
-#             "Source": st.column_config.LinkColumn(display_text="Source")}, height=1000, column_order=columns)
+st.dataframe(df_filtered.filter_df(), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
+             "Source": st.column_config.LinkColumn(display_text="Source")}, height=1000, column_order=columns)
+
 
 pagination = st.container()
 bottom_menu = st.columns((4, 1, 1))
@@ -87,8 +80,7 @@ with bottom_menu[1]:
 with bottom_menu[0]:
     st.markdown(f"Page **{current_page}** of **{total_pages}** ")
 
-pages = split_frame(st.dataframe(df_filtered.filter_df(), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
-             "Source": st.column_config.LinkColumn(display_text="Source")}, height=1000, column_order=columns), batch_size)
+pages = split_frame(df_filtered.filter_df(), batch_size)
 pagination.dataframe(data=pages[current_page - 1], use_container_width=True)
 
 #if __name__ == '__main__':
