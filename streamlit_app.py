@@ -2,12 +2,10 @@ import streamlit as st
 from st_paywall import add_auth
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
-# TODO: paging and only show one page if no filters are applied
-
 # TODO: normalizing terms
 # TODO: try get nanograms for papers
-# TODO: benifit for alphebtizing??
 # TODO: metal conjugate check
+# TODO: add drop duplicate source option where it collapses the variations on amounts tested to one row?
 
 # TODO: add webscraper data by pulling sheet and uploading sheet
 # TODO: review data with Tony

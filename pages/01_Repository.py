@@ -40,10 +40,11 @@ for i in lst:
 st.markdown(s)
 st.write("Note: If you are on mobile, you may need to press and hold on links to allow popups.")
 
-search_target = st.text_input("If you aren't able to find your target antigen, try an alternative name! Or add alternate names to your filter for more data.")
-if search_target:
-    df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"])
-    st.dataframe(df_terms[df_terms["cd"].str.contains(search_target, case=False) | df_terms["alternate"].str.contains(search_target, case=False)])
+with st.expander("If you aren't able to find your target antigen, try an alternative name! Or add alternate names to your filter for more data."):
+    search_target = st.text_input("Type in target antigen name for alternative names")
+    if search_target:
+        df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"])
+        st.dataframe(df_terms[df_terms["cd"].str.contains(search_target, case=False) | df_terms["alternate"].str.contains(search_target, case=False)])
 
 columns = ["Antigen", "Clone", "Fluorescent Conjugate", "Test Tissue",
         "Test Cell Type", "Test Preparation", "Test Cell Count",
