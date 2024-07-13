@@ -59,10 +59,6 @@ df = df[columns]
 # all_widgets = sp.create_widgets(df, create_data)
 # res = sp.filter_df(df, all_widgets)
 
-df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns)
-df_filtered.display_filters(location='columns', num_columns=3, gap='large')
-df_filtered.display_df()
-
 with st.expander("Shows example 10 rows from Repository: Subscribe to see full repository! (These rows wont filter FYI)"):
     st.dataframe(df.head(10), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
                                     "Source": st.column_config.LinkColumn(display_text="Source")},
@@ -73,6 +69,10 @@ add_auth(required=True)
 #                                     "Source": st.column_config.LinkColumn(display_text="Source")},
 #                     height=1000, column_order=columns)
 
+df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns)
+df_filtered.display_filters(location='columns', num_columns=3, gap='large')
+st.write(df_filtered)
+df_filtered.display_df()
 
 # st.session_state['res'] = res
     
