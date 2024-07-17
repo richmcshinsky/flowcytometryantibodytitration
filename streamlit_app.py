@@ -4,11 +4,8 @@ from st_paywall import add_auth
 
 # TODO: normalizing terms
 # TODO: try get nanograms for papers
-# TODO: metal conjugate check
 # TODO: add drop duplicate source option where it collapses the variations on amounts tested to one row?
 
-# TODO: add webscraper data by pulling sheet and uploading sheet
-# TODO: review data with Tony
 # TODO: is user submits data, send a notification email for review
 # TODO: if success on submit, let user know it worked and expected time to get free subscription
 
@@ -26,7 +23,7 @@ with st.sidebar:
     st.page_link('pages/03_Insights.py', label='Insights')
     st.page_link('pages/04_Contact.py', label='Contact')
     st.page_link('pages/05_Pricing.py', label='Pricing')
-    st.page_link('pages/06_Purchase.py', label='Purchase')
+    # st.page_link('pages/06_Purchase.py', label='Purchase')
     #st.page_link('pages/07_Tools.py', label='Tools')
     #st.page_link('pages/08_FAQ.py', label='FAQ')
     # References
@@ -65,9 +62,9 @@ with col2:
 with col1:
     if st.button(label="Pricing", use_container_width=True, help="Explanations on subscription pricing and benefits"):
         st.switch_page("pages/05_Pricing.py")
-with col2:
-    if st.button(label="Purchase", use_container_width=True, help="Use identifier to link directly to supplier purchase page."):
-        st.switch_page("pages/06_Purchase.py")
+# with col2:
+#     if st.button(label="Purchase", use_container_width=True, help="Use identifier to link directly to supplier purchase page."):
+#         st.switch_page("pages/06_Purchase.py")
 
 st.subheader("Watch our short demo video to see what you can do!")
 
