@@ -7,12 +7,12 @@ from streamlit_dynamic_filters import DynamicFilters
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
-@st.cache_data(show_spinner=False)
+# @st.cache_data(show_spinner=False)
 def split_frame(input_df, rows):
     df = [input_df.loc[i:i+rows-1,:] for i in range(0, len(input_df), rows)]
     return df
 
-@st.cache_data(show_spinner=False)
+# @st.cache_data(show_spinner=False)
 def load_data():
     conn = st.connection("gsheets", type=GSheetsConnection)
     df = conn.read(worksheet="testing", ttl="30m")
@@ -46,16 +46,15 @@ with st.expander("If you aren't able to find your target antigen, try an alterna
         df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"])
         st.dataframe(df_terms[df_terms["cd"].str.contains(search_target, case=False) | df_terms["alternate"].str.contains(search_target, case=False)])
 
-columns = ["Antigen", "Clone", "Fluorescent Conjugate", "Test Tissue",
-        "Test Cell Type", "Test Preparation", "Test Cell Count",
-        "Image", "Target Species", "Host Species", "Isotype",
-        "Supplier", "Catalougue #", "RRID", "Concentration for this Lot#",
-        "Optimal Concentration for this Lot#", "Concentration for this Lot# (ng/µL)",
-        "Amount Tested (uL)", "Amount Tested (ng)", "Optimal Amount (µL/100 µL)", 
-        "Seperation Index", "Samples/vial",
-        "Cost/sample ($USD)", "Metal Conjugate", "Metal Source", "Metal Catalogue #",
-        "Detector", "Staining", "Source", "Publisher", "Paper",
-        "Journal"]
+columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type", 
+           "Test Preparation", "Test Cell Count", "Image", "Target Species", "Host Species", "Isotype",
+           "Supplier", "Catalougue #", "RRID", "Concentration for this Lot#", 
+           "Optimal Concentration for this Lot#", "Concentration for this Lot# (ng/µL)", 
+           "Amount Tested (uL)", "Amount Tested (ng)", "Optimal Amount (µL/100 µL)", "Seperation Index", 
+           "Samples/vial", "Cost/sample ($USD)", "Metal Conjugate", "Metal Source", "Metal Catalogue #",
+           "Detector", "Staining", "Source", "Publisher", "Paper", "Journal", 
+           "supplier link", "supplier size", "supplier price", "supplier Host Species",
+           "Supplier Isotype", "supplier Catalougue Concentration", "supplier RRID"]
 
 with st.expander("Shows example 10 rows from Repository: Subscribe to see full repository! (These rows wont filter FYI)"):
     df = load_data()
