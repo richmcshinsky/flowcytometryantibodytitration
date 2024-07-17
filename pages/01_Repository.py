@@ -53,8 +53,8 @@ columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Te
            "Amount Tested (uL)", "Amount Tested (ng)", "Optimal Amount (µL/100 µL)", "Seperation Index", 
            "Samples/vial", "Cost/sample ($USD)", "Metal Conjugate", "Metal Source", "Metal Catalogue #",
            "Detector", "Staining", "Source", "Publisher", "Paper", "Journal", 
-           "supplier link", "supplier size", "supplier price", "supplier Host Species"]#,
-#           "Supplier Isotype", "supplier Catalougue Concentration", "supplier RRID"]
+           "supplier link", "supplier size", "supplier price", "supplier Host Species",
+           "Supplier Isotype", "supplier Catalougue Concentration", "supplier RRID"]
 
 # Source	Publisher	Paper	Journal	Target Species	Antigen	Conjugate	Conjugate Type	Clone	
 # Host Species	Isotype	Supplier	Catalougue #	Amount Tested (uL)	Optimal Amount (µL/100 µL)	
