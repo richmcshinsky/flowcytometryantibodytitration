@@ -16,8 +16,6 @@ def split_frame(input_df, rows):
 def load_data():
     conn = st.connection("gsheets", type=GSheetsConnection)
     df = conn.read(worksheet="testing", ttl="30m")
-    st.write(df.columns)
-    st.write(columns)
     return df[columns]
 
 st.markdown("""<style> [data-testid="stElementToolbar"] {display: none;} </style>""", unsafe_allow_html=True)
@@ -54,9 +52,17 @@ columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Te
            "Optimal Concentration for this Lot#", "Concentration for this Lot# (ng/µL)", 
            "Amount Tested (uL)", "Amount Tested (ng)", "Optimal Amount (µL/100 µL)", "Seperation Index", 
            "Samples/vial", "Cost/sample ($USD)", "Metal Conjugate", "Metal Source", "Metal Catalogue #",
-           "Detector", "Staining", "Source", "Publisher", "Paper", "Journal", 
-           "supplier link", "supplier size", "supplier price", "supplier Host Species",
-           "Supplier Isotype", "supplier Catalougue Concentration", "supplier RRID"]
+           "Detector", "Staining", "Source", "Publisher", "Paper", "Journal"]#, 
+#           "supplier link", "supplier size", "supplier price", "supplier Host Species",
+#           "Supplier Isotype", "supplier Catalougue Concentration", "supplier RRID"]
+
+# Source	Publisher	Paper	Journal	Target Species	Antigen	Conjugate	Conjugate Type	Clone	
+# Host Species	Isotype	Supplier	Catalougue #	Amount Tested (uL)	Optimal Amount (µL/100 µL)	
+# Amount Tested (ng)	Concentration for this Lot#	Optimal Concentration for this Lot#	
+# Concentration for this Lot# (ng/µL)	RRID	Test Tissue	Test Cell Type	Test Preparation	
+# Test Cell Count	Seperation Index	Samples/vial	Cost/sample ($USD)	Image	Metal Conjugate	Metal 
+# Source	Metal Catalogue #	Detector	Staining	Date Added	supplier link	supplier size	
+# supplier price	supplier Host Species 	Supplier Isotype	supplier Catalougue Concentration	supplier RRID
 
 with st.expander("Shows example 10 rows from Repository: Subscribe to see full repository! (These rows wont filter FYI)"):
     df = load_data()
