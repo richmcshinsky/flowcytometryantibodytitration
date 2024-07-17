@@ -56,14 +56,6 @@ columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Te
            "supplier link", "supplier size", "supplier price", "supplier Host Species",
            "Supplier Isotype", "supplier Catalougue Concentration", "supplier RRID"]
 
-# Source	Publisher	Paper	Journal	Target Species	Antigen	Conjugate	Conjugate Type	Clone	
-# Host Species	Isotype	Supplier	Catalougue #	Amount Tested (uL)	Optimal Amount (µL/100 µL)	
-# Amount Tested (ng)	Concentration for this Lot#	Optimal Concentration for this Lot#	
-# Concentration for this Lot# (ng/µL)	RRID	Test Tissue	Test Cell Type	Test Preparation	
-# Test Cell Count	Seperation Index	Samples/vial	Cost/sample ($USD)	Image	Metal Conjugate	Metal 
-# Source	Metal Catalogue #	Detector	Staining	Date Added	supplier link	supplier size	
-# supplier price	supplier Host Species 	Supplier Isotype	supplier Catalougue Concentration	supplier RRID
-
 with st.expander("Shows example 10 rows from Repository: Subscribe to see full repository! (These rows wont filter FYI)"):
     df = load_data()
     st.dataframe(df.head(10), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
