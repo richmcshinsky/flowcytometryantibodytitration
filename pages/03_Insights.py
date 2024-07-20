@@ -50,9 +50,9 @@ st.plotly_chart(fig, use_container_width=True)
 st.write("Price comparison between suppliers")
 res_p = res[["Supplier", "supplier price"]].dropna()
 res_p["supplier price"] = [float(x.replace("€", "")) * 1.29 if "€" in x else x for x in res_p["supplier price"]]
-st.write(res_p)
-st.write("Price comparison between suppliers")
 fig = px.box(res_p, x="Supplier", y="supplier price")
+st.plotly_chart(fig, use_container_width=True)
+fig = px.scatter(res_p, x="Supplier", y="supplier price")
 st.plotly_chart(fig, use_container_width=True)
 
 add_auth(required=True)
