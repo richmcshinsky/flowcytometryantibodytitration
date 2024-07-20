@@ -48,9 +48,10 @@ fig = px.bar(res["Antigen"].value_counts(normalize=True)[:20])
 st.plotly_chart(fig, use_container_width=True)
 
 st.write("Price comparison between suppliers")
-fig = px.bar(res["supplier price"].value_counts(normalize=True)[:20]) #, color="Supplier")
-st.plotly_chart(fig, use_container_width=True)
-fig = px.box(res, x="Supplier", y="supplier price")
+res_p = res[["Supplier", "supplier price"]]
+col_order = res_p.groupby("Supplier").mean()
+st.write(col_order)
+fig = px.box(res, x="Supplier", y="supplier price", points="all")
 st.plotly_chart(fig, use_container_width=True)
 
 add_auth(required=True)
