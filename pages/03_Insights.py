@@ -50,7 +50,7 @@ st.plotly_chart(fig, use_container_width=True)
 st.write("Price comparison between suppliers")
 res_p = res[["Supplier", "supplier price"]]
 col_order = res_p.groupby("Supplier").mean()
-st.write(col_order)
+st.write(res_p)
 fig = px.box(res, x="Supplier", y="supplier price", points="all")
 st.plotly_chart(fig, use_container_width=True)
 
