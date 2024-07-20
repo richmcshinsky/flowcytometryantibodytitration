@@ -50,7 +50,7 @@ st.plotly_chart(fig, use_container_width=True)
 st.write("Price comparison between suppliers")
 fig = px.bar(res["supplier price"].value_counts(normalize=True)[:20]) #, color="Supplier")
 st.plotly_chart(fig, use_container_width=True)
-fig = px.bar(res["Supplier"].value_counts(normalize=True)[:20]) #, color="Supplier")
+fig = px.box(res, x="Supplier", y="supplier price")
 st.plotly_chart(fig, use_container_width=True)
 
 add_auth(required=True)
