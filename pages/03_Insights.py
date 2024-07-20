@@ -52,7 +52,7 @@ res_p = res[["Supplier", "supplier price"]].dropna()
 res_p["supplier price"] == [float(x.replace("€", "")) * 1.29 if "€" in x else x for x in res_p["supplier price"]]
 col_order = res_p.groupby("Supplier").mean()
 st.write(res_p)
-fig = px.box(res_p, x="Supplier", y="supplier price", points="all")
+fig = px.box(res_p, x="Supplier", y="supplier price")
 st.plotly_chart(fig, use_container_width=True)
 
 add_auth(required=True)
