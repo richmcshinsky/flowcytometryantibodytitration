@@ -20,7 +20,7 @@ with st.sidebar:
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 st.divider()
 
-# @st.cache_data(show_spinner=False)
+@st.cache_data(show_spinner=False)
 def load_data():
     conn = st.connection("gsheets", type=GSheetsConnection)
     df = conn.read(worksheet="testing", ttl="30m")

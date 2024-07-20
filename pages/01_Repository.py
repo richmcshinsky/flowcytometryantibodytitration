@@ -7,12 +7,12 @@ from streamlit_dynamic_filters import DynamicFilters
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
-# @st.cache_data(show_spinner=False)
+@st.cache_data(show_spinner=False)
 def split_frame(input_df, rows):
     df = [input_df.loc[i:i+rows-1,:] for i in range(0, len(input_df), rows)]
     return df
 
-# @st.cache_data(show_spinner=False)
+@st.cache_data(show_spinner=False)
 def load_data():
     conn = st.connection("gsheets", type=GSheetsConnection)
     df = conn.read(worksheet="testing", ttl="30m")
