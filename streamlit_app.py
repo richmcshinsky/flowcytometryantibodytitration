@@ -2,10 +2,13 @@ import streamlit as st
 from st_paywall import add_auth
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
+# TODO: price comaprison between companies in INSIGHTs page
+# TODO: auto normlaize antigens so when select one it selects all variations
+# TODO: page for guided repository exploration
+
 # TODO: normalizing terms
 # TODO: try get nanograms for papers
 # TODO: add drop duplicate source option where it collapses the variations on amounts tested to one row?
-
 # TODO: is user submits data, send a notification email for review
 # TODO: if success on submit, let user know it worked and expected time to get free subscription
 

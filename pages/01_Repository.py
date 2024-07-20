@@ -16,6 +16,7 @@ def split_frame(input_df, rows):
 def load_data():
     conn = st.connection("gsheets", type=GSheetsConnection)
     df = conn.read(worksheet="testing", ttl="30m")
+    df = normalize(df)
     return df[columns]
 
 st.markdown("""<style> [data-testid="stElementToolbar"] {display: none;} </style>""", unsafe_allow_html=True)

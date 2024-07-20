@@ -36,9 +36,6 @@ columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Te
            "supplier link", "supplier size", "supplier price", "supplier Host Species",
            "Supplier Isotype", "supplier Catalougue Concentration", "supplier RRID"]
 
-create_data = {}
-for c in columns:
-    create_data[c] = "multiselect"
 
 df = load_data()
 df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns)
@@ -46,9 +43,12 @@ df_filtered.display_filters(location='columns', num_columns=3, gap='large')
 res = df_filtered.filter_df()
 st.write("Visualizations about repository data: Subsribe to see all insights!")
 
-
 st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data sources.")
 fig = px.bar(res["Antigen"].value_counts(normalize=True)[:20])
+st.plotly_chart(fig, use_container_width=True)
+
+st.write("Price comparison between suppliers")
+fig = px.bar(res[["supplier price", "Supplier"]].value_counts(normalize=True)[:20], color="Supplier")
 st.plotly_chart(fig, use_container_width=True)
 
 add_auth(required=True)
