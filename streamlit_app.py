@@ -2,7 +2,6 @@ import streamlit as st
 from st_paywall import add_auth
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
-# TODO: auto normlaize antigens so when select one it selects all variations
 # TODO: page for guided repository exploration
 
 # TODO: normalizing terms
@@ -25,7 +24,7 @@ with st.sidebar:
     st.page_link('pages/03_Insights.py', label='Insights')
     st.page_link('pages/04_Contact.py', label='Contact')
     st.page_link('pages/05_Pricing.py', label='Pricing')
-    # st.page_link('pages/06_Purchase.py', label='Purchase')
+    st.page_link('pages/06_Guided.py', label='Guided')
     #st.page_link('pages/07_Tools.py', label='Tools')
     #st.page_link('pages/08_FAQ.py', label='FAQ')
     # References
@@ -64,9 +63,9 @@ with col2:
 with col1:
     if st.button(label="Pricing", use_container_width=True, help="Explanations on subscription pricing and benefits"):
         st.switch_page("pages/05_Pricing.py")
-# with col2:
-#     if st.button(label="Purchase", use_container_width=True, help="Use identifier to link directly to supplier purchase page."):
-#         st.switch_page("pages/06_Purchase.py")
+with col2:
+    if st.button(label="Guided", use_container_width=True, help="Guided walkthrough for easy navigation."):
+        st.switch_page("pages/06_Guided.py")
 
 st.subheader("Watch our short demo video to see what you can do!")
 
