@@ -4,6 +4,7 @@ import streamlit_pandas as sp
 from streamlit_gsheets import GSheetsConnection
 from st_paywall import add_auth
 from streamlit_dynamic_filters import DynamicFilters
+import pandas as pd
 
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
@@ -32,7 +33,26 @@ def load_data():
     df["Supplier"] = df["Supplier"].replace(["Thermo Fisher Scientific", "ThermoFisher", "Thermo",
                                                     "ThermoFisher Scientific", "Thermofisher"], "Thermo Fisher")
     df["Supplier"] = df["Supplier"].replace(["Miltenyi Biotec", "BL"], "Miltenyi")
+    df = normalize_antigens(df)
     return df[columns]
+
+def normalize_antigens(df):
+    rename = []
+    for a in df["Antigen"].fillna(""):
+        new_a = a
+        for cd, alts in zip(df_terms["cd"], df_terms["alternate"]):
+            for alt in alts.split(","):
+                if alt in a:
+                    new_a = cd
+                    break
+            if new_a != a:
+                break
+        rename.append(new_a)
+    df["Antigen"] = rename
+    return df
+
+df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"]).fillna("NULL")
+df_terms["alternate"] = ["NULL" if x == "-" else x for x in df_terms["alternate"]]
 
 columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type", 
            "Test Preparation", "Test Cell Count", "Image", "Target Species", "Host Species", "Isotype",

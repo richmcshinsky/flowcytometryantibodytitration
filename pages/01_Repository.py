@@ -16,8 +16,24 @@ def split_frame(input_df, rows):
 def load_data():
     conn = st.connection("gsheets", type=GSheetsConnection)
     df = conn.read(worksheet="testing", ttl="30m")
-    df = normalize(df)
+    df = normalize_antigens(df)
     return df[columns]
+
+def normalize_antigens(df):
+    rename = []
+    for a in df["Antigen"].fillna(""):
+        new_a = a
+        for cd, alts in zip(df_terms["cd"], df_terms["alternate"]):
+            for alt in alts.split(","):
+                if alt in a:
+                    new_a = cd
+                    break
+            if new_a != a:
+                break
+        rename.append(new_a)
+    df["Antigen"] = rename
+    return df
+
 
 st.markdown("""<style> [data-testid="stElementToolbar"] {display: none;} </style>""", unsafe_allow_html=True)
 with st.sidebar:
@@ -41,10 +57,12 @@ for i in lst:
 st.markdown(s)
 st.write("Note: If you are on mobile, you may need to press and hold on links to allow popups.")
 
+df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"]).fillna("NULL")
+df_terms["alternate"] = ["NULL" if x == "-" else x for x in df_terms["alternate"]]
+
 with st.expander("If you aren't able to find your target antigen, try an alternative name! Or add alternate names to your filter for more data."):
     search_target = st.text_input("Type in target antigen name for alternative names")
     if search_target:
-        df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"])
         st.dataframe(df_terms[df_terms["cd"].str.contains(search_target, case=False) | df_terms["alternate"].str.contains(search_target, case=False)])
 
 columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type", 

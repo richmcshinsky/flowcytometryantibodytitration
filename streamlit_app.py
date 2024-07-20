@@ -2,7 +2,6 @@ import streamlit as st
 from st_paywall import add_auth
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
-# TODO: price comaprison between companies in INSIGHTs page
 # TODO: auto normlaize antigens so when select one it selects all variations
 # TODO: page for guided repository exploration
 
