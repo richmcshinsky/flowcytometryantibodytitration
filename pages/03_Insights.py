@@ -52,7 +52,7 @@ res_p = res[["Supplier", "supplier price"]].dropna()
 res_p["supplier price"] = [float(x.replace("€", "")) * 1.29 if "€" in x else x for x in res_p["supplier price"]]
 fig = px.box(res_p, x="Supplier", y="supplier price")
 st.plotly_chart(fig, use_container_width=True)
-st.write(type(res_p[res_p["Supplier"] == "BC"]["supplier price"].iloc[0]))
+st.write(type(res_p[res_p["Supplier"] == "BC"]["supplier price"].values[0]))
 fig = px.scatter(res_p, x="Supplier", y="supplier price")
 st.plotly_chart(fig, use_container_width=True)
 
