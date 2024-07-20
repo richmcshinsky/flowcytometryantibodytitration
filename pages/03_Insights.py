@@ -24,6 +24,14 @@ st.divider()
 def load_data():
     conn = st.connection("gsheets", type=GSheetsConnection)
     df = conn.read(worksheet="testing", ttl="30m")
+    df["Supplier"] = df["Supplier"].replace(["Biolegend", "BL"], "BioLegend")
+    df["Supplier"] = df["Supplier"].replace(["BD Horizon", "BD pharmingen", "BD Biosciences", "BD Pharm",
+                                                    "BD Pharmingen", "BD Special order reagent", "BD OptiBuild",
+                                                    "BD", "BD custom antibody"], "BD Bioscience")
+    df["Supplier"] = df["Supplier"].replace(["eBiosciences", "ebioscience", "eBioscinece"], "eBioscience")
+    df["Supplier"] = df["Supplier"].replace(["Thermo Fisher Scientific", "ThermoFisher", "Thermo",
+                                                    "ThermoFisher Scientific", "Thermofisher"], "Thermo Fisher")
+    df["Supplier"] = df["Supplier"].replace(["Miltenyi Biotec", "BL"], "Miltenyi")
     return df[columns]
 
 columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type", 
@@ -60,14 +68,14 @@ st.plotly_chart(fig, use_container_width=True)
 
 add_auth(required=True)
 
-fig = px.bar(res["Conjugate"].value_counts(normalize=True)[:20])
-st.plotly_chart(fig, use_container_width=True)
-fig = px.bar(res["Clone"].value_counts(normalize=True)[:20])
-st.plotly_chart(fig, use_container_width=True)
-fig = px.bar(res["Supplier"].value_counts(normalize=True)[:20])
-st.plotly_chart(fig, use_container_width=True)
-fig = px.bar(res["Amount Tested (uL)"].value_counts(normalize=True))#[:20])
-st.plotly_chart(fig, use_container_width=True)
+# fig = px.bar(res["Conjugate"].value_counts(normalize=True)[:20])
+# st.plotly_chart(fig, use_container_width=True)
+# fig = px.bar(res["Clone"].value_counts(normalize=True)[:20])
+# st.plotly_chart(fig, use_container_width=True)
+# fig = px.bar(res["Supplier"].value_counts(normalize=True)[:20])
+# st.plotly_chart(fig, use_container_width=True)
+# fig = px.bar(res["Amount Tested (uL)"].value_counts(normalize=True))#[:20])
+# st.plotly_chart(fig, use_container_width=True)
 
 # if __name__ == '__main__':
 #     main()
