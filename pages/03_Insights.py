@@ -51,9 +51,12 @@ st.write("Price comparison between suppliers")
 res_p = res[["Supplier", "supplier price"]].dropna()
 res_p = res_p[res_p["supplier price"] != "nan"]
 res_p["supplier price"] = [float(x.replace("€", "")) * 1.29 if "€" in x else x for x in res_p["supplier price"]]
-fig = px.box(res_p, x="Supplier", y="supplier price")
+grouped = res_p.loc[:,['Supplier', 'supplier price']].groupby(['Supplier']).median().sort_values(by='supplier price')
+fig = px.box(res_p, x="Supplier", y="supplier price", category_orders=grouped.index)
 st.plotly_chart(fig, use_container_width=True)
 fig = px.scatter(res_p, x="Supplier", y="supplier price")
+st.plotly_chart(fig, use_container_width=True)
+fig = px.strip(res_p, x="Supplier", y="supplier price")
 st.plotly_chart(fig, use_container_width=True)
 
 add_auth(required=True)
