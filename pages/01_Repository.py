@@ -75,6 +75,9 @@ columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Te
            "supplier link", "supplier size", "supplier price", "supplier Host Species",
            "Supplier Isotype", "supplier Catalougue Concentration", "supplier RRID"]
 
+columns_simple = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type",
+                  "Target Species", "Host Species", "Isotype"]
+
 with st.expander("Shows example 10 rows from Repository: Subscribe to see full repository! (These rows wont filter FYI)"):
     df = load_data()
     st.dataframe(df.head(10), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
@@ -83,7 +86,7 @@ with st.expander("Shows example 10 rows from Repository: Subscribe to see full r
 
 add_auth(required=True)
 df = load_data()
-df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns)
+df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns_simple)
 df_filtered.display_filters(location='columns', num_columns=3, gap='large')
 
 pagination = st.container()
