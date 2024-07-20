@@ -85,8 +85,6 @@ add_auth(required=True)
 df = load_data()
 df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns)
 df_filtered.display_filters(location='columns', num_columns=3, gap='large')
-# st.dataframe(df_filtered.filter_df(), column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
-#              "Source": st.column_config.LinkColumn(display_text="Source")}, height=1000, column_order=columns)
 
 pagination = st.container()
 bottom_menu = st.columns((4, 1, 1))

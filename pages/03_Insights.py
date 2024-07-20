@@ -1,6 +1,5 @@
 import streamlit as st
 import plotly.express as px
-import streamlit_pandas as sp
 from streamlit_gsheets import GSheetsConnection
 from st_paywall import add_auth
 from streamlit_dynamic_filters import DynamicFilters
@@ -37,6 +36,8 @@ def load_data():
     return df[columns]
 
 def normalize_antigens(df):
+    df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"]).fillna("NULL")
+    df_terms["alternate"] = ["NULL" if x == "-" else x for x in df_terms["alternate"]]
     rename = []
     for a in df["Antigen"].fillna(""):
         new_a = a
@@ -51,9 +52,6 @@ def normalize_antigens(df):
     df["Antigen"] = rename
     return df
 
-df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"]).fillna("NULL")
-df_terms["alternate"] = ["NULL" if x == "-" else x for x in df_terms["alternate"]]
-
 columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type", 
            "Test Preparation", "Test Cell Count", "Image", "Target Species", "Host Species", "Isotype",
            "Supplier", "Catalougue #", "RRID", "Concentration for this Lot#", 
@@ -64,9 +62,11 @@ columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Te
            "supplier link", "supplier size", "supplier price", "supplier Host Species",
            "Supplier Isotype", "supplier Catalougue Concentration", "supplier RRID"]
 
+columns_simple = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type",
+                  "Target Species", "Host Species", "Isotype"]
 
 df = load_data()
-df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns)
+df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns_simple)
 df_filtered.display_filters(location='columns', num_columns=3, gap='large')
 res = df_filtered.filter_df()
 st.write("Visualizations about repository data: Subsribe to see all insights!")
