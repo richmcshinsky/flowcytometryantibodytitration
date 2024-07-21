@@ -74,9 +74,8 @@ with col2:
         # move to next step on new page or something?
 
 # select antigen 
-if con_type:
-    ants = df[df["Conjugate Type"] == con_type]['Antigen'].drop_duplicates()
-    ants_choice = st.selectbox("Select your target antigen", options=ants, index=None)
+ants = df[df["Conjugate Type"] == con_type]['Antigen'].drop_duplicates()
+ants_choice = st.selectbox("Select your target antigen", options=ants, index=None)
 
 # select conjugate or clone
 if ants_choice:
