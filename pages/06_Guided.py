@@ -62,7 +62,7 @@ columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Te
 st.write("What protocol do you plan to run?")
 df = load_data()
 
-con_type = None
+con_type, ants_choice, cons_choice, clos_choice = None, None, None, None
 col1, col2 = st.columns(2, gap="small")
 with col1:
     if st.button(label="Flow Cytometry", use_container_width=True):
