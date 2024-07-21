@@ -103,17 +103,8 @@ def step_4(con_type, ants_choice, choice):
 if "step" not in st.session_state:
     st.session_state["step"] = "Step 1"
 
-def goto_step_2():
-    st.session_state["step"] = "Step 2"
-
-def goto_step_3():
-    st.session_state["step"] = "Step 3"
-
-def goto_step_4():
-    st.session_state["step"] = "Step 4"
-
-def goto_step_5():
-    st.session_state["step"] = "Step 5"
+def goto_step(step_choice):
+    st.session_state["step"] = step_choice
 
 df = load_data()
 
@@ -121,23 +112,25 @@ df = load_data()
 
 if st.session_state["step"] == "Step 1":
     st.session_state["con_type"] = step_1()    
-    if  st.button("Next Step"):
-        goto_step_2()
+    if st.button("Next Step"):
+        goto_step("Step 2")
 
 elif st.session_state["step"] == "Step 2":
     st.session_state["ants_choice"] = step_2(st.session_state["con_type"])
+    if st.button("Previous Step"):
+        goto_step("Step 1")
     if st.button("Next Step"):
-        goto_step_3()
+        goto_step("Step 3")
 
 elif st.session_state["step"] == "Step 3":
     st.session_state["type"] = step_3()
     if st.button("Next Step"):
-        goto_step_4()
+        goto_step("Step 4")
 
 elif st.session_state["step"] == "Step 4":
     st.session_state["choice"] = step_4(st.session_state["con_type"], st.session_state["ants_choice"], st.session_state["type"])
     if st.button("Next Step"):
-        goto_step_5()
+        goto_step("Step 5")
 
 elif st.session_state["step"] == "Step 5":
     st.write(st.session_state["con_type"], st.session_state["ants_choice"], st.session_state["choice"])
