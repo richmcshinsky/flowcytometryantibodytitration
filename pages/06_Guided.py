@@ -86,6 +86,7 @@ def step_3(con_type, ants_choice):
             clos_choice = st.selectbox("Select your target clone", options=clos, index=None)
             if clos_choice:
                 return "Clone", clos_choice
+    return None, None
     
 
 columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type", 
