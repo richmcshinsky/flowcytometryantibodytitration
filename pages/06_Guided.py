@@ -30,7 +30,9 @@ def load_data():
                                                     "ThermoFisher Scientific", "Thermofisher"], "Thermo Fisher")
     df["Supplier"] = df["Supplier"].replace(["Miltenyi Biotec", "BL"], "Miltenyi")
     df = normalize_antigens(df)
-    return df[columns]
+    return df[["Antigen", "Clone", "Conjugate", "Conjugate Type", "Supplier", "Amount Tested (uL)", 
+               "Amount Tested (ng)", "Optimal Amount (µL/100 µL)", "Seperation Index", "Samples/vial", 
+               "Cost/sample ($USD)", "supplier size", "supplier price"]]
 
 def normalize_antigens(df):
     df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"]).fillna("NULL")
@@ -98,17 +100,6 @@ def step_4(con_type, ants_choice, choice):
         res = st.selectbox("Select your target clone", options=clos, index=None)
         return res
     
-
-columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type", 
-           "Test Preparation", "Test Cell Count", "Image", "Target Species", "Host Species", "Isotype",
-           "Supplier", "Catalougue #", "RRID", "Concentration for this Lot#", 
-           "Optimal Concentration for this Lot#", "Concentration for this Lot# (ng/µL)", 
-           "Amount Tested (uL)", "Amount Tested (ng)", "Optimal Amount (µL/100 µL)", "Seperation Index", 
-           "Samples/vial", "Cost/sample ($USD)", "Metal Conjugate", "Metal Source", "Metal Catalogue #",
-           "Detector", "Staining", "Source", "Publisher", "Paper", "Journal", 
-           "supplier link", "supplier size", "supplier price", "supplier Host Species",
-           "Supplier Isotype", "supplier Catalougue Concentration", "supplier RRID"]
-
 df = load_data()
 
 st.session_state["step"] = st.selectbox("Step", ["Step 1", "Step 2", "Step 3", "Step 4", "Step 5"])
@@ -117,6 +108,7 @@ if st.session_state["step"] == "Step 1":
     st.session_state["con_type"] = step_1()    
     if  st.button("Next Step"):
         st.session_state["step"] = "Step 2"
+        st.write(st.session_state["step"])
 
 elif st.session_state["step"] == "Step 2":
     st.session_state["ants_choice"] = step_2(st.session_state["con_type"])
