@@ -124,7 +124,7 @@ elif st.session_state["step"] == "Step 2":
         st.session_state["step"] = "Step 3" 
 
 elif st.session_state["step"] == "Step 3":
-    st.session_state["type"] = step_3(st.session_state["con_type"], st.session_state["ants_choice"])
+    st.session_state["type"] = step_3()
     if st.button("Next Step"):
         st.session_state["step"] = "Step 4"
 
