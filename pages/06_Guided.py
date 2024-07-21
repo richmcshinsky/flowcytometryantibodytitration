@@ -100,30 +100,44 @@ def step_4(con_type, ants_choice, choice):
         res = st.selectbox("Select your target clone", options=clos, index=None)
         return res
     
+if "step" not in st.session_state:
+    st.session_state["step"] = "Step 1"
+
+def goto_step_2():
+    st.session_state["step"] = "Step 2"
+
+def goto_step_3():
+    st.session_state["step"] = "Step 3"
+
+def goto_step_4():
+    st.session_state["step"] = "Step 4"
+
+def goto_step_5():
+    st.session_state["step"] = "Step 5"
+
 df = load_data()
 
-st.session_state["step"] = "Step 1" # st.selectbox("Step", ["Step 1", "Step 2", "Step 3", "Step 4", "Step 5"])
+# st.session_state["step"] = "Step 1" # st.selectbox("Step", ["Step 1", "Step 2", "Step 3", "Step 4", "Step 5"])
 
 if st.session_state["step"] == "Step 1":
     st.session_state["con_type"] = step_1()    
     if  st.button("Next Step"):
-        st.session_state["step"] = "Step 2"
-        st.write(st.session_state["step"])
+        goto_step_2()
 
 elif st.session_state["step"] == "Step 2":
     st.session_state["ants_choice"] = step_2(st.session_state["con_type"])
     if st.button("Next Step"):
-        st.session_state["step"] = "Step 3" 
+        goto_step_3()
 
 elif st.session_state["step"] == "Step 3":
     st.session_state["type"] = step_3()
     if st.button("Next Step"):
-        st.session_state["step"] = "Step 4"
+        goto_step_4()
 
 elif st.session_state["step"] == "Step 4":
     st.session_state["choice"] = step_4(st.session_state["con_type"], st.session_state["ants_choice"], st.session_state["type"])
     if st.button("Next Step"):
-        st.session_state["step"] = "Step 5"
+        goto_step_5()
 
 elif st.session_state["step"] == "Step 5":
     st.write(st.session_state["con_type"], st.session_state["ants_choice"], st.session_state["choice"])
