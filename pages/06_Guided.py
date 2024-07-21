@@ -79,17 +79,18 @@ if con_type:
     ants_choice = st.selectbox("Select your target antigen", options=ants, index=None)
 
 # select conjugate or clone
-col1, col2 = st.columns(2, gap="small")
-with col1:
-    if st.button(label="Conjugate", use_container_width=True):
-        cons = df[(df["Conjugate Type"] == con_type) & (df["Antigen"] == ants_choice)]['Conjugate'].drop_duplicates()
-        cons_choice = st.selectbox("Select your target conjugate", options=cons, index=None)
-        # move to next step on new page or something?
-with col2:
-    if st.button(label="Clone", use_container_width=True):
-        clos = df[(df["Conjugate Type"] == con_type) & (df["Antigen"] == ants_choice)]['Clone'].drop_duplicates()
-        clos_choice = st.selectbox("Select your target clone", options=clos, index=None)
-        # move to next step on new page or something?
+if ants_choice:
+    col1, col2 = st.columns(2, gap="small")
+    with col1:
+        if st.button(label="Conjugate", use_container_width=True):
+            cons = df[(df["Conjugate Type"] == con_type) & (df["Antigen"] == ants_choice)]['Conjugate'].drop_duplicates()
+            cons_choice = st.selectbox("Select your target conjugate", options=cons, index=None)
+            # move to next step on new page or something?
+    with col2:
+        if st.button(label="Clone", use_container_width=True):
+            clos = df[(df["Conjugate Type"] == con_type) & (df["Antigen"] == ants_choice)]['Clone'].drop_duplicates()
+            clos_choice = st.selectbox("Select your target clone", options=clos, index=None)
+            # move to next step on new page or something?
 
 if cons_choice:
     df = df[(df["Conjugate Type"] == con_type) & (df["Antigen"] == ants_choice) & (df["Conjugate"] == cons_choice)]
