@@ -96,7 +96,7 @@ def step_4(con_type, ants_choice, choice):
         st.write("Step 4: Select target Clone")
         clos = df[(df["Conjugate Type"] == con_type) & (df["Antigen"] == ants_choice)]['Clone'].drop_duplicates()
         res = st.selectbox("Select your target clone", options=clos, index=None)
-        return "Clone", res
+        return res
     
 
 columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type", 
