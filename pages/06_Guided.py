@@ -99,7 +99,7 @@ columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Te
 df = load_data()
 
 current_step = st.selectbox("Step", ["Step 1", "Step 2", "Step 3"])
-    
+st.write(current_step)
 if current_step == "Step 1":
     con_type = step_1()    
     next_step_button = st.button("Next Step") 
