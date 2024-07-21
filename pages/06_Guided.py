@@ -80,4 +80,7 @@ if ants_choice:
 # select conjugate or clone
 
 # show graph of cost/sample and graph of separation index by other (fluorophore or clone)​
+
+# show data
+st.divider()
 st.write(df.head())
