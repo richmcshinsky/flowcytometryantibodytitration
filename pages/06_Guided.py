@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_gsheets import GSheetsConnection
-from streamlit_dynamic_filters import DynamicFilters
+import pandas as pd
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
