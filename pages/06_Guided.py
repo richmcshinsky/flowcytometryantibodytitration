@@ -99,21 +99,19 @@ columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Te
 df = load_data()
 
 current_step = st.selectbox("Step", ["Step 1", "Step 2", "Step 3"])
-st.write(current_step)
-if current_step == "Step 1":
-    con_type = step_1()    
-    next_step_button = st.button("Next Step") 
-    if next_step_button:
-        current_step = "Step 2"
 
-elif current_step == "Step 2":
-    ants_choice = step_2(con_type)
-    next_step_button = st.button("Next Step") 
-    if next_step_button:
-        current_step = "Step 3"
+if current_step == "Step 1":
+    st.session_state["con_type"] = step_1()    
+    if  st.button("Next Step"):
+        st.session_state["step"] = "Step 2"
+
+elif st.session_state["step"] == "Step 2":
+    st.session_state["ants_choice"] = step_2(st.session_state["con_type"])
+    if st.button("Next Step"):
+        st.session_state["step"] = "Step 3"
     
-elif current_step == "Step 3":
-    type, choice = step_3(con_type, ants_choice)
+elif st.session_state["step"] == "Step 3":
+    type, choice = step_3(st.session_state["con_type"], st.session_state["ants_choice"])
     if type == "Clone":
-        st.write(df[(df["Clone"] == choice) & (df["Antigen"] == ants_choice) & (df["Clone"] == clos_choice)])
+        st.write(df[(df["onjugate Type"] == st.session_state["con_type"]) & (df["Antigen"] == st.session_state["ants_choice"]) & (df["Clone"] == choice)])
 
