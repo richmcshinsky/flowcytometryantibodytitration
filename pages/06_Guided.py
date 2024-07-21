@@ -102,7 +102,7 @@ def step_4(con_type, ants_choice, choice):
     
 df = load_data()
 
-st.session_state["step"] = st.selectbox("Step", ["Step 1", "Step 2", "Step 3", "Step 4", "Step 5"])
+st.session_state["step"] = "Step 1" # st.selectbox("Step", ["Step 1", "Step 2", "Step 3", "Step 4", "Step 5"])
 
 if st.session_state["step"] == "Step 1":
     st.session_state["con_type"] = step_1()    
