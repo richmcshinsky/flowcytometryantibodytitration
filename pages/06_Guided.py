@@ -131,7 +131,7 @@ elif st.session_state["step"] == "Step 5":
     st.write("Price comparison between suppliers")
     res_p = df_g[["Source", "Antigen", "Supplier", "supplier price", "supplier size"]].dropna().drop_duplicates()
     res_p = res_p[res_p["supplier price"] != "nan"]
-    res_p["supplier price"] = [float(x.replace("€", "")) * 1.29 if "€" in x else x for x in res_p["supplier price"]]
+    res_p["supplier price"] = [float(x.replace("€", "")) * 1.29 if "€" in x else float(x) for x in res_p["supplier price"]]
     res_p['supplier size'] = res_p['supplier size'].str.extract('(\d+)', expand=False).astype(int)
     res_p["supplier price/size"] = res_p["supplier price"]/res_p["supplier size"]# supplier size
 
