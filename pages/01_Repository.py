@@ -76,7 +76,10 @@ columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Te
            "Supplier Isotype", "supplier Catalougue Concentration", "supplier RRID"]
 
 columns_simple = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type",
-                  "Target Species", "Host Species", "Isotype"]
+                  "Test Preparation", "Target Species", "Isotype", "Supplier",
+                  "Concentration for this Lot# (ng/µL)", "Amount Tested (uL)",
+                  "Optimal Amount (µL/100 µL)", "Seperation Index", "Samples/vial",
+                  "Cost/sample ($USD)", "Metal Conjugate", "Detector", "Staining", "Source"]
 
 with st.expander("Shows example 10 rows from Repository: Subscribe to see full repository! (These rows wont filter FYI)"):
     df = load_data()
