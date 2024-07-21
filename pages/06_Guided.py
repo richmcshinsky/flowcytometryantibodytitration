@@ -49,23 +49,34 @@ def normalize_antigens(df):
     df["Antigen"] = rename
     return df
 
+columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type", 
+           "Test Preparation", "Test Cell Count", "Image", "Target Species", "Host Species", "Isotype",
+           "Supplier", "Catalougue #", "RRID", "Concentration for this Lot#", 
+           "Optimal Concentration for this Lot#", "Concentration for this Lot# (ng/µL)", 
+           "Amount Tested (uL)", "Amount Tested (ng)", "Optimal Amount (µL/100 µL)", "Seperation Index", 
+           "Samples/vial", "Cost/sample ($USD)", "Metal Conjugate", "Metal Source", "Metal Catalogue #",
+           "Detector", "Staining", "Source", "Publisher", "Paper", "Journal", 
+           "supplier link", "supplier size", "supplier price", "supplier Host Species",
+           "Supplier Isotype", "supplier Catalougue Concentration", "supplier RRID"]
+
 st.write("What protocol do you plan to run?")
 df = load_data()
-df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=["Conjugate Type"])
-df_filtered.display_filters(location='columns')
 
 col1, col2 = st.columns(2, gap="small")
 with col1:
     if st.button(label="Flow Cytometry", use_container_width=True):
-        protocol = "flow"
-        # conjugate type column filter to flouresent
+        df_t = df[df["Conjugate Type"] == "Fluorescent"]
+        # move to next step on new page or something?
 with col2:
     if st.button(label="Mass Cytometry", use_container_width=True):
-        protocol = "mass"
+        df_t = df[df["Conjugate Type"] == "Metal"]
+        # move to next step on new page or something?
 
-df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=["Antigen"])
-df_filtered.display_filters(location='columns')
 # select antigen 
+ants = df['Antigen'].drop_duplicates()
+ants_choice = st.selectbox(options=ants, index=None, placeholder="Select your Antigen")
+df_t = df_t[df_t["Antigen"] == ants_choice]
 # select conjugate or clone
 
 # show graph of cost/sample and graph of separation index by other (fluorophore or clone)​
+st.write(df_t.head())
