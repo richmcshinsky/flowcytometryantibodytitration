@@ -17,5 +17,12 @@ with st.sidebar:
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 st.divider()
 
-st.write("""TODO: make guided workflow for users to find content easily""")
-    
+st.write("What protocol do you plan to run?")
+col1, col2 = st.columns(2, gap="small")
+with col1:
+    if st.button(label="Flow Cytometry", use_container_width=True):
+        protocol = "flow"
+with col2:
+    if st.button(label="Mass Cytometry", use_container_width=True):
+        protocol = "mass"
+
