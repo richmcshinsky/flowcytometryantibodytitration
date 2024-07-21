@@ -52,7 +52,7 @@ def normalize_antigens(df):
 st.write("What protocol do you plan to run?")
 df = load_data()
 df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=["Conjugate Type"])
-df_filtered.display_filters()
+df_filtered.display_filters(location='columns')
 
 col1, col2 = st.columns(2, gap="small")
 with col1:
@@ -64,7 +64,7 @@ with col2:
         protocol = "mass"
 
 df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=["Antigen"])
-df_filtered.display_filters()
+df_filtered.display_filters(location='columns')
 # select antigen 
 # select conjugate or clone
 
