@@ -118,4 +118,7 @@ elif st.session_state["step"] == "Step 3":
     if st.button("Next Step"):
         st.session_state["step"] = "Step 4"
 elif st.session_state["step"] == "Step 4":
-    st.write(df[(df["Conjugate Type"] == st.session_state["con_type"]) & (df["Antigen"] == st.session_state["ants_choice"]) & (df["Clone"] == st.session_state["choice"])])
+    st.write(st.session_state["con_type"], st.session_state["ants_choice"], st.session_state["choice"])
+    st.write(df[(df["Conjugate Type"] == st.session_state["con_type"]) & 
+                (df["Antigen"] == st.session_state["ants_choice"]) & 
+                (df["Clone"] == st.session_state["choice"])])
