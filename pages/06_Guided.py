@@ -131,7 +131,8 @@ elif st.session_state["step"] == "Step 5":
     st.write("""Price comparison between suppliers. Note that the supplier information is web scraped, so 
              there are cases where the size or price may be incorrect. Please see supplier link
              for current and correct information!""")
-    res_p = df_g[["Source", "supplier link", "Antigen", "Supplier", "supplier price", "supplier size"]].dropna().drop_duplicates()
+    res_p = df_g[["Source", "supplier link", "Antigen", "Conjugate Type", "Conjugate", "Clone", "Supplier", 
+                  "supplier price", "supplier size"]].dropna().drop_duplicates()
     res_p = res_p[res_p["supplier price"] != "nan"]
     res_p["supplier price"] = [float(x.replace("€", "")) * 1.29 if "€" in x else float(x.replace("$", "")) for x in res_p["supplier price"]]
     res_p['supplier size'] = res_p['supplier size'].str.extract('(\d+)', expand=False).astype(int)
