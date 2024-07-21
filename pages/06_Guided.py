@@ -62,39 +62,39 @@ columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Te
 st.write("What protocol do you plan to run?")
 df = load_data()
 
+con_type = None
 col1, col2 = st.columns(2, gap="small")
 with col1:
     if st.button(label="Flow Cytometry", use_container_width=True):
-        df = df[df["Conjugate Type"] == "Fluorescent"]
+        con_type = "Fluorescent"
         # move to next step on new page or something?
 with col2:
     if st.button(label="Mass Cytometry", use_container_width=True):
-        df = df[df["Conjugate Type"] == "Metal"]
+        con_type = "Metal"
         # move to next step on new page or something?
 
 # select antigen 
-ants = df['Antigen'].drop_duplicates()
-ants_choice = st.selectbox("Select your target antigen", options=ants, index=None)
-if ants_choice:
-    df = df[df["Antigen"] == ants_choice]
+if con_type:
+    ants = df[df["Conjugate Type"] == con_type]['Antigen'].drop_duplicates()
+    ants_choice = st.selectbox("Select your target antigen", options=ants, index=None)
 
 # select conjugate or clone
 col1, col2 = st.columns(2, gap="small")
 with col1:
     if st.button(label="Conjugate", use_container_width=True):
-        cons = df['Conjugate'].drop_duplicates()
+        cons = df[(df["Conjugate Type"] == con_type) & (df["Antigen"] == ants_choice)]['Conjugate'].drop_duplicates()
         cons_choice = st.selectbox("Select your target conjugate", options=cons, index=None)
-        if cons_choice:
-            df = df[df["Conjugate"] == cons_choice]
         # move to next step on new page or something?
 with col2:
     if st.button(label="Clone", use_container_width=True):
-        clos = df['Clone'].drop_duplicates()
+        clos = df[(df["Conjugate Type"] == con_type) & (df["Antigen"] == ants_choice)]['Clone'].drop_duplicates()
         clos_choice = st.selectbox("Select your target clone", options=clos, index=None)
-        if clos_choice:
-            df = df[df["Clone"] == ants_choice]
         # move to next step on new page or something?
 
+if cons_choice:
+    df = df[(df["Conjugate Type"] == con_type) & (df["Antigen"] == ants_choice) & (df["Conjugate"] == cons_choice)]
+elif clos_choice:
+    df = df[(df["Conjugate Type"] == con_type) & (df["Antigen"] == ants_choice) & (df["Clone"] == clos_choice)]
 # show graph of cost/sample and graph of separation index by other (fluorophore or clone)​
 
 # show data
