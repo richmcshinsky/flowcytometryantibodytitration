@@ -32,7 +32,7 @@ def load_data():
     df = normalize_antigens(df)
     return df[["Antigen", "Clone", "Conjugate", "Conjugate Type", "Supplier", "Amount Tested (uL)", 
                "Amount Tested (ng)", "Optimal Amount (µL/100 µL)", "Seperation Index", "Samples/vial", 
-               "Cost/sample ($USD)", "supplier size", "supplier price"]]
+               "Cost/sample ($USD)", "supplier size", "supplier price", "Source"]]
 
 def normalize_antigens(df):
     df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"]).fillna("NULL")
