@@ -51,6 +51,7 @@ def normalize_antigens(df):
 
 def step_1():
     st.write("Step 1: What protocol do you plan to run?")
+    con_type = None
     col1, col2 = st.columns(2, gap="small")
     with col1:
         if st.button(label="Flow Cytometry", use_container_width=True):
