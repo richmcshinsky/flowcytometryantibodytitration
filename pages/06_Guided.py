@@ -74,6 +74,7 @@ def step_2(con_type):
 def step_3(con_type, ants_choice):
     st.write("Step 3: Select target Conjugate or Clone")
     col1, col2 = st.columns(2, gap="small")
+    clos_choice = None
     with col1:
         if st.button(label="Conjugate", use_container_width=True):
             cons = df[(df["Conjugate Type"] == con_type) & (df["Antigen"] == ants_choice)]['Conjugate'].drop_duplicates()
@@ -86,7 +87,8 @@ def step_3(con_type, ants_choice):
             clos_choice = st.selectbox("Select your target clone", options=clos, index=None)
             if clos_choice:
                 return "Clone", clos_choice
-    return None, None
+    if not clos_choice or not cons_choice:
+        return None, None
     
 
 columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type", 
