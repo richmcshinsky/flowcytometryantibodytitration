@@ -49,6 +49,26 @@ def normalize_antigens(df):
     df["Antigen"] = rename
     return df
 
+def step_1():
+    st.title("Step 1: Snowflake Credentials")
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+    account = st.text_input("Account")
+    warehouse = st.text_input("Warehouse")
+    
+    return username, password, account, warehouse
+
+def step_2():
+    st.title("Step 2: Table Details")
+    schema = st.text_input("Schema")
+    table = st.text_input("Table Name")
+    
+    return schema, table
+
+def step_3():
+    st.title("Step 3: Upload CSV")
+    csv_file = st.file_uploader("Choose a CSV file")
+
 columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type", 
            "Test Preparation", "Test Cell Count", "Image", "Target Species", "Host Species", "Isotype",
            "Supplier", "Catalougue #", "RRID", "Concentration for this Lot#", 
@@ -60,7 +80,20 @@ columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Te
            "Supplier Isotype", "supplier Catalougue Concentration", "supplier RRID"]
 
 st.write("What protocol do you plan to run?")
-df = load_data()
+
+current_step = st.selectbox("Step", ["Step 1", "Step 2", "Step 3"])
+    
+if current_step == "Step 1":
+    username, password, account, warehouse = step_1()        
+
+elif current_step == "Step 2":
+    schema, table = step_2()
+    
+elif current_step == "Step 3":
+    csv_file = step_3()
+    next_step_button = st.sidebar.button("Submit")
+
+"""df = load_data()
 
 con_type, ants_choice, cons_choice, clos_choice = None, None, None, None
 col1, col2 = st.columns(2, gap="small")
@@ -102,4 +135,4 @@ elif clos_choice:
 
 # show data
 st.divider()
-st.write(df.head())
+st.write(df.head())"""
