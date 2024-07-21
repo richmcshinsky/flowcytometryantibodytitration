@@ -65,18 +65,19 @@ df = load_data()
 col1, col2 = st.columns(2, gap="small")
 with col1:
     if st.button(label="Flow Cytometry", use_container_width=True):
-        df_t = df[df["Conjugate Type"] == "Fluorescent"]
+        df = df[df["Conjugate Type"] == "Fluorescent"]
         # move to next step on new page or something?
 with col2:
     if st.button(label="Mass Cytometry", use_container_width=True):
-        df_t = df[df["Conjugate Type"] == "Metal"]
+        df = df[df["Conjugate Type"] == "Metal"]
         # move to next step on new page or something?
 
 # select antigen 
 ants = df['Antigen'].drop_duplicates()
 ants_choice = st.selectbox("Select your target antigen", options=ants, index=None)
-df_t = df_t[df_t["Antigen"] == ants_choice]
+if ants_choice:
+    df = df[df["Antigen"] == ants_choice]
 # select conjugate or clone
 
 # show graph of cost/sample and graph of separation index by other (fluorophore or clone)​
-st.write(df_t.head())
+st.write(df.head())
