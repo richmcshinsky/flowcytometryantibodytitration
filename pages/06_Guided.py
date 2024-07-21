@@ -98,7 +98,7 @@ columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Te
 
 df = load_data()
 
-st.session_state["step"] = "Step 1" # st.selectbox("Step", ["Step 1", "Step 2", "Step 3"])
+st.session_state["step"] = st.selectbox("Step", ["Step 1", "Step 2", "Step 3"])
 
 if st.session_state["step"] == "Step 1":
     st.session_state["con_type"] = step_1()    
