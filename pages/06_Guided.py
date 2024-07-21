@@ -130,7 +130,8 @@ elif st.session_state["step"] == "Step 5":
     # show graph of cost/sample and graph of separation index by other (fluorophore or clone)
     st.write("""Price comparison between suppliers. Note that the supplier information is web scraped, so 
              there are cases where the size or price may be incorrect. Please see supplier link
-             for current and correct information!""")
+             for current and correct information! Note that prices in pounds have been converted to 
+             dollars by multiplying by 1.29.""")
     res_p = df_g[["Source", "supplier link", "Antigen", "Conjugate Type", "Conjugate", "Clone", "Supplier", 
                   "supplier price", "supplier size"]].dropna().drop_duplicates()
     res_p = res_p[res_p["supplier price"] != "nan"]
