@@ -32,7 +32,7 @@ def load_data():
     df = normalize_antigens(df)
     return df[["Antigen", "Clone", "Conjugate", "Conjugate Type", "Supplier", "Amount Tested (uL)", 
                "Amount Tested (ng)", "Optimal Amount (µL/100 µL)", "Seperation Index", "Samples/vial", 
-               "Cost/sample ($USD)", "supplier size", "supplier price", "Source"]]
+               "Cost/sample ($USD)", "supplier size", "supplier price", "Source", "supplier link"]]
 
 def normalize_antigens(df):
     df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"]).fillna("NULL")
@@ -128,8 +128,10 @@ elif st.session_state["step"] == "Step 5":
                     (df["Clone"] == st.session_state["choice"])]
     
     # show graph of cost/sample and graph of separation index by other (fluorophore or clone)
-    st.write("Price comparison between suppliers")
-    res_p = df_g[["Source", "Antigen", "Supplier", "supplier price", "supplier size"]].dropna().drop_duplicates()
+    st.write("""Price comparison between suppliers. Note that the supplier information is web scraped, so 
+             there are cases where the size or price may be incorrect. Please see supplier link
+             for current and correct information!""")
+    res_p = df_g[["Source", "Antigen", "Supplier", "supplier price", "supplier size", "supplier link"]].dropna().drop_duplicates()
     res_p = res_p[res_p["supplier price"] != "nan"]
     res_p["supplier price"] = [float(x.replace("€", "")) * 1.29 if "€" in x else float(x.replace("$", "")) for x in res_p["supplier price"]]
     res_p['supplier size'] = res_p['supplier size'].str.extract('(\d+)', expand=False).astype(int)
