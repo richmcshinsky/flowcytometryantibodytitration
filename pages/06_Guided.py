@@ -1,9 +1,9 @@
 import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 import pandas as pd
+import plotly.express as px
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
-
 
 with st.sidebar:
     st.page_link('streamlit_app.py', label='Home')
@@ -118,13 +118,25 @@ elif st.session_state["step"] == "Step 4":
     st.session_state["choice"] = step_4(st.session_state["con_type"], st.session_state["ants_choice"], st.session_state["type"])
 
 elif st.session_state["step"] == "Step 5":
-    st.write(st.session_state["con_type"], st.session_state["ants_choice"], st.session_state["choice"])
     if st.session_state["type"] == "Conjugate":
-        st.write(df[(df["Conjugate Type"] == st.session_state["con_type"]) & 
+        df_g = df[(df["Conjugate Type"] == st.session_state["con_type"]) & 
                     (df["Antigen"] == st.session_state["ants_choice"]) & 
-                    (df["Conjugate"] == st.session_state["choice"])])
+                    (df["Conjugate"] == st.session_state["choice"])]
     elif st.session_state["type"] == "Clone":
-        st.write(df[(df["Conjugate Type"] == st.session_state["con_type"]) & 
+        df_g = df[(df["Conjugate Type"] == st.session_state["con_type"]) & 
                     (df["Antigen"] == st.session_state["ants_choice"]) & 
-                    (df["Clone"] == st.session_state["choice"])])
+                    (df["Clone"] == st.session_state["choice"])]
+    
+    # show graph of cost/sample and graph of separation index by other (fluorophore or clone)
+    st.write("Price comparison between suppliers")
+    res_p = df_g[["Source", "Antigen", "Supplier", "supplier price"]].dropna().drop_duplicates()
+    res_p = res_p[res_p["supplier price"] != "nan"]
+    res_p["supplier price"] = [float(x.replace("€", "")) * 1.29 if "€" in x else x for x in res_p["supplier price"]]
+    res_p['supplier size'] = res_p['supplier size'].str.extract('(\d+)', expand=False)
+    res_p["supplier price/size"] = res_p["supplier price"]/res_p["supplier size"]# supplier size
+
+    fig = px.strip(res_p, x="Supplier", y="supplier price/size")
+    st.plotly_chart(fig, use_container_width=True)
+
+    st.write(res_p)
 
