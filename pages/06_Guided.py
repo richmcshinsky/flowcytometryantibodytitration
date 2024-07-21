@@ -50,24 +50,40 @@ def normalize_antigens(df):
     return df
 
 def step_1():
-    st.title("Step 1: Snowflake Credentials")
-    username = st.text_input("Username")
-    password = st.text_input("Password", type="password")
-    account = st.text_input("Account")
-    warehouse = st.text_input("Warehouse")
+    st.write("Step 1: What protocol do you plan to run?")
+    col1, col2 = st.columns(2, gap="small")
+    with col1:
+        if st.button(label="Flow Cytometry", use_container_width=True):
+            con_type = "Fluorescent"
+            # move to next step on new page or something?
+    with col2:
+        if st.button(label="Mass Cytometry", use_container_width=True):
+            con_type = "Metal"
+            # move to next step on new page or something?
     
-    return username, password, account, warehouse
+    return con_type
 
 def step_2():
-    st.title("Step 2: Table Details")
-    schema = st.text_input("Schema")
-    table = st.text_input("Table Name")
+    st.write("Step 2: Select target antigen")
+    ants = df[df["Conjugate Type"] == con_type]['Antigen'].drop_duplicates()
+    ants_choice = st.selectbox("Select your target antigen", options=ants, index=None)
     
-    return schema, table
+    return ants_choice
 
 def step_3():
-    st.title("Step 3: Upload CSV")
-    csv_file = st.file_uploader("Choose a CSV file")
+    st.write("Step 3: Select target Conjugate or Clone")
+    col1, col2 = st.columns(2, gap="small")
+    with col1:
+        if st.button(label="Conjugate", use_container_width=True):
+            cons = df[(df["Conjugate Type"] == con_type) & (df["Antigen"] == ants_choice)]['Conjugate'].drop_duplicates()
+            cons_choice = st.selectbox("Select your target conjugate", options=cons, index=None)
+            return "Conjugate", cons_choice
+    with col2:
+        if st.button(label="Clone", use_container_width=True):
+            clos = df[(df["Conjugate Type"] == con_type) & (df["Antigen"] == ants_choice)]['Clone'].drop_duplicates()
+            clos_choice = st.selectbox("Select your target clone", options=clos, index=None)
+            return "Clone", clos_choice
+    
 
 columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type", 
            "Test Preparation", "Test Cell Count", "Image", "Target Species", "Host Species", "Isotype",
@@ -79,32 +95,28 @@ columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Te
            "supplier link", "supplier size", "supplier price", "supplier Host Species",
            "Supplier Isotype", "supplier Catalougue Concentration", "supplier RRID"]
 
-st.write("What protocol do you plan to run?")
+df = load_data()
 
 current_step = st.selectbox("Step", ["Step 1", "Step 2", "Step 3"])
     
 if current_step == "Step 1":
-    username, password, account, warehouse = step_1()        
+    con_type = step_1()    
+    next_step_button = st.button("Next Step") 
+    if next_step_button:
+        current_step == "Step 2"
 
 elif current_step == "Step 2":
-    schema, table = step_2()
+    ants_choice = step_2()
+    next_step_button = st.button("Next Step") 
+    if next_step_button:
+        current_step == "Step 3"
     
 elif current_step == "Step 3":
-    csv_file = step_3()
-    next_step_button = st.sidebar.button("Submit")
+    type, choice = step_3()
+    if type == "Clone":
+        st.write(df[(df["Clone"] == choice) & (df["Antigen"] == ants_choice) & (df["Clone"] == clos_choice)])
 
 """df = load_data()
-
-con_type, ants_choice, cons_choice, clos_choice = None, None, None, None
-col1, col2 = st.columns(2, gap="small")
-with col1:
-    if st.button(label="Flow Cytometry", use_container_width=True):
-        con_type = "Fluorescent"
-        # move to next step on new page or something?
-with col2:
-    if st.button(label="Mass Cytometry", use_container_width=True):
-        con_type = "Metal"
-        # move to next step on new page or something?
 
 # select antigen 
 ants = df[df["Conjugate Type"] == con_type]['Antigen'].drop_duplicates()
