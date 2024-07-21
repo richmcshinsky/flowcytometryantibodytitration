@@ -71,24 +71,32 @@ def step_2(con_type):
     
     return ants_choice
 
-def step_3(con_type, ants_choice):
-    st.write("Step 3: Select target Conjugate or Clone")
+def step_3():
+    st.write("Step 3: Fluorophore or Clone?")
+    choice = None
     col1, col2 = st.columns(2, gap="small")
-    clos_choice = None
     with col1:
-        if st.button(label="Conjugate", use_container_width=True):
-            cons = df[(df["Conjugate Type"] == con_type) & (df["Antigen"] == ants_choice)]['Conjugate'].drop_duplicates()
-            cons_choice = st.selectbox("Select your target conjugate", options=cons, index=None)
-            if cons_choice:
-                return "Conjugate", cons_choice
+        if st.button(label="Fluorophore", use_container_width=True):
+            choice = "Conjugate"
+            # move to next step on new page or something?
     with col2:
         if st.button(label="Clone", use_container_width=True):
-            clos = df[(df["Conjugate Type"] == con_type) & (df["Antigen"] == ants_choice)]['Clone'].drop_duplicates()
-            clos_choice = st.selectbox("Select your target clone", options=clos, index=None)
-            if clos_choice:
-                return "Clone", clos_choice
-    if not clos_choice or not cons_choice:
-        return None, None
+            choice = "Clone"
+    
+    return choice
+
+def step_4(con_type, ants_choice, choice):
+    res = None
+    if choice == "Conjugate":
+        st.write("Step 4: Select target Fluorophore")
+        cons = df[(df["Conjugate Type"] == con_type) & (df["Antigen"] == ants_choice)]['Conjugate'].drop_duplicates()
+        res = st.selectbox("Select your target fluorophore", options=cons, index=None)
+        return res
+    elif choice == "Clone":
+        st.write("Step 4: Select target Clone")
+        clos = df[(df["Conjugate Type"] == con_type) & (df["Antigen"] == ants_choice)]['Clone'].drop_duplicates()
+        res = st.selectbox("Select your target clone", options=clos, index=None)
+        return "Clone", res
     
 
 columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type", 
@@ -103,22 +111,36 @@ columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Te
 
 df = load_data()
 
-st.session_state["step"] = st.selectbox("Step", ["Step 1", "Step 2", "Step 3", "Step 4"])
+st.session_state["step"] = st.selectbox("Step", ["Step 1", "Step 2", "Step 3", "Step 4", "Step 5"])
 
 if st.session_state["step"] == "Step 1":
     st.session_state["con_type"] = step_1()    
     if  st.button("Next Step"):
         st.session_state["step"] = "Step 2"
+
 elif st.session_state["step"] == "Step 2":
     st.session_state["ants_choice"] = step_2(st.session_state["con_type"])
     if st.button("Next Step"):
         st.session_state["step"] = "Step 3" 
+
 elif st.session_state["step"] == "Step 3":
-    st.session_state["type"], st.session_state["choice"] = step_3(st.session_state["con_type"], st.session_state["ants_choice"])
+    st.session_state["type"] = step_3(st.session_state["con_type"], st.session_state["ants_choice"])
     if st.button("Next Step"):
         st.session_state["step"] = "Step 4"
+
 elif st.session_state["step"] == "Step 4":
+    st.session_state["choice"] = step_4(st.session_state["con_type"], st.session_state["ants_choice"], st.session_state["type"])
+    if st.button("Next Step"):
+        st.session_state["step"] = "Step 5"
+
+elif st.session_state["step"] == "Step 5":
     st.write(st.session_state["con_type"], st.session_state["ants_choice"], st.session_state["choice"])
-    st.write(df[(df["Conjugate Type"] == st.session_state["con_type"]) & 
-                (df["Antigen"] == st.session_state["ants_choice"]) & 
-                (df["Clone"] == st.session_state["choice"])])
+    if st.session_state["type"] == "Conjugate":
+        st.write(df[(df["Conjugate Type"] == st.session_state["con_type"]) & 
+                    (df["Antigen"] == st.session_state["ants_choice"]) & 
+                    (df["Conjugate"] == st.session_state["choice"])])
+    elif st.session_state["type"] == "Clone":
+        st.write(df[(df["Conjugate Type"] == st.session_state["con_type"]) & 
+                    (df["Antigen"] == st.session_state["ants_choice"]) & 
+                    (df["Clone"] == st.session_state["choice"])])
+
