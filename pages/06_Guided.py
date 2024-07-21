@@ -117,6 +117,7 @@ elif st.session_state["step"] == "Step 2":
     
 elif st.session_state["step"] == "Step 3":
     type_c, choice = step_3(st.session_state["con_type"], st.session_state["ants_choice"])
+    st.write(type_c, choice)
     if type_c == "Clone":
         st.write(df[(df["onjugate Type"] == st.session_state["con_type"]) & (df["Antigen"] == st.session_state["ants_choice"]) & (df["Clone"] == choice)])
 
