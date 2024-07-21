@@ -104,13 +104,13 @@ if current_step == "Step 1":
     con_type = step_1()    
     next_step_button = st.button("Next Step") 
     if next_step_button:
-        current_step == "Step 2"
+        current_step = "Step 2"
 
 elif current_step == "Step 2":
     ants_choice = step_2(con_type)
     next_step_button = st.button("Next Step") 
     if next_step_button:
-        current_step == "Step 3"
+        current_step = "Step 3"
     
 elif current_step == "Step 3":
     type, choice = step_3(con_type, ants_choice)
