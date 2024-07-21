@@ -64,7 +64,7 @@ with col1:
     if st.button(label="Pricing", use_container_width=True, help="Explanations on subscription pricing and benefits"):
         st.switch_page("pages/05_Pricing.py")
 with col2:
-    if st.button(label="Not sure where to start?", use_container_width=True, help="Guided walkthrough for easy navigation."):
+    if st.button(type="primary", label="Not sure where to start?", use_container_width=True, help="Guided walkthrough for easy navigation."):
         st.switch_page("pages/06_Guided.py")
 
 st.subheader("Watch our short demo video to see what you can do!")
