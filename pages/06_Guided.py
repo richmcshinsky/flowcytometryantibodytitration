@@ -92,6 +92,10 @@ if ants_choice:
             clos_choice = st.selectbox("Select your target clone", options=clos, index=None)
             # move to next step on new page or something?
 
+st.write(con_type)
+st.write(ants_choice)
+st.write(cons_choice)
+
 if cons_choice:
     df = df[(df["Conjugate Type"] == con_type) & (df["Antigen"] == ants_choice) & (df["Conjugate"] == cons_choice)]
 elif clos_choice:
