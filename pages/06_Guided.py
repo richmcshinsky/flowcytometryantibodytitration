@@ -74,7 +74,7 @@ with col2:
 
 # select antigen 
 ants = df['Antigen'].drop_duplicates()
-ants_choice = st.selectbox(options=ants, index=None, placeholder="Select your Antigen")
+ants_choice = st.selectbox("Select your target antigen"options=ants, index=None)
 df_t = df_t[df_t["Antigen"] == ants_choice]
 # select conjugate or clone
 
