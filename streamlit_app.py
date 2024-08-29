@@ -2,16 +2,15 @@ import streamlit as st
 from st_paywall import add_auth
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
+# TODO: giuded: fix step through and filtering
+# TODO: guided: add in optimal price column stuff
 # TODO: page for guided repository exploration
+# TODO: repository: update the filteres with the insights page version
+# TODO: data: validation second pass
+# TODO: insights: color by clone/antigen as legend
 
-# TODO: normalizing terms
-# TODO: try get nanograms for papers
-# TODO: add drop duplicate source option where it collapses the variations on amounts tested to one row?
 # TODO: is user submits data, send a notification email for review
 # TODO: if success on submit, let user know it worked and expected time to get free subscription
-
-# TODO: I think we need a generic search box so someone can enter whatever is on their mind and see what we have to offer.
-# TODO: In time, we will need a reference for any published data, DOI and/or PMCID may be sufficient.
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
