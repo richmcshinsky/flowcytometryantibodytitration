@@ -17,7 +17,7 @@ def load_data():
     conn = st.connection("gsheets", type=GSheetsConnection)
     df = conn.read(worksheet="testing", ttl="30m")
     df = normalize_antigens(df)
-    return df #[columns]
+    return df
 
 def normalize_antigens(df):
     rename = []
@@ -65,16 +65,6 @@ with st.expander("If you aren't able to find your target antigen, try an alterna
     if search_target:
         st.dataframe(df_terms[df_terms["cd"].str.contains(search_target, case=False) | df_terms["alternate"].str.contains(search_target, case=False)])
 
-"""columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type", 
-           "Test Preparation", "Test Cell Count", "Image", "Target Species", "Host Species", "Isotype",
-           "Supplier", "Catalougue #", "RRID", "Concentration for this Lot#", 
-           "Optimal Concentration for this Lot#", "Concentration for this Lot# (ng/µL)", 
-           "Amount Tested (uL)", "Amount Tested (ng)", "Optimal Amount (µL/100 µL)", "Seperation Index", 
-           "Samples/vial", "Cost/sample ($USD)", "Metal Conjugate", "Metal Source", "Metal Catalogue #",
-           "Detector", "Staining", "Source", "Publisher", "Paper", "Journal", 
-           "supplier link", "supplier size", "supplier price", "supplier Host Species",
-           "Supplier Isotype", "supplier Catalougue Concentration", "supplier RRID"]
-"""
 columns_simple = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type",
                   "Test Preparation", "Target Species", "Isotype", "Supplier",
                   "Concentration for this Lot# (ng/µL)", "Amount Tested (uL)",

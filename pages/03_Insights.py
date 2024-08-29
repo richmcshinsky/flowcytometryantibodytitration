@@ -33,7 +33,7 @@ def load_data():
                                                     "ThermoFisher Scientific", "Thermofisher"], "Thermo Fisher")
     df["Supplier"] = df["Supplier"].replace(["Miltenyi Biotec", "BL"], "Miltenyi")
     df = normalize_antigens(df)
-    return df[columns]
+    return df #[columns]
 
 def normalize_antigens(df):
     df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"]).fillna("NULL")
@@ -52,15 +52,6 @@ def normalize_antigens(df):
     df["Antigen"] = rename
     return df
 
-columns = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type", 
-           "Test Preparation", "Test Cell Count", "Image", "Target Species", "Host Species", "Isotype",
-           "Supplier", "Catalougue #", "RRID", "Concentration for this Lot#", 
-           "Optimal Concentration for this Lot#", "Concentration for this Lot# (ng/µL)", 
-           "Amount Tested (uL)", "Amount Tested (ng)", "Optimal Amount (µL/100 µL)", "Seperation Index", 
-           "Samples/vial", "Cost/sample ($USD)", "Metal Conjugate", "Metal Source", "Metal Catalogue #",
-           "Detector", "Staining", "Source", "Publisher", "Paper", "Journal", 
-           "supplier link", "supplier size", "supplier price", "supplier Host Species",
-           "Supplier Isotype", "supplier Catalougue Concentration", "supplier RRID"]
 
 columns_simple = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type",
                   "Test Preparation", "Target Species", "Isotype", "Supplier",
