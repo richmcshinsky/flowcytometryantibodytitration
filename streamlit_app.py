@@ -37,10 +37,8 @@ st.subheader("Welcome")
 st.write("""This is a database of flow cytometry antibody titration data.
             You can look up titration data for planning experiments and for making 
             informed purchasing decisions. Data is collected from various publications
-            and through user contributions. """)
-st.write("""You can navigate this site by using the bottons below or the navigation
-            menu on the left. This menu also includes filters on certain pages. Click
-            the x to hide the menu and the arrow to reopen it.""")
+            and through user contributions. You can navigate this site by using the bottons below or the navigation
+            menu on the left. """)
 
 st.subheader("What brings you here today?")
 

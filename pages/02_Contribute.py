@@ -17,7 +17,7 @@ def main():
             st.page_link('pages/03_Insights.py', label='Insights')
             st.page_link('pages/04_Contact.py', label='Contact')
             st.page_link('pages/05_Pricing.py', label='Pricing')
-            # st.page_link('pages/06_Purchase.py', label='Purchase')
+            st.page_link('pages/06_Guided.py', label='Guided')
 
     st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
     st.divider()

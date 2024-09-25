@@ -43,7 +43,7 @@ with st.sidebar:
         st.page_link('pages/03_Insights.py', label='Insights')
         st.page_link('pages/04_Contact.py', label='Contact')
         st.page_link('pages/05_Pricing.py', label='Pricing')
-        # st.page_link('pages/06_Purchase.py', label='Purchase')
+        st.page_link('pages/06_Guided.py', label='Guided')
 
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 st.divider()
@@ -69,7 +69,7 @@ columns_simple = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissu
                   "Test Preparation", "Target Species", "Isotype", "Supplier",
                   "Concentration for this Lot# (ng/µL)", "Amount Tested (uL)",
                   "Optimal Amount (µL/100 µL)", "Seperation Index", "Samples/vial",
-                  "Cost/sample ($USD)", "Metal Conjugate", "Staining", "Source"] # Detector"??
+                  "Cost/sample ($USD)", "Metal Conjugate", "Staining", "Source"]
 
 with st.expander("Shows example 10 rows from Repository: Subscribe to see full repository! (These rows wont filter FYI)"):
     df = load_data()
