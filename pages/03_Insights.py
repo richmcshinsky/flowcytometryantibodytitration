@@ -63,11 +63,19 @@ df = load_data()
 df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns_simple)
 df_filtered.display_filters(location='columns', num_columns=3, gap='large')
 res = df_filtered.filter_df()
-st.write("Visualizations about repository data: Subsribe to see all insights!")
 
 st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data sources.")
-fig = px.bar(res["Antigen"].value_counts(normalize=True)[:20])
-st.plotly_chart(fig, use_container_width=True)
+
+# # of tests at optimal dilution       for antigens
+# price/test at optimal uL.            antigens
+# reorder frequency at 10 tests/week (years) 
+
+# fig = px.bar(res["Antigen"].value_counts(normalize=True)[:20])
+# st.plotly_chart(fig, use_container_width=True)
+
+from forex_python.converter import CurrencyRates
+c = CurrencyRates()
+st.write(c.get_rate('EUR', 'USD'))
 
 st.write("Price comparison between suppliers")
 res_p = res[["Source", "Antigen", "Supplier", "supplier price"]].dropna().drop_duplicates()
@@ -82,14 +90,3 @@ st.plotly_chart(fig, use_container_width=True)
 
 add_auth(required=True)
 
-# fig = px.bar(res["Conjugate"].value_counts(normalize=True)[:20])
-# st.plotly_chart(fig, use_container_width=True)
-# fig = px.bar(res["Clone"].value_counts(normalize=True)[:20])
-# st.plotly_chart(fig, use_container_width=True)
-# fig = px.bar(res["Supplier"].value_counts(normalize=True)[:20])
-# st.plotly_chart(fig, use_container_width=True)
-# fig = px.bar(res["Amount Tested (uL)"].value_counts(normalize=True))#[:20])
-# st.plotly_chart(fig, use_container_width=True)
-
-# if __name__ == '__main__':
-#     main()
