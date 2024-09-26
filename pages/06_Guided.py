@@ -61,7 +61,7 @@ elif st.session_state["step"] == "Step 1":
     col1, col2 = st.columns(2, gap="small")
     with col1:
         if st.button(label="Flow Cytometry", use_container_width=True):
-            st.session_state["con_type"] = "Fluorescent"
+            st.session_state["con_type"] = "fluorescent"
             st.session_state["step"] = "Step 2"
             st.experimental_rerun()
     with col2:
