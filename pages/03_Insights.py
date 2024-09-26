@@ -75,7 +75,7 @@ st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data so
 
 from forex_python.converter import CurrencyRates
 c = CurrencyRates()
-st.write(c.get_rate('EUR', 'USD'))
+st.write(c.get_rates('USD'))
 
 st.write("Price comparison between suppliers")
 res_p = res[["Source", "Antigen", "Supplier", "supplier price"]].dropna().drop_duplicates()
