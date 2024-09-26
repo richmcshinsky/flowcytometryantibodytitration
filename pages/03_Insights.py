@@ -74,9 +74,11 @@ st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data so
 # st.plotly_chart(fig, use_container_width=True)
 
 from forex_python.converter import CurrencyRates
-import requests
+import datetime
+date_obj = datetime.datetime(2024, 8, 26)
 c = CurrencyRates()
-st.write(c.get_rates('USD'))
+cur_rate = c.get_rate('EUR', 'USD', date_obj) 
+st.write(cur_rate)
 
 st.write("Price comparison between suppliers")
 res_p = res[["Source", "Antigen", "Supplier", "supplier price"]].dropna().drop_duplicates()
