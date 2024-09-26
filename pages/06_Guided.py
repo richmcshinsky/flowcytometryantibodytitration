@@ -51,7 +51,44 @@ def normalize_antigens(df):
     df["Antigen"] = rename
     return df
 
+
 def step_1():
+    st.write("Step 1: What protocol do you plan to run?")
+    col1, col2 = st.columns(2, gap="small")
+    with col1:
+        if st.button(label="Flow Cytometry", use_container_width=True):
+            st.session_state["con_type"] = "Fluorescent"
+            st.session_state["step"] = "Step 2"
+    with col2:
+        if st.button(label="Mass Cytometry", use_container_width=True):
+            st.session_state["con_type"] = "Metal"
+            st.session_state["step"] = "Step 2"
+
+def step_2():
+    st.write("Step 2: Select target antigen")
+    st.session_state["df"] = load_data()
+    ants = st.session_state["df"][st.session_state["df"]["Conjugate Type"] == st.session_state["con_type"]]['Antigen'].drop_duplicates()
+    ants_choice = st.selectbox("Select your target antigen", options=ants, index=None)
+    st.session_state["ants_choice"] = ants_choice
+
+
+if "step" not in st.session_state:
+    st.session_state["step"] = "Step 1"
+elif st.session_state["step"] == "Step 2":
+    st.session_state["ants_choice"] = step_2()
+# elif st.session_state["step"] == "Step 3":
+#     st.session_state["type"] = step_3()
+# elif st.session_state["step"] == "Step 4":
+#     st.session_state["choice"] = step_4(st.session_state["con_type"], st.session_state["ants_choice"], st.session_state["type"])
+
+
+
+
+
+
+
+##########################################
+"""def step_1():
     st.write("Step 1: What protocol do you plan to run?")
     con_type = None
     col1, col2 = st.columns(2, gap="small")
@@ -128,10 +165,10 @@ elif st.session_state["step"] == "Step 5":
                     (df["Clone"] == st.session_state["choice"])]
     
     # show graph of cost/sample and graph of separation index by other (fluorophore or clone)
-    st.write("""Price comparison between suppliers. Note that the supplier information is web scraped, so 
+    st.write(Price comparison between suppliers. Note that the supplier information is web scraped, so 
              there are cases where the size or price may be incorrect. Please see supplier link
              for current and correct information! Note that prices in pounds have been converted to 
-             dollars by multiplying by 1.29.""")
+             dollars by multiplying by 1.29.)
     res_p = df_g[["Source", "supplier link", "Antigen", "Conjugate Type", "Conjugate", "Clone", "Supplier", 
                   "supplier price", "supplier size"]].dropna().drop_duplicates()
     res_p = res_p[res_p["supplier price"] != "nan"]
@@ -146,4 +183,4 @@ elif st.session_state["step"] == "Step 5":
     st.dataframe(data=res_p, use_container_width=True, 
                  column_config={"Source": st.column_config.LinkColumn(display_text="Source"),
                                 "supplier link": st.column_config.LinkColumn(display_text="Supplier Link")})
-
+"""
