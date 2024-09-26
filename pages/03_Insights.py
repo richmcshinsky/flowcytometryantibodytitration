@@ -74,6 +74,7 @@ st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data so
 # st.plotly_chart(fig, use_container_width=True)
 
 from forex_python.converter import CurrencyRates
+import requests
 c = CurrencyRates()
 st.write(c.get_rates('USD'))
 
