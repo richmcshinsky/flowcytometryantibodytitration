@@ -69,7 +69,7 @@ elif st.session_state["step"] == "Step 1":
             st.session_state["con_type"] = "Metal"
             st.session_state["step"] = "Step 2"
             st.experimental_rerun()
-    if st.button(label="Reset", use_container_width=True):
+    if st.button(label="Reset", type="primary"):
             st.session_state["step"] = "Step 1"
             st.experimental_rerun()
 
@@ -82,7 +82,11 @@ elif st.session_state["step"] == "Step 2":
         st.session_state["ants_choice"] = ants_choice
         st.session_state["step"] = "Step 3"
         st.experimental_rerun()
-    if st.button(label="Reset", use_container_width=True):
+    if "ants_choice" not in st.session_state:
+         dis = True
+    else: 
+         dis = False
+    if st.button(label="Reset", disabled=dis, type="primary"):
             st.session_state["step"] = "Step 1"
             st.experimental_rerun()
 
@@ -99,7 +103,7 @@ elif st.session_state["step"] == "Step 3":
             st.session_state["choice"] = "Clone"
             st.session_state["step"] = "Step 4"
             st.experimental_rerun()
-    if st.button(label="Reset", use_container_width=True):
+    if st.button(label="Reset", type="primary"):
             st.session_state["step"] = "Step 1"
             st.experimental_rerun()
     
@@ -120,7 +124,7 @@ elif st.session_state["step"] == "Step 4":
             st.session_state["target"] = res
             st.session_state["step"] = "Step 5"
             st.experimental_rerun()
-    if st.button(label="Reset", use_container_width=True):
+    if st.button(label="Reset", type="primary"):
             st.session_state["step"] = "Step 1"
             st.experimental_rerun()
 
@@ -152,7 +156,7 @@ elif st.session_state["step"] == "Step 5":
     st.dataframe(data=res_p, use_container_width=True, 
                 column_config={"Source": st.column_config.LinkColumn(display_text="Source"),
                                 "supplier link": st.column_config.LinkColumn(display_text="Supplier Link")})
-    if st.button(label="Reset", use_container_width=True):
+    if st.button(label="Reset", type="primary"):
             st.session_state["step"] = "Step 1"
             st.experimental_rerun()
 
