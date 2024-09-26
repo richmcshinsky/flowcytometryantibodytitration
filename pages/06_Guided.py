@@ -69,9 +69,6 @@ elif st.session_state["step"] == "Step 1":
             st.session_state["con_type"] = "Metal"
             st.session_state["step"] = "Step 2"
             st.experimental_rerun()
-    if st.button(label="Reset", type="primary"):
-            st.session_state["step"] = "Step 1"
-            st.experimental_rerun()
 
 elif st.session_state["step"] == "Step 2":
     st.write("Step 2: Select target antigen")
@@ -84,13 +81,14 @@ elif st.session_state["step"] == "Step 2":
         st.session_state["step"] = "Step 3"
         st.experimental_rerun()
 
+    st.divider()
     col1, col2 = st.columns(2, gap="small")
     with col1:
-        if st.button(label="Back", type="primary"):
+        if st.button(label="Back", type="primary", use_container_width=True):
                 st.session_state["step"] = "Step 1"
                 st.experimental_rerun()
     with col2:
-        if st.button(label="Reset", type="primary"):
+        if st.button(label="Reset", type="primary", use_container_width=True):
                 st.session_state["step"] = "Step 1"
                 st.experimental_rerun()
 
@@ -110,11 +108,11 @@ elif st.session_state["step"] == "Step 3":
     
     col1, col2 = st.columns(2, gap="small")
     with col1:
-        if st.button(label="Back", type="primary"):
+        if st.button(label="Back", type="primary", use_container_width=True):
                 st.session_state["step"] = "Step 2"
                 st.experimental_rerun()
     with col2:
-        if st.button(label="Reset", type="primary"):
+        if st.button(label="Reset", type="primary", use_container_width=True):
                 st.session_state["step"] = "Step 1"
                 st.experimental_rerun()
     
@@ -138,11 +136,11 @@ elif st.session_state["step"] == "Step 4":
     
     col1, col2 = st.columns(2, gap="small")
     with col1:
-        if st.button(label="Back", type="primary"):
+        if st.button(label="Back", type="primary", use_container_width=True):
                 st.session_state["step"] = "Step 3"
                 st.experimental_rerun()
     with col2:
-        if st.button(label="Reset", type="primary"):
+        if st.button(label="Reset", type="primary", use_container_width=True):
                 st.session_state["step"] = "Step 1"
                 st.experimental_rerun()
 
@@ -177,11 +175,11 @@ elif st.session_state["step"] == "Step 5":
     
     col1, col2 = st.columns(2, gap="small")
     with col1:
-        if st.button(label="Back", type="primary"):
+        if st.button(label="Back", type="primary", use_container_width=True):
                 st.session_state["step"] = "Step 4"
                 st.experimental_rerun()
     with col2:
-        if st.button(label="Reset", type="primary"):
+        if st.button(label="Reset", type="primary", use_container_width=True):
                 st.session_state["step"] = "Step 1"
                 st.experimental_rerun()
 
