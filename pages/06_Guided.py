@@ -79,13 +79,20 @@ elif st.session_state["step"] == "Step 2":
     ants = st.session_state["df"][st.session_state["df"]["Conjugate Type"] == st.session_state["con_type"]]['Antigen'].drop_duplicates()
     ants_choice = st.selectbox("Select your target antigen", options=ants, index=None)
 
-    if st.button(label="Next", use_container_width=True):
+    if st.button(label="Next"):
         st.session_state["ants_choice"] = ants_choice
         st.session_state["step"] = "Step 3"
         st.experimental_rerun()
-    if st.button(label="Reset", type="primary"):
-            st.session_state["step"] = "Step 1"
-            st.experimental_rerun()
+
+    col1, col2 = st.columns(2, gap="small")
+    with col1:
+        if st.button(label="Back", type="primary"):
+                st.session_state["step"] = "Step 1"
+                st.experimental_rerun()
+    with col2:
+        if st.button(label="Reset", type="primary"):
+                st.session_state["step"] = "Step 1"
+                st.experimental_rerun()
 
 elif st.session_state["step"] == "Step 3":
     st.write("Step 3: Fluorophore (Conjugate) or Clone?")
@@ -100,9 +107,16 @@ elif st.session_state["step"] == "Step 3":
             st.session_state["choice"] = "Clone"
             st.session_state["step"] = "Step 4"
             st.experimental_rerun()
-    if st.button(label="Reset", type="primary"):
-            st.session_state["step"] = "Step 1"
-            st.experimental_rerun()
+    
+    col1, col2 = st.columns(2, gap="small")
+    with col1:
+        if st.button(label="Back", type="primary"):
+                st.session_state["step"] = "Step 2"
+                st.experimental_rerun()
+    with col2:
+        if st.button(label="Reset", type="primary"):
+                st.session_state["step"] = "Step 1"
+                st.experimental_rerun()
     
 elif st.session_state["step"] == "Step 4":
     if st.session_state["choice"] == "Conjugate":
@@ -121,9 +135,16 @@ elif st.session_state["step"] == "Step 4":
             st.session_state["target"] = res
             st.session_state["step"] = "Step 5"
             st.experimental_rerun()
-    if st.button(label="Reset", type="primary"):
-            st.session_state["step"] = "Step 1"
-            st.experimental_rerun()
+    
+    col1, col2 = st.columns(2, gap="small")
+    with col1:
+        if st.button(label="Back", type="primary"):
+                st.session_state["step"] = "Step 3"
+                st.experimental_rerun()
+    with col2:
+        if st.button(label="Reset", type="primary"):
+                st.session_state["step"] = "Step 1"
+                st.experimental_rerun()
 
 elif st.session_state["step"] == "Step 5":
     df = st.session_state["df"]
@@ -153,9 +174,16 @@ elif st.session_state["step"] == "Step 5":
     st.dataframe(data=res_p, use_container_width=True, 
                 column_config={"Source": st.column_config.LinkColumn(display_text="Source"),
                                 "supplier link": st.column_config.LinkColumn(display_text="Supplier Link")})
-    if st.button(label="Reset", type="primary"):
-            st.session_state["step"] = "Step 1"
-            st.experimental_rerun()
+    
+    col1, col2 = st.columns(2, gap="small")
+    with col1:
+        if st.button(label="Back", type="primary"):
+                st.session_state["step"] = "Step 4"
+                st.experimental_rerun()
+    with col2:
+        if st.button(label="Reset", type="primary"):
+                st.session_state["step"] = "Step 1"
+                st.experimental_rerun()
 
 
 
