@@ -63,10 +63,12 @@ elif st.session_state["step"] == "Step 1":
         if st.button(label="Flow Cytometry", use_container_width=True):
             st.session_state["con_type"] = "Fluorescent"
             st.session_state["step"] = "Step 2"
+            st.experimental_rerun()
     with col2:
         if st.button(label="Mass Cytometry", use_container_width=True):
             st.session_state["con_type"] = "Metal"
             st.session_state["step"] = "Step 2"
+            st.experimental_rerun()
 
 elif st.session_state["step"] == "Step 2":
     st.write("Step 2: Select target antigen")
@@ -76,6 +78,7 @@ elif st.session_state["step"] == "Step 2":
     if st.button(label="Next", use_container_width=True):
         st.session_state["ants_choice"] = ants_choice
         st.session_state["step"] = "Step 3"
+        st.experimental_rerun()
 
 elif st.session_state["step"] == "Step 3":
     st.write("Step 3: Fluorophore (Conjugate) or Clone?")
@@ -84,10 +87,12 @@ elif st.session_state["step"] == "Step 3":
         if st.button(label="Fluorophore (Conjugate)", use_container_width=True):
             st.session_state["choice"] = "Conjugate"
             st.session_state["step"] = "Step 4"
+            st.experimental_rerun()
     with col2:
         if st.button(label="Clone", use_container_width=True):
             st.session_state["choice"] = "Clone"
             st.session_state["step"] = "Step 4"
+            st.experimental_rerun()
     
 elif st.session_state["step"] == "Step 4":
     if st.session_state["choice"] == "Conjugate":
@@ -97,6 +102,7 @@ elif st.session_state["step"] == "Step 4":
         if st.button(label="Next", use_container_width=True):
             st.session_state["target"] = res
             st.session_state["step"] = "Step 5"
+            st.experimental_rerun()
     elif st.session_state["choice"] == "Clone":
         st.write("Step 4: Select target Clone")
         clos = st.session_state["df"][(st.session_state["df"]["Conjugate Type"] == st.session_state["con_type"]) & (st.session_state["df"]["Antigen"] == st.session_state["ants_choice"])]['Clone'].drop_duplicates()
@@ -104,6 +110,7 @@ elif st.session_state["step"] == "Step 4":
         if st.button(label="Next", use_container_width=True):
             st.session_state["target"] = res
             st.session_state["step"] = "Step 5"
+            st.experimental_rerun()
 
 elif st.session_state["step"] == "Step 5":
     df = st.session_state["df"]
