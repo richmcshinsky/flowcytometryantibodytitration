@@ -78,11 +78,8 @@ elif st.session_state["step"] == "Step 2":
     st.session_state["df"] = load_data()
     ants = st.session_state["df"][st.session_state["df"]["Conjugate Type"] == st.session_state["con_type"]]['Antigen'].drop_duplicates()
     ants_choice = st.selectbox("Select your target antigen", options=ants, index=None)
-    if "ants_choice" not in st.session_state:
-         dis = True
-    else: 
-         dis = False
-    if st.button(label="Next", use_container_width=True, disabled=dis):
+
+    if st.button(label="Next", use_container_width=True):
         st.session_state["ants_choice"] = ants_choice
         st.session_state["step"] = "Step 3"
         st.experimental_rerun()
