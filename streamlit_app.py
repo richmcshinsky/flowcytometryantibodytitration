@@ -10,13 +10,6 @@ from st_paywall import add_auth
 # TODO: is user submits data, send a notification email for review
 # TODO: if success on submit, let user know it worked and expected time to get free subscription
 
-hide_default_format = """
-       <style>
-       #MainMenu {visibility: hidden; }
-       footer {visibility: hidden;}
-       </style>
-       """
-st.markdown(hide_default_format, unsafe_allow_html=True)
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
