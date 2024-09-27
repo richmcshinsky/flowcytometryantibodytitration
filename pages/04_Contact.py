@@ -27,14 +27,13 @@ with st.form("form2", clear_on_submit=True):
     name = st.text_input("Enter name")
     email_sender = st.text_input("Enter email")
     body = st.text_area("Enter message")
-    password = ""
     email_receiver = "fcat.repository@gmail.com"
     if st.form_submit_button("Send Email"):
         try:
             msg = MIMEText(body)
             msg['From'] = email_sender
             msg['To'] = email_receiver
-            msg['Subject'] = name
+            msg['Subject'] = email_sender + " : " + name
 
             server = smtplib.SMTP('smtp.gmail.com', 587)
             server.starttls()
