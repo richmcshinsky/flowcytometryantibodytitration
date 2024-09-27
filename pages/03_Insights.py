@@ -103,6 +103,8 @@ with bottom_menu[1]:
 with bottom_menu[0]:
     st.markdown(f"Page **{current_page}** of **{total_pages}** ")
 
+st.write(batch_size)
+st.write(len(res))
 pages = split_frame(res, batch_size)
 st.write(pages)
 pagination.dataframe(data=pages[current_page - 1], use_container_width=True, 
