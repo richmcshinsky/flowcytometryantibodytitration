@@ -32,7 +32,7 @@ def load_data():
     df = normalize_antigens(df)
     return df[["Antigen", "Clone", "Conjugate", "Conjugate Type", "Supplier", "Amount Tested (uL)", 
                "Amount Tested (ng)", "Optimal Amount (µL/100 µL)", "Seperation Index", "Samples/vial", 
-               "Cost/sample ($USD)", "supplier price", "Source", "supplier link",
+               "Cost/sample ($USD)", "supplier price", "Source", "supplier link", "supplier # tests",
                "# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]]
 
 def normalize_antigens(df):
@@ -165,7 +165,7 @@ elif st.session_state["step"] == "Step 5":
             dollars by multiplying by 1.29.""")
     
     res_p = df_g[["Source", "supplier link", "Antigen", "Conjugate Type", "Conjugate", "Clone", "Supplier", 
-                "supplier price", "# of tests at optimal dilution", 
+                "supplier price", "# of tests at optimal dilution", "supplier # tests",
                 "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]].dropna().drop_duplicates()
     res_p = res_p[res_p["supplier price"] != "nan"]
     res_p["supplier price"] = [float(x.replace("€", "")) * 1.29 if "€" in x else float(x.replace("$", "")) for x in res_p["supplier price"]]
