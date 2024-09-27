@@ -17,6 +17,10 @@ with st.sidebar:
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 st.divider()
 
+import os
+u = os.getenv("U")
+secret = os.getenv("SECRET")
+recipient = os.getenv("RECIPIENT")
 
 st.write("submitting this form doesn't do anything yet FYI")    
 with st.form("form2", clear_on_submit=True):
@@ -34,7 +38,7 @@ with st.form("form2", clear_on_submit=True):
 
             server = smtplib.SMTP('smtp.gmail.com', 587)
             server.starttls()
-            server.login(email_sender, password)
+            server.login(u, secret)
             server.sendmail(email_sender, email_receiver, msg.as_string())
             server.quit()
             st.success('Email sent successfully!')
