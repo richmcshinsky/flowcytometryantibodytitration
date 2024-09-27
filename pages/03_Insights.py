@@ -78,11 +78,11 @@ res_p = res[["Source", "Antigen", "Supplier", "price/test at optimal uL"]].dropn
 res_p = res_p[res_p["price/test at optimal uL"] != "nan"]
 res_p = res_p[res_p["price/test at optimal uL"] != 0]
 res_p["supplier price"] = [float(x.replace("€", "")) * 1.29 if "€" in x else x for x in res_p["supplier price"]]
-fig = px.box(res_p, x="Supplier", y="supplier price")
+fig = px.box(res_p, x="Supplier", y="price/test at optimal uL")
 st.plotly_chart(fig, use_container_width=True)
-fig = px.scatter(res_p, x="Supplier", y="supplier price")
+fig = px.scatter(res_p, x="Supplier", y="price/test at optimal uL")
 st.plotly_chart(fig, use_container_width=True)
-fig = px.strip(res_p, x="Supplier", y="supplier price")
+fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL")
 st.plotly_chart(fig, use_container_width=True)
 
 add_auth(required=True)
