@@ -21,8 +21,7 @@ import os
 u = os.getenv("U")
 secret = os.getenv("SECRET")
 recipient = os.getenv("RECIPIENT")
-
-st.write("submitting this form doesn't do anything yet FYI")    
+# st.write("submitting this form doesn't do anything yet FYI")    
 with st.form("form2", clear_on_submit=True):
     name = st.text_input("Enter name")
     email_sender = st.text_input("Enter email")
@@ -43,5 +42,5 @@ with st.form("form2", clear_on_submit=True):
             st.success('Email sent successfully!')
         except:
             st.error("Email failed to send")
-st.write("Or send email to: fcat.repository@gmail.com (can add file attachments this way)")
+# st.write("Or send email to: fcat.repository@gmail.com (can add file attachments this way)")
 
