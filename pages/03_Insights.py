@@ -73,7 +73,7 @@ st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data so
 # fig = px.bar(res["Antigen"].value_counts(normalize=True)[:20])
 # st.plotly_chart(fig, use_container_width=True)
 
-st.write("# of tests at optimal dilution comparison between suppliers")
+st.write("Number of tests at optimal dilution comparison between suppliers")
 res_p = res[["Source", "Antigen", "Supplier", "# of tests at optimal dilution", 
              "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]].dropna().drop_duplicates()
 res_p = res_p[res_p["price/test at optimal uL"] != "nan"]
