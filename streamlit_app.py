@@ -2,10 +2,6 @@ import streamlit as st
 from st_paywall import add_auth
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
-# TODO: giuded: fix step through and filtering
-# TODO: guided: add in optimal price column stuff
-# TODO: page for guided repository exploration
-# TODO: repository: update the filteres with the insights page version
 # TODO: data: validation second pass
 # TODO: insights: color by clone/antigen as legend
 
