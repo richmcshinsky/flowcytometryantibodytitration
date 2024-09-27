@@ -105,6 +105,7 @@ with bottom_menu[0]:
 
 st.write(batch_size)
 st.write(len(res))
+st.write(res)
 pages = split_frame(res, batch_size)
 st.write(pages)
 pagination.dataframe(data=pages[current_page - 1], use_container_width=True, 
@@ -113,6 +114,5 @@ pagination.dataframe(data=pages[current_page - 1], use_container_width=True,
                      "supplier link": st.column_config.LinkColumn(display_text="Supplier Link")},
                      height=900, column_order=columns_df)
 
-st.write(res)
 add_auth(required=True)
 
