@@ -93,9 +93,9 @@ def split_frame(input_df, rows):
     st.write(input_df)
     st.write(rows)
     st.write(range(0, len(input_df), rows))
-    df = [input_df.loc[i:i+rows-1,:] for i in range(0, len(input_df), rows)]
-    st.write(df)
-    return df
+    df_temp = [input_df.loc[i:i+rows-1,:] for i in range(0, len(input_df), rows)]
+    st.write(df_temp)
+    return df_temp
 
 pagination = st.container()
 bottom_menu = st.columns((4, 1, 1))
