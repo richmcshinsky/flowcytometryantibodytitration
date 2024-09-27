@@ -108,5 +108,6 @@ pagination.dataframe(data=pages[current_page - 1], use_container_width=True,
                      "supplier link": st.column_config.LinkColumn(display_text="Supplier Link")},
                      height=900, column_order=columns_simple)
 
+st.write(res)
 add_auth(required=True)
 
