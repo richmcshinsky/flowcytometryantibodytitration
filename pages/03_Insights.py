@@ -78,7 +78,7 @@ res_p = res[["Source", "supplier link", "Antigen", "Supplier", "# of tests at op
              "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]].dropna().drop_duplicates()
 res_p = res_p[res_p["price/test at optimal uL"] != "nan"]
 res_p = res_p[res_p["price/test at optimal uL"] != 0]
-fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution")
+fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color="Antigen")
 st.plotly_chart(fig, use_container_width=True)
 
 st.write("price/test at optimal uL comparison between suppliers")

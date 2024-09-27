@@ -3,8 +3,10 @@ from st_paywall import add_auth
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
 # TODO: data: validation second pass
+# TODO: make repository sample a hard coded file saved in project to save hits to google sheets connection
 # TODO: insights: color by clone/antigen as legend
 
+# TODO: get email contact form working
 # TODO: is user submits data, send a notification email for review
 # TODO: if success on submit, let user know it worked and expected time to get free subscription
 
