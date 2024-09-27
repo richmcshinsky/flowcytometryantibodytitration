@@ -60,11 +60,6 @@ st.write("Note: If you are on mobile, you may need to press and hold on links to
 df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"]).fillna("NULL")
 df_terms["alternate"] = ["NULL" if x == "-" else x for x in df_terms["alternate"]]
 
-with st.expander("If you aren't able to find your target antigen, try an alternative name! Or add alternate names to your filter for more data."):
-    search_target = st.text_input("Type in target antigen name for alternative names")
-    if search_target:
-        st.dataframe(df_terms[df_terms["cd"].str.contains(search_target, case=False) | df_terms["alternate"].str.contains(search_target, case=False)])
-
 columns_simple = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type",
                   "Test Preparation", "Target Species", "Isotype", "Supplier",
                   "Concentration for this Lot# (ng/µL)", "Amount Tested (uL)",
@@ -78,6 +73,12 @@ with st.expander("Shows example 10 rows from Repository: Subscribe to see full r
                     height=300, column_order=columns_simple)
 
 add_auth(required=True)
+
+with st.expander("If you aren't able to find your target antigen, try an alternative name! Or add alternate names to your filter for more data."):
+    search_target = st.text_input("Type in target antigen name for alternative names")
+    if search_target:
+        st.dataframe(df_terms[df_terms["cd"].str.contains(search_target, case=False) | df_terms["alternate"].str.contains(search_target, case=False)])
+
 df = load_data()
 df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns_simple)
 df_filtered.display_filters(location='columns', num_columns=3, gap='large')
