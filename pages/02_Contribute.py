@@ -43,6 +43,21 @@ with st.expander("Option 1: Upload a CSV file for review with matching column na
             df_old = pd.concat([df_old, df_new])
             d = conn.update(worksheet="to-review",data=df_old)
             st.cache_data.clear()
+
+            import os
+            import smtplib
+            from email.mime.text import MIMEText
+            secret = os.getenv("SECRET")
+            msg = MIMEText("Success on contribution, review added data and reply")
+            msg['From'] = "fcat.repository@gmail.com"
+            msg['To'] = "fcat.repository@gmail.com"
+            msg['Subject'] = "Successful Contribution Added"
+
+            server = smtplib.SMTP('smtp.gmail.com', 587)
+            server.starttls()
+            server.login(u, secret)
+            server.sendmail("fcat.repository@gmail.com", "fcat.repository@gmail.com", msg.as_string())
+            server.quit()
         except:
             st.error("File failed to upload, try. again or send over email.")
 
