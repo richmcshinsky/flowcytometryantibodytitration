@@ -74,7 +74,7 @@ st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data so
 # st.plotly_chart(fig, use_container_width=True)
 
 st.write("Number of tests at optimal dilution comparison between suppliers")
-res_p = res[["Source", "supplier link", "Antigen", "Supplier", "# of tests at optimal dilution", 
+res_p = res[["Source", "supplier link", "Antigen", "Clone", "Conjugate", "Supplier", "# of tests at optimal dilution", 
              "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]].dropna().drop_duplicates()
 res_p = res_p[res_p["price/test at optimal uL"] != "nan"]
 res_p = res_p[res_p["price/test at optimal uL"] != 0]
@@ -82,11 +82,11 @@ fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color="A
 st.plotly_chart(fig, use_container_width=True)
 
 st.write("price/test at optimal uL comparison between suppliers")
-fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL")
+fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color="Clone")
 st.plotly_chart(fig, use_container_width=True)
 
 st.write("reorder frequency at 10 tests/week (years) comparison between suppliers")
-fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week (years)")
+fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week (years)", color="Conjugate")
 st.plotly_chart(fig, use_container_width=True)
 
 st.write(res_p)
