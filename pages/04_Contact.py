@@ -18,17 +18,6 @@ st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_
 st.divider()
 
 
-#########################################################################
-#                   STREAMLIT CONTACT FORM TEMPLATE                     #
-# Version: 0.2.0                                                        #
-# License: MIT License (https://opensource.org/license/mit/)            #
-# Author: João L. Neto (https://github.com/jlnetosci/)                  #
-# Release date: 2023-11-07                                              #
-# Documentation: https://github.com/jlnetosci/streamlit-contact-form    #
-# Credit is not mandatory, but it is kindly appreciated.                #
-# For a subtle link to github you may just uncomment the last line.     #
-#########################################################################
-
 import streamlit as st
 import smtplib
 import os
@@ -47,10 +36,6 @@ recipient = os.getenv("RECIPIENT")
 ## Contact Form
 st.header("Contact Form")
 
-# col1, col2, col3, col4 =  st.columns([3, 0.25, 1, 0.25]) # column widths for a balanced distribution of elements in the page
-
-## Contact form
-# with col1: # left side of the layout
 email = st.text_input("**Your email***", value=st.session_state.get('email', ''), key='email') # input widget for contact email
 message = st.text_area("**Your message***", value=st.session_state.get('message', ''), key='message') # input widget for message
 
@@ -66,14 +51,13 @@ if st.button("Send", type="primary"):
 
             # Email configuration - **IMPORTANT**: for security these details should be present in the "Secrets" section of Streamlit
             
-            smtp_server = server
-            smtp_port = port
             smtp_username = u
             smtp_password = secret
             recipient_email = recipient
 
             ## Create an SMTP connection
-            server = smtplib.SMTP(smtp_server, smtp_port)
+            # server = smtplib.SMTP(smtp_server, smtp_port)
+            server.connect('smtp.gmail.com', '587')
             server.starttls()
             server.login(smtp_username, smtp_password)
 
