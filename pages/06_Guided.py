@@ -164,16 +164,22 @@ elif st.session_state["step"] == "Step 5":
             for current and correct information! Note that prices in pounds have been converted to 
             dollars by multiplying by 1.29.""")
     
-    res_p = df_g[["Source", "supplier link", "Antigen", "Conjugate Type", "Conjugate", "Clone", "Supplier", 
-                "supplier price", "# of tests at optimal dilution", "supplier # tests",
+    st.write("Number of tests at optimal dilution comparison between suppliers")
+    res_p = df_g[["Source", "supplier link", "Antigen", "Supplier", "# of tests at optimal dilution", 
                 "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]].dropna().drop_duplicates()
-    res_p = res_p[res_p["supplier price"] != "nan"]
-    res_p["supplier price"] = [float(x.replace("€", "")) * 1.29 if "€" in x else float(x.replace("$", "")) for x in res_p["supplier price"]]
-    res_p["supplier # tests"] = res_p["supplier # tests"].str.extract('(\d+)', expand=False).astype(int)
-    res_p["supplier price/size"] = res_p["supplier price"]/res_p["supplier # tests"]# supplier size
-
-    fig = px.strip(res_p, x="Supplier", y="supplier price/size")
+    res_p = res_p[res_p["price/test at optimal uL"] != "nan"]
+    res_p = res_p[res_p["price/test at optimal uL"] != 0]
+    fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution")
     st.plotly_chart(fig, use_container_width=True)
+
+    st.write("price/test at optimal uL comparison between suppliers")
+    fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL")
+    st.plotly_chart(fig, use_container_width=True)
+
+    st.write("reorder frequency at 10 tests/week (years) comparison between suppliers")
+    fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week (years)")
+    st.plotly_chart(fig, use_container_width=True)
+
     st.dataframe(data=res_p, use_container_width=True, 
                 column_config={"Source": st.column_config.LinkColumn(display_text="Source"),
                                 "supplier link": st.column_config.LinkColumn(display_text="Supplier Link")})
