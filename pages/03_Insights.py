@@ -89,7 +89,9 @@ st.write("reorder frequency at 10 tests/week (years) comparison between supplier
 fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week (years)", color="Conjugate")
 st.plotly_chart(fig, use_container_width=True)
 
-st.write(res_p)
+st.dataframe(data=res_p, use_container_width=True, 
+            column_config={"Source": st.column_config.LinkColumn(display_text="Source"),
+                            "supplier link": st.column_config.LinkColumn(display_text="Supplier Link")})
 
 add_auth(required=True)
 
