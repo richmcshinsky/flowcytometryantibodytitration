@@ -56,6 +56,9 @@ def normalize_antigens(df):
 columns_simple = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type",
                   "Test Preparation", "Target Species"]
 
+columns_df = ["Source", "supplier link", "Antigen", "Clone", "Conjugate", "Supplier", "# of tests at optimal dilution", 
+             "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]
+
 df = load_data()
 df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns_simple)
 df_filtered.display_filters(location='columns', num_columns=3, gap='large')
@@ -67,8 +70,7 @@ st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data so
 # st.plotly_chart(fig, use_container_width=True)
 
 st.write("Number of tests at optimal dilution comparison between suppliers")
-res_p = res[["Source", "supplier link", "Antigen", "Clone", "Conjugate", "Supplier", "# of tests at optimal dilution", 
-             "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]].dropna().drop_duplicates()
+res_p = res[columns_df].dropna().drop_duplicates()
 res_p = res_p[res_p["price/test at optimal uL"] != "nan"]
 res_p = res_p[res_p["price/test at optimal uL"] != 0]
 fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color="Antigen")
@@ -86,7 +88,7 @@ st.plotly_chart(fig, use_container_width=True)
 #             column_config={"Source": st.column_config.LinkColumn(display_text="Source"),
 #                             "supplier link": st.column_config.LinkColumn(display_text="Supplier Link")})
 
-@st.cache_data(show_spinner=False)
+# @st.cache_data(show_spinner=False)
 def split_frame(input_df, rows):
     df = [input_df.loc[i:i+rows-1,:] for i in range(0, len(input_df), rows)]
     return df
@@ -106,7 +108,7 @@ pagination.dataframe(data=pages[current_page - 1], use_container_width=True,
                      column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
                      "Source": st.column_config.LinkColumn(display_text="Source"), 
                      "supplier link": st.column_config.LinkColumn(display_text="Supplier Link")},
-                     height=900, column_order=columns_simple)
+                     height=900, column_order=columns_df)
 
 st.write(res)
 add_auth(required=True)
