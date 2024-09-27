@@ -45,7 +45,6 @@ def main():
                 st.error("File failed to upload, try. again or send over email.")
 
     with st.expander("Option 2: Connect over email"):
-        st.link_button("Send Email", "fcat.repository@gmail.com")
         st.write("fcat.repository@gmail.com")
 
 if __name__ == '__main__':
