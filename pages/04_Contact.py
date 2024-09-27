@@ -56,7 +56,7 @@ if st.button("Send", type="primary"):
             recipient_email = recipient
 
             ## Create an SMTP connection
-            server = smtplib.SMTP('smtp.gmail.com', '587'
+            server = smtplib.SMTP('smtp.gmail.com', '587')
             server.starttls()
             server.login(smtp_username, smtp_password)
 
