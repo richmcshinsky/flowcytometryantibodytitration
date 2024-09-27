@@ -37,9 +37,6 @@ from email_validator import validate_email, EmailNotValidError
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-## Page configuration options
-st.set_page_config(layout="wide") # column widths set below are dependent on the layout being set to wide
-
 ## Load secrets.toml variables
 server = os.getenv("SERVER")
 port = os.getenv("PORT")
