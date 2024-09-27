@@ -91,6 +91,8 @@ st.plotly_chart(fig, use_container_width=True)
 # @st.cache_data(show_spinner=False)
 def split_frame(input_df, rows):
     st.write(input_df)
+    st.write(rows)
+    st.write(range(0, len(input_df), rows))
     df = [input_df.loc[i:i+rows-1,:] for i in range(0, len(input_df), rows)]
     st.write(df)
     return df
@@ -105,9 +107,6 @@ with bottom_menu[1]:
 with bottom_menu[0]:
     st.markdown(f"Page **{current_page}** of **{total_pages}** ")
 
-st.write(batch_size)
-st.write(len(res))
-st.write(res)
 pages = split_frame(res, batch_size)
 st.write(pages)
 pagination.dataframe(data=pages[current_page - 1], use_container_width=True, 
