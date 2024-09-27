@@ -56,6 +56,7 @@ def normalize_antigens(df):
 
 if "step" not in st.session_state:
     st.session_state["step"] = "Step 1"
+    st.experimental_rerun()
 
 elif st.session_state["step"] == "Step 1":
     st.write("Step 1: What protocol do you plan to run?")
