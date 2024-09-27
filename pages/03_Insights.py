@@ -59,6 +59,10 @@ columns_simple = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissu
 columns_df = ["Source", "supplier link", "Antigen", "Clone", "Conjugate", "Supplier", "# of tests at optimal dilution", 
              "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]
 
+st.write("""Welecome to the insights page! Figures are visable to everyone, but in order to see the underlying 
+         data and links a valid subscription is needed.""")
+
+
 df = load_data()
 df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns_simple)
 df_filtered.display_filters(location='columns', num_columns=3, gap='large')
@@ -88,6 +92,8 @@ st.plotly_chart(fig, use_container_width=True)
 #             column_config={"Source": st.column_config.LinkColumn(display_text="Source"),
 #                             "supplier link": st.column_config.LinkColumn(display_text="Supplier Link")})
 
+add_auth(required=True)
+
 @st.cache_data(show_spinner=False)
 def split_frame(input_df, rows):
     df_temp = [input_df.iloc[i:i+rows-1,:] for i in range(0, len(input_df), rows)]
@@ -113,5 +119,4 @@ pagination.dataframe(data=pages[current_page - 1], use_container_width=True,
                      "supplier link": st.column_config.LinkColumn(display_text="Supplier Link")},
                      height=900, column_order=columns_df)
 
-add_auth(required=True)
 
