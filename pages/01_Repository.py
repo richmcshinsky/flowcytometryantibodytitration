@@ -47,7 +47,7 @@ with st.sidebar:
 
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 st.divider()
-st.write("This repository data has several filtering and search options:")
+st.write("The repository has several filtering and search options:")
 lst = ['Select filters of interest below', 
        'Filters can be text searched by typing in the box',
        'You can click on a column name to sort values']

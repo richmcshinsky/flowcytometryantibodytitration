@@ -56,8 +56,7 @@ def normalize_antigens(df):
 columns_simple = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type",
                   "Test Preparation", "Target Species", "Isotype", "Supplier",
                   "Concentration for this Lot# (ng/µL)", "Amount Tested (uL)",
-                  "Optimal Amount (µL/100 µL)", "Seperation Index", "Samples/vial",
-                  "Cost/sample ($USD)", "Metal Conjugate", "Staining", "Source"]
+                  "Optimal Amount (µL/100 µL)", "Seperation Index", "Staining"]
 
 df = load_data()
 df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns_simple)
