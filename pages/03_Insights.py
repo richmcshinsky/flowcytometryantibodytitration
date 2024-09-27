@@ -108,7 +108,9 @@ with bottom_menu[0]:
     st.markdown(f"Page **{current_page}** of **{total_pages}** ")
 
 # pages = split_frame(res, batch_size)
+st.write(res)
 pages = [res.loc[i:i+batch_size-1,:] for i in range(0, len(res), batch_size)]
+st.write(pages)
 pagination.dataframe(data=pages[current_page - 1], use_container_width=True, 
                      column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
                      "Source": st.column_config.LinkColumn(display_text="Source"), 
