@@ -25,7 +25,8 @@ st.markdown(s)
 st.write("Pricing:")
 lst = ["$xx/month for individual access", 
         "email about discounts for group and organizational level access",
-        "free access for x months for contributing to repository"]
+        "free access for x months for contributing to repository",
+        "freee access for x months for each bug/error found or recommendation to improve that gets implemented"]
 s = ''
 for i in lst:
     s += "- " + i + "\n"
