@@ -74,9 +74,8 @@ res_p = res_p[res_p["price/test at optimal uL"] != 0]
 st.divider()
 
 st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data sources.")
-avg_diff = (pd.to_numeric(res_p["price per test"]) - pd.to_numeric(res_p["price/test at optimal uL"])).mean()
-st.write("""For the selected filters, on average the difference between the supplier recommended price per test 
-         and the price per test at the optimal dilution is: $""" + str(round(avg_diff, 2)))
+avg_diff = round((pd.to_numeric(res_p["price per test"]) - pd.to_numeric(res_p["price/test at optimal uL"])).mean(),2)
+st.write(f"For the selected filters, on average the difference between the supplier recommended price per test and the price per test at the optimal dilution is: :blue[${avg_diff}]") 
 
 
 # fig = px.bar(res["Antigen"].value_counts(normalize=True)[:20])
