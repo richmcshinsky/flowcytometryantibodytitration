@@ -2,6 +2,8 @@ import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 import plotly.express as px
+from st_paywall import add_auth
+
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
@@ -160,10 +162,10 @@ elif st.session_state["step"] == "Step 5":
                     (df["Clone"] == st.session_state["target"])]
     
     # show graph of cost/sample and graph of separation index by other (fluorophore or clone)
-    st.write("""Price comparison between suppliers. Note that the supplier information is web scraped, so 
-            there are cases where the size or price may be incorrect. Please see supplier link
-            for current and correct information! Note that prices in pounds have been converted to 
-            dollars by multiplying by 1.29.""")
+    with st.expander("Without a subscription you can see one row of the repo data. With a subscription see all data as well as visualizations comparing supplier pricing"):
+         st.dataframe(df_g.iloc[0])
+
+    add_auth(required=True)
     
     st.write("Number of tests at optimal dilution comparison between suppliers")
     res_p = df_g[["Source", "supplier link", "Antigen", "Supplier", "# of tests at optimal dilution", 
