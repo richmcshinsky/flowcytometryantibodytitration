@@ -18,7 +18,6 @@ col1, col2, col3 = st.columns(3)
 with col1:
     st.write(' ')
 with col2:
-    # st.markdown("<h2 style='text-align: center; color: black;'>Repository benefits</h2>", unsafe_allow_html=True)
     st.title("Repository benefits")
     st.image("data/repo benifits.png")
 with col3:
