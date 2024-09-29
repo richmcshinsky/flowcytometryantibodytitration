@@ -15,10 +15,12 @@ st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_
 st.divider()
 
 st.write("Repository benefits:")
+st.image("data/repo benifits.png")
 lst = ['Using optimal concentrations from repository data, see comparative pricing per test for same antibodies',
        'Order antibodies at optimal amounts, reducing waste from overordering and improving outcomes', 
        'No need to spend many hours looking through previous research papers and doing pricing calculations just for one antibody',
-       'New researchers can take advantage of the wealth of experience and knowledge to avoid common errors']
+       'New researchers can take advantage of the wealth of experience and knowledge to avoid common errors',
+       'See sourcing to validate results and images of titrations to explore alternative concentrations']
 s = ''
 for i in lst:
     s += "- " + i + "\n"
