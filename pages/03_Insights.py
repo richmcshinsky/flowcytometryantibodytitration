@@ -75,7 +75,7 @@ st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data so
 # fig = px.bar(res["Antigen"].value_counts(normalize=True)[:20])
 # st.plotly_chart(fig, use_container_width=True)
 
-st.markdown("<h2 style='text-align: center; color: black;'>Number of tests at optimal dilution comparison between suppliers</h2>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center; color: black;'>Number of tests at optimal dilution comparison between suppliers</h3>", unsafe_allow_html=True)
 # st.write("Number of tests at optimal dilution comparison between suppliers")
 res_p = res[columns_df].dropna().drop_duplicates()
 res_p = res_p[res_p["price/test at optimal uL"] != "nan"]
@@ -83,11 +83,11 @@ res_p = res_p[res_p["price/test at optimal uL"] != 0]
 fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color="Antigen")
 st.plotly_chart(fig, use_container_width=True)
 
-st.markdown("<h2 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h2>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h3>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color="Clone")
 st.plotly_chart(fig, use_container_width=True)
 
-st.markdown("<h2 style='text-align: center; color: black;'>reorder frequency at 10 tests/week (years) comparison between suppliers</h2>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center; color: black;'>reorder frequency at 10 tests/week (years) comparison between suppliers</h3>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week (years)", color="Conjugate")
 st.plotly_chart(fig, use_container_width=True)
 
