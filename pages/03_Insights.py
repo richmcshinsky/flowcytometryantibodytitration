@@ -57,7 +57,7 @@ columns_simple = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissu
                   "Test Preparation", "Target Species"]
 
 columns_df = ["Source", "supplier link", "Antigen", "Clone", "Conjugate", "Supplier", "# of tests at optimal dilution", 
-             "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]
+             "price per test", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]
 
 st.write("""Welecome to the insights page! Figures are visable to everyone, but in order to see the underlying 
          data and links a valid subscription is needed.""")
@@ -80,8 +80,14 @@ st.markdown("<h3 style='text-align: center; color: black;'>Number of tests at op
 res_p = res[columns_df].dropna().drop_duplicates()
 res_p = res_p[res_p["price/test at optimal uL"] != "nan"]
 res_p = res_p[res_p["price/test at optimal uL"] != 0]
-fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color="Antigen")
+
+fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color="Antigen", 
+               hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"])
 st.plotly_chart(fig, use_container_width=True)
+
+avg_diff = (res_p["price per test"] - res_p["price/test at optimal uL"]).mean()
+st.write("""For the selected filters, on average the difference between the supplier recommended price per test 
+         and the price per test at the optimal dilution is: $""" + str(avg_diff))
 
 st.markdown("<h3 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h3>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color="Clone")
