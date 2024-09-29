@@ -1,6 +1,6 @@
 import streamlit as st
 
-# st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
+st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
 with st.sidebar:
     st.page_link('streamlit_app.py', label='Home')
@@ -22,16 +22,6 @@ with st.container():
     st.markdown("<h2 style='text-align: center; color: black;'>Subscription benefits</h2>", unsafe_allow_html=True)
     st.image("data/sub benifits.png")
 
-st.write("Pricing:")
-lst = ["$xx/month for individual access", 
-        "email about discounts for group and organizational level access",
-        "free access for x months for contributing to repository",
-        "freee access for x months for each bug/error found or recommendation to improve that gets implemented"]
-s = ''
-for i in lst:
-    s += "- " + i + "\n"
-st.markdown(s)
-
-
-#if __name__ == '__main__':
-#    main()
+with st.container():
+    st.markdown("<h2 style='text-align: center; color: black;'>Subscription benefits</h2>", unsafe_allow_html=True)
+    st.image("data/pricing.png")
