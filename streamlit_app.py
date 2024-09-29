@@ -4,10 +4,6 @@ from st_paywall import add_auth
 
 # TODO: data: validation second pass
 # TODO: make repository sample a hard coded file saved in project to save hits to google sheets connection
-# TODO: insights: color by clone/antigen as legend
-
-# TODO: is user submits data, send a notification email for review
-# TODO: if success on submit, let user know it worked and expected time to get free subscription
 
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")

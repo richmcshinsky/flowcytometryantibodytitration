@@ -14,10 +14,17 @@ with st.sidebar:
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 st.divider()
 
+st.write("Repository benefits:")
+lst = ['Using optimal concentrations from repository data, see comparative pricing per test for same antibodies',
+       'Order antibodies at optimal amounts, reducing waste from overordering and improving outcomes', 
+       'No need to spend many hours looking through previous research papers and doing pricing calculations just for one antibody',
+       'New researchers can take advantage of the wealth of experience and knowledge to avoid common errors']
+s = ''
+for i in lst:
+    s += "- " + i + "\n"
 st.write("Subscription benefits:")
-lst = ['access to the entire repository data', 
-        'access to insights charts', 
-        'tools to generate professional figures from your data']
+lst = ['access to all repository data', 
+       'access to insights charts for purchasing decision making']
 s = ''
 for i in lst:
     s += "- " + i + "\n"
