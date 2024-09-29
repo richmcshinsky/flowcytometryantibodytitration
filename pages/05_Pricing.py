@@ -22,6 +22,8 @@ lst = ['Using optimal concentrations from repository data, see comparative prici
 s = ''
 for i in lst:
     s += "- " + i + "\n"
+st.markdown(s)
+
 st.write("Subscription benefits:")
 lst = ['access to all repository data', 
        'access to insights charts for purchasing decision making']
@@ -29,6 +31,7 @@ s = ''
 for i in lst:
     s += "- " + i + "\n"
 st.markdown(s)
+
 st.write("Pricing:")
 lst = ["$xx/month for individual access", 
         "email about discounts for group and organizational level access",
