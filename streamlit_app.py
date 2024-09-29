@@ -41,7 +41,7 @@ with col1:
                 Filters will appear in the same navigation tab on the left."""):
         st.switch_page("pages/01_Repository.py")
 with col2:
-    if st.button(label="Contribute", use_container_width=True, help="""Add to the repository usign your own data. 
+    if st.button(label="Contribute", use_container_width=True, help="""Add to the repository using your own data. 
                 Free subscriptions are offered for accepted contributions!"""):
         st.switch_page("pages/02_Contribute.py")
 with col1:
