@@ -85,7 +85,8 @@ fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color="A
                hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"])
 st.plotly_chart(fig, use_container_width=True)
 
-avg_diff = (res_p["price per test"] - res_p["price/test at optimal uL"]).mean()
+avg_diff = (pd.to_numeric(res_p["price per test"]) - pd.to_numeric(res_p["price/test at optimal uL"])).mean()
+st.write(pd.to_numeric(res_p["price per test"]) - pd.to_numeric(res_p["price/test at optimal uL"]))
 st.write("""For the selected filters, on average the difference between the supplier recommended price per test 
          and the price per test at the optimal dilution is: $""" + str(avg_diff))
 
