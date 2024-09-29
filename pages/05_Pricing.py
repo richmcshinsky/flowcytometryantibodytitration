@@ -14,10 +14,10 @@ with st.sidebar:
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 st.divider()
 
-st.write("Repository benefits:")
+st.title("Repository benefits:")
 st.image("data/repo benifits.png")
 
-st.write("Subscription benefits:")
+st.title("Subscription benefits:")
 st.image("data/sub benifits.png")
 
 st.write("Pricing:")
