@@ -16,11 +16,10 @@ st.divider()
 
 with st.container():
     st.markdown("<h2 style='text-align: center; color: black;'>Repository benefits</h2>", unsafe_allow_html=True)
-    # st.title("Repository benefits")
     st.image("data/repo benifits.png")
 
 with st.container():
-    st.title("Subscription benefits")
+    st.markdown("<h2 style='text-align: center; color: black;'>Subscription benefits</h2>", unsafe_allow_html=True)
     st.image("data/sub benifits.png")
 
 st.write("Pricing:")
