@@ -68,23 +68,26 @@ df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns_simple)
 df_filtered.display_filters(location='columns', num_columns=3, gap='large')
 res = df_filtered.filter_df()
 
+st.divider()
+
 st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data sources.")
 
 # fig = px.bar(res["Antigen"].value_counts(normalize=True)[:20])
 # st.plotly_chart(fig, use_container_width=True)
 
-st.write("Number of tests at optimal dilution comparison between suppliers")
+st.markdown("<h2 style='text-align: center; color: black;'>Number of tests at optimal dilution comparison between suppliers</h2>", unsafe_allow_html=True)
+# st.write("Number of tests at optimal dilution comparison between suppliers")
 res_p = res[columns_df].dropna().drop_duplicates()
 res_p = res_p[res_p["price/test at optimal uL"] != "nan"]
 res_p = res_p[res_p["price/test at optimal uL"] != 0]
 fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color="Antigen")
 st.plotly_chart(fig, use_container_width=True)
 
-st.write("price/test at optimal uL comparison between suppliers")
+st.markdown("<h2 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h2>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color="Clone")
 st.plotly_chart(fig, use_container_width=True)
 
-st.write("reorder frequency at 10 tests/week (years) comparison between suppliers")
+st.markdown("<h2 style='text-align: center; color: black;'>reorder frequency at 10 tests/week (years) comparison between suppliers</h2>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week (years)", color="Conjugate")
 st.plotly_chart(fig, use_container_width=True)
 
