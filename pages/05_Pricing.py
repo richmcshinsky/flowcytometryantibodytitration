@@ -16,23 +16,9 @@ st.divider()
 
 st.write("Repository benefits:")
 st.image("data/repo benifits.png")
-lst = ['Using optimal concentrations from repository data, see comparative pricing per test for same antibodies',
-       'Order antibodies at optimal amounts, reducing waste from overordering and improving outcomes', 
-       'No need to spend many hours looking through previous research papers and doing pricing calculations just for one antibody',
-       'New researchers can take advantage of the wealth of experience and knowledge to avoid common errors',
-       'See sourcing to validate results and images of titrations to explore alternative concentrations']
-s = ''
-for i in lst:
-    s += "- " + i + "\n"
-st.markdown(s)
 
 st.write("Subscription benefits:")
-lst = ['access to all repository data', 
-       'access to insights charts for purchasing decision making']
-s = ''
-for i in lst:
-    s += "- " + i + "\n"
-st.markdown(s)
+st.image("data/sub benifits.png")
 
 st.write("Pricing:")
 lst = ["$xx/month for individual access", 
