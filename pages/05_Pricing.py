@@ -14,18 +14,11 @@ with st.sidebar:
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 st.divider()
 
-col1, col2, col3 = st.columns(3)
-with col1:
-    st.write(' ')
-with col2:
-    st.title("Repository benefits")
-    st.image("data/repo benifits.png")
-with col3:
-    st.write(' ')
+st.title("Repository benefits")
+st.image("data/repo benifits.png")
 
-with st.columns(3)[1]:
-    st.title("Subscription benefits")
-    st.image("data/sub benifits.png")
+st.title("Subscription benefits")
+st.image("data/sub benifits.png")
 
 st.write("Pricing:")
 lst = ["$xx/month for individual access", 
