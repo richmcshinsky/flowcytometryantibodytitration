@@ -165,7 +165,6 @@ elif st.session_state["step"] == "Step 5":
     with st.expander("Without a subscription you can see one row of the repo data. With a subscription see all data as well as visualizations comparing supplier pricing"):
          st.dataframe(df_g.iloc[0])
 
-    
     add_auth(required=True)
     
     st.write("Number of tests at optimal dilution comparison between suppliers")
