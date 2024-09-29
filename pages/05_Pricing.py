@@ -23,5 +23,5 @@ with st.container():
     st.image("data/sub benifits.png")
 
 with st.container():
-    st.markdown("<h2 style='text-align: center; color: black;'>Subscription benefits</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color: black;'>Pricing</h2>", unsafe_allow_html=True)
     st.image("data/pricing.png")
