@@ -67,27 +67,26 @@ df = load_data()
 df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns_simple)
 df_filtered.display_filters(location='columns', num_columns=3, gap='large')
 res = df_filtered.filter_df()
+res_p = res[columns_df].dropna().drop_duplicates()
+res_p = res_p[res_p["price/test at optimal uL"] != "nan"]
+res_p = res_p[res_p["price/test at optimal uL"] != 0]
 
 st.divider()
 
 st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data sources.")
+avg_diff = (pd.to_numeric(res_p["price per test"]) - pd.to_numeric(res_p["price/test at optimal uL"])).mean()
+st.write("""For the selected filters, on average the difference between the supplier recommended price per test 
+         and the price per test at the optimal dilution is: $""" + str(round(avg_diff, 2)))
+
 
 # fig = px.bar(res["Antigen"].value_counts(normalize=True)[:20])
 # st.plotly_chart(fig, use_container_width=True)
 
 st.markdown("<h3 style='text-align: center; color: black;'>Number of tests at optimal dilution comparison between suppliers</h3>", unsafe_allow_html=True)
-# st.write("Number of tests at optimal dilution comparison between suppliers")
-res_p = res[columns_df].dropna().drop_duplicates()
-res_p = res_p[res_p["price/test at optimal uL"] != "nan"]
-res_p = res_p[res_p["price/test at optimal uL"] != 0]
 
 fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color="Antigen", 
                hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"])
 st.plotly_chart(fig, use_container_width=True)
-
-avg_diff = (pd.to_numeric(res_p["price per test"]) - pd.to_numeric(res_p["price/test at optimal uL"])).mean()
-st.write("""For the selected filters, on average the difference between the supplier recommended price per test 
-         and the price per test at the optimal dilution is: $""" + str(round(avg_diff, 2)))
 
 st.markdown("<h3 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h3>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color="Clone")
