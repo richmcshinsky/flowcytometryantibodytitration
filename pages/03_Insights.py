@@ -86,9 +86,8 @@ fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color="A
 st.plotly_chart(fig, use_container_width=True)
 
 avg_diff = (pd.to_numeric(res_p["price per test"]) - pd.to_numeric(res_p["price/test at optimal uL"])).mean()
-st.write(pd.to_numeric(res_p["price per test"]) - pd.to_numeric(res_p["price/test at optimal uL"]))
 st.write("""For the selected filters, on average the difference between the supplier recommended price per test 
-         and the price per test at the optimal dilution is: $""" + str(avg_diff))
+         and the price per test at the optimal dilution is: $""" + str(round(avg_diff, 2)))
 
 st.markdown("<h3 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h3>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color="Clone")
