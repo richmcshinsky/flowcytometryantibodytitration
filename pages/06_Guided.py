@@ -165,28 +165,29 @@ elif st.session_state["step"] == "Step 5":
     with st.expander("Without a subscription you can see one row of the repo data. With a subscription see all data as well as visualizations comparing supplier pricing"):
          st.dataframe(df_g.iloc[0])
 
-    add_auth(required=True)
-    
-    st.write("Number of tests at optimal dilution comparison between suppliers")
-    res_p = df_g[["Source", "supplier link", "Antigen", "Supplier", "# of tests at optimal dilution", 
-                "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]].dropna().drop_duplicates()
-    res_p = res_p[res_p["price/test at optimal uL"] != "nan"]
-    res_p = res_p[res_p["price/test at optimal uL"] != 0]
-    fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution")
-    st.plotly_chart(fig, use_container_width=True)
+    with st.container():
+        add_auth(required=True)
+        
+        st.write("Number of tests at optimal dilution comparison between suppliers")
+        res_p = df_g[["Source", "supplier link", "Antigen", "Supplier", "# of tests at optimal dilution", 
+                    "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]].dropna().drop_duplicates()
+        res_p = res_p[res_p["price/test at optimal uL"] != "nan"]
+        res_p = res_p[res_p["price/test at optimal uL"] != 0]
+        fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution")
+        st.plotly_chart(fig, use_container_width=True)
 
-    st.write("price/test at optimal uL comparison between suppliers")
-    fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL")
-    st.plotly_chart(fig, use_container_width=True)
+        st.write("price/test at optimal uL comparison between suppliers")
+        fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL")
+        st.plotly_chart(fig, use_container_width=True)
 
-    st.write("reorder frequency at 10 tests/week (years) comparison between suppliers")
-    fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week (years)")
-    st.plotly_chart(fig, use_container_width=True)
+        st.write("reorder frequency at 10 tests/week (years) comparison between suppliers")
+        fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week (years)")
+        st.plotly_chart(fig, use_container_width=True)
 
-    st.dataframe(data=res_p, use_container_width=True, 
-                column_config={"Source": st.column_config.LinkColumn(display_text="Source"),
-                                "supplier link": st.column_config.LinkColumn(display_text="Supplier Link")})
-    
+        st.dataframe(data=res_p, use_container_width=True, 
+                    column_config={"Source": st.column_config.LinkColumn(display_text="Source"),
+                                    "supplier link": st.column_config.LinkColumn(display_text="Supplier Link")})
+        
     st.divider()
     col1, col2 = st.columns(2, gap="small")
     with col1:
