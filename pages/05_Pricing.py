@@ -14,23 +14,25 @@ with st.sidebar:
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 st.divider()
 
-col1, col2, col3 = st.columns(3)
-with col1:
-    st.write(' ')
-with col2:
-    st.title("Repository benefits")
-    st.image("data/repo benifits.png")
-with col3:
-    st.write(' ')
+with st.container():
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.write(' ')
+    with col2:
+        st.title("Repository benefits")
+        st.image("data/repo benifits.png")
+    with col3:
+        st.write(' ')
 
-col1, col2, col3 = st.columns(3)
-with col1:
-    st.write(' ')
-with col2:
-    st.title("Subscription benefits")
-    st.image("data/sub benifits.png")
-with col3:
-    st.write(' ')
+with st.container():
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.write(' ')
+    with col2:
+        st.title("Subscription benefits")
+        st.image("data/sub benifits.png")
+    with col3:
+        st.write(' ')
 
 st.write("Pricing:")
 lst = ["$xx/month for individual access", 
