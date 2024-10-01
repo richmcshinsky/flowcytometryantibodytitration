@@ -24,9 +24,7 @@ with st.container():
     st.write("""Using https://onlinelibrary.wiley.com/doi/10.1002/cyto.a.24545 as an example, there were 
              33 commercially purchased antibodies tested, 21 included in the final. 
              For the 21 in the final, summing the difference between supplier
-             recommended and optimal dilution pricing per test, the total is :blue[$54.61/test].
-             Note that this is the raw price difference on amounts and doesn't take into account
-             other miscellanous expenses. """)
+             recommended and optimal dilution pricing per test, the total savings would be :blue[$54.61/test].""")
     
 with st.container():
     total_diff_per_test = 54.61
