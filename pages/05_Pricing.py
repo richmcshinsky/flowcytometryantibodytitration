@@ -37,6 +37,11 @@ with st.container():
              is :blue[$8.20/test].""")
     st.write("""Or for one CD3 FITC, the sulpier recommended tests is 100, or 0.5 mL, but at the optimal
              dilution of 0.03, would result in over :blue[16,000] tests for the single vial, or :blue[$0.0096/test]""")
+    st.write("""Or for antigen IL-21R and conjugate BV421, the optimal concentration is 10. Given the 
+             supplier number of tests at 25, the price difference from the supplier's recommened to 
+             optimal dilution is $-8.6, demonstrating that ording the vial in what one would normally do
+             would likely result in underording enough antigen, resulting in either delayed experiments
+             or poor quality data.""")
 
 with st.container():
     st.markdown("<h2 style='text-align: center; color: black;'>Subscription benefits</h2>", unsafe_allow_html=True)
