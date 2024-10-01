@@ -34,7 +34,9 @@ with st.container():
     st.write("""For common cases, ordering appopriate amounts antibodies can draw from personal
              experience. But for uncommon situations, this can make a significant difference. For example,
              antigen CD56 with conjugate BUV737, at optimal dilution, the savings on the difference
-             is :blue[$8.20/test]""")
+             is :blue[$8.20/test]."""
+    st.write("""Or for one CD3 FITC, the sulpier recommended tests is 100, or 0.5 mL, but at the optimal
+             dilution of 0.03, would result in over 16,000 tests for the single vial""")
 
 with st.container():
     st.markdown("<h2 style='text-align: center; color: black;'>Subscription benefits</h2>", unsafe_allow_html=True)
