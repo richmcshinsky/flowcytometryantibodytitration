@@ -36,7 +36,7 @@ with st.container():
              antigen CD56 with conjugate BUV737, at optimal dilution, the savings on the difference
              is :blue[$8.20/test].""")
     st.write("""Or for one CD3 FITC, the sulpier recommended tests is 100, or 0.5 mL, but at the optimal
-             dilution of 0.03, would result in over :blue[16,000] tests for the single vial, or :blue[$0.0096/test]""")
+             dilution of 0.03, would result in over :blue[16,000] tests for the single vial, or $0.0096/test""")
     st.write("""Or for antigen IL-21R and conjugate BV421, the optimal concentration is 10. Given the 
              supplier number of tests at 25, the price difference from the supplier's recommened to 
              optimal dilution is $-8.6, demonstrating that ording the vial in what one would normally do
