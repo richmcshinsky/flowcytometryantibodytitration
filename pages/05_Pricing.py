@@ -20,13 +20,21 @@ with st.container():
 
 with st.container():
     total_diff_per_test = 54.61
-    st.markdown("<h2 style='text-align: center; color: black;'>Example</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color: black;'>Example 1</h2>", unsafe_allow_html=True)
     st.write("""Using https://onlinelibrary.wiley.com/doi/10.1002/cyto.a.24545 as an example, 
              in table 2 there were 33 commercially purchased antibodies tested, 21 included in the final. 
              For the 21 in the final, summing the difference between supplier
              recommended and optimal dilution pricing per test, the total is :blue[$54.61/test].
              Note that this is the raw price difference on amounts and doesn't take into account
              other miscellanous expenses. """)
+    
+with st.container():
+    total_diff_per_test = 54.61
+    st.markdown("<h2 style='text-align: center; color: black;'>Example 2</h2>", unsafe_allow_html=True)
+    st.write("""For common cases, ordering appopriate amounts antibodies can draw from personal
+             experience. But for uncommon situations, this can make a significant difference. For example,
+             antigen CD56 with conjugate BUV737, at optimal dilution the savings on price/test difference
+             is $8.20""")
 
 with st.container():
     st.markdown("<h2 style='text-align: center; color: black;'>Subscription benefits</h2>", unsafe_allow_html=True)
