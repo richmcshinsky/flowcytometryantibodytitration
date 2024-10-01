@@ -25,7 +25,7 @@ with st.container():
              in table 2 there were 33 commercially purchased antibodies tested, 21 included in the final. 
              For the 21 in the final, summing their average difference between supplier
              recommended and optimal dilution pricing per test, the total is :blue[$54.61/test].
-             Note that this is the raw price difference on ammounts and doesn't take into account
+             Note that this is the raw price difference on amounts and doesn't take into account
              other miscellanous expenses. """)
 
 with st.container():
