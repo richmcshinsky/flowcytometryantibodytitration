@@ -34,7 +34,7 @@ with st.container():
     st.write("""For common cases, ordering appopriate amounts antibodies can draw from personal
              experience. But for uncommon situations, this can make a significant difference. For example,
              antigen CD56 with conjugate BUV737, at optimal dilution the savings on price/test difference
-             is $8.20""")
+             is :blue[$8.20]""")
 
 with st.container():
     st.markdown("<h2 style='text-align: center; color: black;'>Subscription benefits</h2>", unsafe_allow_html=True)
