@@ -23,7 +23,7 @@ with st.container():
     st.markdown("<h2 style='text-align: center; color: black;'>Example</h2>", unsafe_allow_html=True)
     st.write("""Using https://onlinelibrary.wiley.com/doi/10.1002/cyto.a.24545 as an example, 
              in table 2 there were 33 commercially purchased antibodies tested, 21 included in the final. 
-             For the 21 in the final, summing their average difference between supplier
+             For the 21 in the final, summing the difference between supplier
              recommended and optimal dilution pricing per test, the total is :blue[$54.61/test].
              Note that this is the raw price difference on amounts and doesn't take into account
              other miscellanous expenses. """)
