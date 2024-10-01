@@ -36,7 +36,7 @@ with st.container():
              antigen CD56 with conjugate BUV737, at optimal dilution, the savings on the difference
              is :blue[$8.20/test].""")
     st.write("""Or for one CD3 FITC, the sulpier recommended tests is 100, or 0.5 mL, but at the optimal
-             dilution of 0.03, would result in over :blue[16,000] tests for the single vial, or $0.0096/test""")
+             dilution of 0.03, would result in over :blue[16,000] tests for the single vial, or :blue[$0.0096/test]""")
 
 with st.container():
     st.markdown("<h2 style='text-align: center; color: black;'>Subscription benefits</h2>", unsafe_allow_html=True)
