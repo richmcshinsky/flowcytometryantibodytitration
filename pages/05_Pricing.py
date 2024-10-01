@@ -40,8 +40,8 @@ with st.container():
     st.write("""Or for antigen IL-21R and conjugate BV421, the optimal concentration is 10. Given the 
              supplier number of tests at 25, the price difference from the supplier's recommened to 
              optimal dilution is $-8.6, demonstrating that ording the vial in what one would normally do
-             would likely result in underording enough antigen, resulting in either delayed experiments
-             or poor quality data.""")
+             would likely result in underording enough antigen, resulting in either :blue[delayed] experiments
+             or :blue[poor quality] data.""")
 
 with st.container():
     st.markdown("<h2 style='text-align: center; color: black;'>Subscription benefits</h2>", unsafe_allow_html=True)
