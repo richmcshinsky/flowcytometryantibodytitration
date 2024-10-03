@@ -72,7 +72,7 @@ with st.expander("Shows example 10 rows from Repository: Subscribe to see full r
                                     "Source": st.column_config.LinkColumn(display_text="Source")},
                     height=300, column_order=columns_simple)
 
-add_auth(required=True)
+# add_auth(required=True)
 
 with st.expander("If you aren't able to find your target antigen, try an alternative name! Or add alternate names to your filter for more data."):
     search_target = st.text_input("Type in target antigen name for alternative names")
