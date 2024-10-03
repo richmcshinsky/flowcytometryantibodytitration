@@ -87,7 +87,7 @@ st.markdown("<h3 style='text-align: center; color: black;'>Number of tests at op
 fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color="Antigen", 
                hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"])
 fig.update_traces({'marker':{'size': 5}})
-fig.update_layout(hoverlabel=dict(font=dict(size=12)))
+fig.update_layout(hoverlabel=dict(font=dict(size=24)))
 st.plotly_chart(fig, use_container_width=True)
 
 st.markdown("<h3 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h3>", unsafe_allow_html=True)
