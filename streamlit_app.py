@@ -1,7 +1,7 @@
 import streamlit as st
 from st_paywall import add_auth
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
-
+  
 # TODO: data: validation second pass
 # TODO: make repository sample a hard coded file saved in project to save hits to google sheets connection
 
@@ -61,4 +61,4 @@ st.subheader("Watch our short demo video to see what you can do!")
 
 st.write("To test login use https://docs.stripe.com/testing#cards")
 add_auth(required=True)
-st.write("Login successful")
+st.write("Login successful!")
