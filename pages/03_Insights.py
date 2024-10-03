@@ -86,17 +86,19 @@ st.markdown("<h3 style='text-align: center; color: black;'>Number of tests at op
 
 fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color="Antigen", 
                hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"])
-fig.update_traces({'marker':{'size': 20}})
+fig.update_traces({'marker':{'size': 5}})
 st.plotly_chart(fig, use_container_width=True)
 
 st.markdown("<h3 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h3>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color="Clone",
                hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"])
+fig.update_traces({'marker':{'size': 10}})
 st.plotly_chart(fig, use_container_width=True)
 
 st.markdown("<h3 style='text-align: center; color: black;'>reorder frequency at 10 tests/week (years) comparison between suppliers</h3>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week (years)", color="Conjugate",
                hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"])
+fig.update_traces({'marker':{'size': 15}})
 st.plotly_chart(fig, use_container_width=True)
 
 # st.dataframe(data=res_p, use_container_width=True, 
