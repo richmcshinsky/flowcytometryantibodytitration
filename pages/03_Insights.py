@@ -101,11 +101,7 @@ fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week (years
 fig.update_traces({'marker':{'size': 15}})
 st.plotly_chart(fig, use_container_width=True)
 
-# st.dataframe(data=res_p, use_container_width=True, 
-#             column_config={"Source": st.column_config.LinkColumn(display_text="Source"),
-#                             "supplier link": st.column_config.LinkColumn(display_text="Supplier Link")})
-
-add_auth(required=True)
+# add_auth(required=True)
 
 @st.cache_data(show_spinner=False)
 def split_frame(input_df, rows):
