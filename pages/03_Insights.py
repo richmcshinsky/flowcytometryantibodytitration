@@ -79,6 +79,7 @@ res_p = res_p[res_p["price/test at optimal uL"] != "nan"]
 res_p = res_p[res_p["price/test at optimal uL"] != 0]
 
 st.divider()
+st.markdown("<h3 style='text-align: center; color: black;'>Insights</h3>", unsafe_allow_html=True)
 
 st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data sources. You can")
 lst = ['Double click the legend to filter within the plot', 
@@ -91,6 +92,9 @@ avg_diff = round((pd.to_numeric(res_p["price per test"]) - pd.to_numeric(res_p["
 st.write(f"For the selected filters, on average the difference between the supplier recommended price per test and the price per test at the optimal dilution is: :blue[${avg_diff}]") 
 st.write(f"In addition, assuming 10 tests are done for the antibody, it would reflect a potential :blue[${round(10 * avg_diff,2)}] in savings. ")
 st.write(f"Assuming 30 different antibodies are ordered, then the overall potential saving for this expiriment would be  :blue[${round(10 * 30 * avg_diff,2)}]")
+
+st.divider()
+st.markdown("<h3 style='text-align: center; color: black;'>Discovery</h3>", unsafe_allow_html=True)
 
 # fig = px.bar(res["Antigen"].value_counts(normalize=True)[:20])
 # st.plotly_chart(fig, use_container_width=True)
