@@ -134,10 +134,8 @@ if "legend" not in st.session_state:
 
 st.markdown("<h4 style='text-align: center; color: black;'>Number of tests at optimal dilution comparison between suppliers</h4>", unsafe_allow_html=True)
 fig1 = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color=st.session_state.legend, 
-               hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"],
-               custom_data=("supplier link",))
-urls = res_p["supplier link"].to_list()
-fig1.update_traces(customdata=urls) #{'marker':{'size': size}}, 
+               hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"])
+fig1.update_traces({'marker':{'size': size}}) 
 fig1.update_layout(hoverlabel=dict(font=dict(size=hover)))
 st.plotly_chart(fig1, use_container_width=True)
 
