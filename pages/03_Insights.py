@@ -105,7 +105,7 @@ st.markdown(s)
 
 col1, col2, col3 = st.columns(3, gap="small")
 with col1:
-    st.radio( "Plot dot size", ["S", "M", "L"], horizontal=True, key="dot", index=1)
+    st.radio( "Plot dot size", ["S", "M", "L"], horizontal=True, key="size", index=1)
 with col2:
     st.radio( "Plot hover text size", ["S", "M", "L"], horizontal=True, key="hover", index=1)
 with col3:
