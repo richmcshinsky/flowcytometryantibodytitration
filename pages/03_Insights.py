@@ -138,9 +138,6 @@ fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color=st
                hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"])
 fig.update_traces({'marker':{'size': size}})
 fig.update_layout(hoverlabel=dict(font=dict(size=hover)))
-selected_points = plotly_events(fig)
-a=selected_points[0]
-st.write(a)
 st.plotly_chart(fig, use_container_width=True)
 
 st.markdown("<h4 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h4>", unsafe_allow_html=True)
