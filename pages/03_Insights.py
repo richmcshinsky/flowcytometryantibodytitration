@@ -80,7 +80,13 @@ res_p = res_p[res_p["price/test at optimal uL"] != 0]
 
 st.divider()
 
-st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data sources.")
+st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data sources. You can")
+lst = ['Double click the legend to filter within the plot', 
+       'Drag a box over plot to zoom in, double click on plot to return to the original size']
+s = ''
+for i in lst:
+    s += "- " + i + "\n"
+st.markdown(s)
 avg_diff = round((pd.to_numeric(res_p["price per test"]) - pd.to_numeric(res_p["price/test at optimal uL"])).mean(),2)
 st.write(f"For the selected filters, on average the difference between the supplier recommended price per test and the price per test at the optimal dilution is: :blue[${avg_diff}]") 
 st.write(f"In addition, assuming 10 tests are done for the antibody, it would reflect a potential :blue[${round(10 * avg_diff,2)}] in savings. ")
