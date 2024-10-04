@@ -103,9 +103,9 @@ st.markdown(s)
 # TODO: click on dot sends you to link of supplier OR
 #       clicking a dot narrowed the rows on the table
 
-st.radio( "Plot dot size", ["S", "M", "L"], horizontal=True)
-st.radio( "Plot hover text size", ["S", "M", "L"], horizontal=True)
-st.radio( "Plot legend choice", ["S", "M", "L"], horizontal=True)
+st.radio( "Plot dot size", ["S", "M", "L"], horizontal=True, key="dor", index=1)
+st.radio( "Plot hover text size", ["S", "M", "L"], horizontal=True, key="hover", index=1)
+st.radio( "Plot legend choice", ["Antigen", "Clone", "Conjugate"], horizontal=True, key="legend", index=0)
 
 st.markdown("<h4 style='text-align: center; color: black;'>Number of tests at optimal dilution comparison between suppliers</h4>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color="Antigen", 
