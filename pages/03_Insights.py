@@ -20,7 +20,6 @@ with st.sidebar:
     st.page_link('pages/06_Guided.py', label='Guided')
 
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
-st.divider()
 
 @st.cache_data(show_spinner=False)
 def split_frame(input_df, rows):
@@ -69,6 +68,8 @@ columns_df = ["Source", "supplier link", "Antigen", "Clone", "Conjugate", "Suppl
 st.write("""Welecome to the insights page! Figures are visable to everyone, but in order to see the underlying 
          data and links a valid subscription is needed.""")
 
+st.divider()
+st.markdown("<h3 style='text-align: center; color: black;'>Filters</h3>", unsafe_allow_html=True)
 
 df = load_data()
 df_filtered = DynamicFilters(df.astype(str).fillna(""), filters=columns_simple)
