@@ -24,7 +24,7 @@ with st.sidebar:
     # Maybe cahnge purchase into tools?
 
 st.markdown("<h1 style='text-align: center; color: black;'>[![Click me](./app/static/soundicon.png)](https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27)</h1>", unsafe_allow_html=True)
-st.markdown("[![Click me](./app/static/soundicon.png)](https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27)")
+# st.markdown("[![Click me](./app/static/soundicon.png)](https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27)")
 st.divider()
 
 st.subheader("Welcome")
