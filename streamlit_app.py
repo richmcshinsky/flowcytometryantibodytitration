@@ -8,7 +8,7 @@ from st_paywall import add_auth
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
-st.markdown("[![""](data/soundicon)](https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27)")
+st.markdown("[![""](data/soundicon.png)](https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27)")
 
 st.write("https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27")
 
