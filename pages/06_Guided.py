@@ -165,7 +165,9 @@ elif st.session_state["step"] == "Step 5":
     with st.expander("Without a subscription you can see one row of the repo data. With a subscription see all data as well as visualizations comparing supplier pricing"):
          st.dataframe(df_g.iloc[0])
 
-    # add_auth(required=True)
+    add_auth(required=True)
+
+    st.write("If the plots are empty, it's becuase there wasn't good pricing data to show.")
     
     st.write("Number of tests at optimal dilution comparison between suppliers")
     res_p = df_g[["Source", "supplier link", "Antigen", "Supplier", "# of tests at optimal dilution", 
@@ -183,7 +185,7 @@ elif st.session_state["step"] == "Step 5":
     fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week (years)")
     st.plotly_chart(fig, use_container_width=True)
 
-    st.dataframe(data=res_p, use_container_width=True, 
+    st.dataframe(data=df_g, use_container_width=True, 
                 column_config={"Source": st.column_config.LinkColumn(display_text="Source"),
                                 "supplier link": st.column_config.LinkColumn(display_text="Supplier Link")})
     
