@@ -185,8 +185,8 @@ elif st.session_state["step"] == "Step 5":
     fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week (years)")
     st.plotly_chart(fig, use_container_width=True)
 
-    st.dataframe(data=df_g["Source", "supplier link", "Antigen", "Supplier", "# of tests at optimal dilution", 
-                "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"], use_container_width=True, 
+    st.dataframe(data=df_g[["Source", "supplier link", "Antigen", "Supplier", "# of tests at optimal dilution", 
+                "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]], use_container_width=True, 
                 column_config={"Source": st.column_config.LinkColumn(display_text="Source"),
                                 "supplier link": st.column_config.LinkColumn(display_text="Supplier Link")})
     
