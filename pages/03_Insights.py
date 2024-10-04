@@ -65,8 +65,8 @@ columns_simple = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissu
 columns_df = ["Source", "supplier link", "Antigen", "Clone", "Conjugate", "Supplier", "# of tests at optimal dilution", 
              "price per test", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]
 
-st.write("""Welecome to the insights page! Figures are visable to everyone, but in order to see the underlying 
-         data and links a valid subscription is needed.""")
+#st.write("""Welecome to the insights page! Figures are visable to everyone, but in order to see the underlying 
+#         data and links a valid subscription is needed.""")
 
 st.divider()
 st.markdown("<h3 style='text-align: center; color: black;'>Filters</h3>", unsafe_allow_html=True)
