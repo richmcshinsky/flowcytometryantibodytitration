@@ -111,7 +111,8 @@ with col2:
 with col3:
     st.radio( "Plot legend choice", ["Antigen", "Clone", "Conjugate"], horizontal=True, key="legend", index=0)
 
-size = 10
+if "size" not in st.session_state:
+    st.session_state.size = 10
 if st.session_state.size == "S":
     size = 5
 elif st.session_state.size == "M":
