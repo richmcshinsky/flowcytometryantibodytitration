@@ -120,25 +120,37 @@ elif st.session_state.size == "M":
 elif st.session_state.size == "L":
     size = 15
 
+if "hover" not in st.session_state:
+    st.session_state.hover = 18
+if st.session_state.hover == "S":
+    hover = 12
+elif st.session_state.hover == "M":
+    hover = 18
+elif st.session_state.hover == "L":
+    hover = 24
+
+if "legend" not in st.session_state:
+    st.session_state.legend = "Antigen"
+
 st.markdown("<h4 style='text-align: center; color: black;'>Number of tests at optimal dilution comparison between suppliers</h4>", unsafe_allow_html=True)
-fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color="Antigen", 
+fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color=st.session_state.legend, 
                hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"])
 fig.update_traces({'marker':{'size': size}})
-fig.update_layout(hoverlabel=dict(font=dict(size=12)))
+fig.update_layout(hoverlabel=dict(font=dict(size=hover)))
 st.plotly_chart(fig, use_container_width=True)
 
 st.markdown("<h4 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h4>", unsafe_allow_html=True)
-fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color="Clone",
+fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color=st.session_state.legend,
                hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"])
 fig.update_traces({'marker':{'size': size}})
-fig.update_layout(hoverlabel=dict(font=dict(size=18)))
+fig.update_layout(hoverlabel=dict(font=dict(size=hover)))
 st.plotly_chart(fig, use_container_width=True)
 
 st.markdown("<h4 style='text-align: center; color: black;'>reorder frequency at 10 tests/week (years) comparison between suppliers</h4>", unsafe_allow_html=True)
-fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week (years)", color="Conjugate",
+fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week (years)", color=st.session_state.legend,
                hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"])
 fig.update_traces({'marker':{'size': size}})
-fig.update_layout(hoverlabel=dict(font=dict(size=24)))
+fig.update_layout(hoverlabel=dict(font=dict(size=hover)))
 st.plotly_chart(fig, use_container_width=True)
 
 # add_auth(required=True)
