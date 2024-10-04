@@ -4,7 +4,6 @@ from streamlit_gsheets import GSheetsConnection
 from st_paywall import add_auth
 from streamlit_dynamic_filters import DynamicFilters
 import pandas as pd
-from streamlit_plotly_events import plotly_events
 
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
@@ -135,12 +134,12 @@ if "legend" not in st.session_state:
 
 st.markdown("<h4 style='text-align: center; color: black;'>Number of tests at optimal dilution comparison between suppliers</h4>", unsafe_allow_html=True)
 fig1 = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color=st.session_state.legend, 
-               hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"])
-fig1.update_traces({'marker':{'size': size}})
+               hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"],
+               custom_data=("urls",))
+urls = res_p["supplier link"].to_list()
+fig1.update_traces({'marker':{'size': size}}, customdata=urls)
 fig1.update_layout(hoverlabel=dict(font=dict(size=hover)))
 st.plotly_chart(fig1, use_container_width=True)
-selected_points = plotly_events(fig1)
-st.write(selected_points)
 
 st.markdown("<h4 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h4>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color=st.session_state.legend,

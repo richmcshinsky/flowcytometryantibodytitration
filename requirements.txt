@@ -8,4 +8,3 @@ pandas==1.5.3
 plotly-express==0.4.1
 streamlit-dynamic-filters
 forex-python
-streamlit_plotly_events
