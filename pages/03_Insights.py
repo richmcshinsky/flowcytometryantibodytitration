@@ -105,30 +105,37 @@ st.markdown(s)
 
 col1, col2, col3 = st.columns(3, gap="small")
 with col1:
-    st.radio( "Plot dot size", ["S", "M", "L"], horizontal=True, key="dor", index=1)
+    st.radio( "Plot dot size", ["S", "M", "L"], horizontal=True, key="dot", index=1)
 with col2:
     st.radio( "Plot hover text size", ["S", "M", "L"], horizontal=True, key="hover", index=1)
 with col3:
     st.radio( "Plot legend choice", ["Antigen", "Clone", "Conjugate"], horizontal=True, key="legend", index=0)
 
+if st.session_state.size == "S":
+    size = 5
+elif st.session_state.size == "M":
+    size = 10
+elif st.session_state.size == "L":
+    size = 15
+
 st.markdown("<h4 style='text-align: center; color: black;'>Number of tests at optimal dilution comparison between suppliers</h4>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color="Antigen", 
                hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"])
-fig.update_traces({'marker':{'size': 5}})
+fig.update_traces({'marker':{'size': size}})
 fig.update_layout(hoverlabel=dict(font=dict(size=12)))
 st.plotly_chart(fig, use_container_width=True)
 
 st.markdown("<h4 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h4>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color="Clone",
                hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"])
-fig.update_traces({'marker':{'size': 10}})
+fig.update_traces({'marker':{'size': size}})
 fig.update_layout(hoverlabel=dict(font=dict(size=18)))
 st.plotly_chart(fig, use_container_width=True)
 
 st.markdown("<h4 style='text-align: center; color: black;'>reorder frequency at 10 tests/week (years) comparison between suppliers</h4>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week (years)", color="Conjugate",
                hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"])
-fig.update_traces({'marker':{'size': 15}})
+fig.update_traces({'marker':{'size': size}})
 fig.update_layout(hoverlabel=dict(font=dict(size=24)))
 st.plotly_chart(fig, use_container_width=True)
 
