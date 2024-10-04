@@ -122,6 +122,9 @@ st.plotly_chart(fig, use_container_width=True)
 
 # add_auth(required=True)
 
+st.divider()
+st.markdown("<h3 style='text-align: center; color: black;'>Data</h3>", unsafe_allow_html=True)
+
 pagination = st.container()
 bottom_menu = st.columns((4, 1, 1))
 with bottom_menu[2]:
