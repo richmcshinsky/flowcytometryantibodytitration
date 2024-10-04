@@ -27,7 +27,7 @@ col1,col2 = st.columns(2)
 with col1:
     st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1> ", unsafe_allow_html=True)
 with col2:
-    st.markdown("[![Click me]{height: 100x}(./app/static/soundicon.png)](https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27)")
+    st.markdown("[![Click me](./app/static/soundicon.png)]{height: 100x}(https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27)")
 st.divider()
 
 st.subheader("Welcome")
