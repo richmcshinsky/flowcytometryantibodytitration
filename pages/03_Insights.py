@@ -137,7 +137,7 @@ fig1 = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color=s
                hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"],
                custom_data=("supplier link",))
 urls = res_p["supplier link"].to_list()
-fig1.update_traces({'marker':{'size': size}}, customdata=urls)
+fig1.update_traces(customdata=urls) #{'marker':{'size': size}}, 
 fig1.update_layout(hoverlabel=dict(font=dict(size=hover)))
 st.plotly_chart(fig1, use_container_width=True)
 
