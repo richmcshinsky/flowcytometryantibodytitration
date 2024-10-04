@@ -5,8 +5,6 @@ from st_paywall import add_auth
 from streamlit_dynamic_filters import DynamicFilters
 import pandas as pd
 
-# TODO: click on dot sends you to link of supplier OR
-#       clicking a dot narrowed the rows on the table
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
@@ -98,8 +96,16 @@ s = ''
 for i in lst:
     s += "- " + i + "\n"
 st.markdown(s)
-# fig = px.bar(res["Antigen"].value_counts(normalize=True)[:20])
-# st.plotly_chart(fig, use_container_width=True)
+
+# TODO: add slicer for dot size
+# TODO: add slicer for text size
+# TODO: add slicer for legend options
+# TODO: click on dot sends you to link of supplier OR
+#       clicking a dot narrowed the rows on the table
+
+st.radio( "Plot dot size", ["S", "M", "L"], horizontal=True)
+st.radio( "Plot hover text size", ["S", "M", "L"], horizontal=True)
+st.radio( "Plot legend choice", ["S", "M", "L"], horizontal=True)
 
 st.markdown("<h4 style='text-align: center; color: black;'>Number of tests at optimal dilution comparison between suppliers</h4>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color="Antigen", 
@@ -138,9 +144,6 @@ with bottom_menu[0]:
     st.markdown(f"Page **{current_page}** of **{total_pages}** ")
 
 pages = split_frame(res, batch_size)
-# st.write(res)
-# pages = [res.loc[i:i+batch_size-1,:] for i in range(0, len(res), batch_size)]
-# st.write(pages)
 pagination.dataframe(data=pages[current_page - 1], use_container_width=True, 
                      column_config={"Image": st.column_config.LinkColumn(display_text="Image here"),
                      "Source": st.column_config.LinkColumn(display_text="Source"), 
