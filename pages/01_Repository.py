@@ -60,11 +60,9 @@ st.write("Note: If you are on mobile, you may need to press and hold on links to
 df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"]).fillna("NULL")
 df_terms["alternate"] = ["NULL" if x == "-" else x for x in df_terms["alternate"]]
 
+
 columns_simple = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissue", "Test Cell Type",
-                  "Test Preparation", "Target Species", "Isotype", "Supplier",
-                  "Concentration for this Lot# (ng/µL)", "Amount Tested (uL)",
-                  "Optimal Amount (µL/100 µL)", "Seperation Index", "Samples/vial",
-                  "Cost/sample ($USD)", "Metal Conjugate", "Staining", "Source"]
+                  "Test Preparation", "Target Species", "Isotype", "Seperation Index", "Metal Conjugate", "Staining"]
 
 with st.expander("Shows example 10 rows from Repository: Subscribe to see full repository! (These rows wont filter FYI)"):
     df = load_data()

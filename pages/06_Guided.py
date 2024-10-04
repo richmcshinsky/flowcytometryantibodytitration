@@ -32,10 +32,7 @@ def load_data():
                                                     "ThermoFisher Scientific", "Thermofisher"], "Thermo Fisher")
     df["Supplier"] = df["Supplier"].replace(["Miltenyi Biotec", "BL"], "Miltenyi")
     df = normalize_antigens(df)
-    return df[["Antigen", "Clone", "Conjugate", "Conjugate Type", "Supplier", "Amount Tested (uL)", 
-               "Amount Tested (ng)", "Optimal Amount (µL/100 µL)", "Seperation Index", "Samples/vial", 
-               "Cost/sample ($USD)", "supplier price", "Source", "supplier link", "supplier # tests",
-               "# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]]
+    return df[columns_simple]
 
 def normalize_antigens(df):
     df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"]).fillna("NULL")
@@ -54,7 +51,10 @@ def normalize_antigens(df):
     df["Antigen"] = rename
     return df
 
-
+columns_simple = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Supplier", "Amount Tested (uL)", 
+               "Amount Tested (ng)", "Optimal Amount (µL/100 µL)", "Seperation Index", "Samples/vial", 
+               "Cost/sample ($USD)", "supplier price", "Source", "supplier link", "supplier # tests",
+               "# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]
 
 if "step" not in st.session_state:
     st.session_state["step"] = "Step 1"
@@ -165,7 +165,7 @@ elif st.session_state["step"] == "Step 5":
     with st.expander("Without a subscription you can see one row of the repo data. With a subscription see all data as well as visualizations comparing supplier pricing"):
          st.dataframe(df_g.iloc[0])
 
-    add_auth(required=True)
+    # add_auth(required=True)
     
     st.write("Number of tests at optimal dilution comparison between suppliers")
     res_p = df_g[["Source", "supplier link", "Antigen", "Supplier", "# of tests at optimal dilution", 

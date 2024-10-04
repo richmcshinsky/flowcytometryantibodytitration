@@ -5,6 +5,8 @@ from st_paywall import add_auth
 from streamlit_dynamic_filters import DynamicFilters
 import pandas as pd
 
+# TODO: click on dot sends you to link of supplier OR
+#       clicking a dot narrowed the rows on the table
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
@@ -38,7 +40,7 @@ def load_data():
                                                     "ThermoFisher Scientific", "Thermofisher"], "Thermo Fisher")
     df["Supplier"] = df["Supplier"].replace(["Miltenyi Biotec", "BL"], "Miltenyi")
     df = normalize_antigens(df)
-    return df #[columns]
+    return df 
 
 def normalize_antigens(df):
     df_terms = pd.read_excel("data/CD alternative names.xlsx", names=["cd", "alternate"]).fillna("NULL")
