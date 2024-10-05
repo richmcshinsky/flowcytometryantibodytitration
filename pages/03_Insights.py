@@ -139,7 +139,7 @@ st.plotly_chart(fig1, use_container_width=True)
 from bokeh.models import ColumnDataSource, OpenURL, TapTool
 from bokeh.plotting import figure, output_file, show
 output_file("openurl.html")
-p = figure(plot_width=400, plot_height=400,
+p = figure(width=400, height=400,
            tools="tap", title="Click the Dots")
 source = ColumnDataSource(data=dict(
     x=[1, 2, 3, 4, 5],
