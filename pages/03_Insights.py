@@ -137,7 +137,7 @@ fig1.update_layout(hoverlabel=dict(font=dict(size=hover)))
 st.plotly_chart(fig1, use_container_width=True)
 
 from bokeh.models import ColumnDataSource, OpenURL, TapTool
-from bokeh.plotting import figure, output_file, show
+from bokeh.plotting import figure, output_file
 output_file("openurl.html")
 p = figure(width=400, height=400,
            tools="tap", title="Click the Dots")
@@ -150,7 +150,7 @@ p.circle('x', 'y', color='color', size=20, source=source)
 url = "http://www.colors.commutercreative.com/@color/"
 taptool = p.select(type=TapTool)
 taptool.callback = OpenURL(url=url)
-show(p)
+st.bokeh_chart(p, use_container_width=True)
 
 st.markdown("<h4 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h4>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color=st.session_state.legend,
