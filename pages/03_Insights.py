@@ -148,8 +148,7 @@ fig1.add_trace(go.Scatter(x=res_p["Supplier"], y=res_p["# of tests at optimal di
                hovertext=res_p["supplier link"],
                # text=df["supplier link"],
                textposition="top center", textfont_size=8))
-
-fig1.show()
+st.plotly_chart(fig1, use_container_width=True)
 
 st.markdown("<h4 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h4>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color=st.session_state.legend,
