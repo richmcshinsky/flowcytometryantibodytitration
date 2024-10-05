@@ -138,18 +138,12 @@ st.plotly_chart(fig1, use_container_width=True)
 
 from bokeh.models import ColumnDataSource, OpenURL, TapTool
 from bokeh.plotting import figure, output_file
-output_file("openurl.html")
-p = figure(width=400, height=400,
-           tools="tap", title="Click the Dots")
-source = ColumnDataSource(data=dict(
-    x=[1, 2, 3, 4, 5],
-    y=[2, 5, 8, 2, 7],
-    color=["navy", "orange", "olive", "firebrick", "gold"]
-    ))
-p.circle('x', 'y', color='color', size=20, source=source)
-url = "http://www.colors.commutercreative.com/@color/"
+# output_file("openurl.html")
+p = figure(title="simple line example", tools="tap",  x_axis_label="Supplier", y_axis_label="# of tests at optimal dilution")
+source = ColumnDataSource(data=dict(x=res_p["Supplier"], y=res_p["# of tests at optimal dilution"]))
+p.circle('x', 'y', color='color', size=10, source=source)
 taptool = p.select(type=TapTool)
-taptool.callback = OpenURL(url=url)
+taptool.callback = OpenURL(url=res_p["supplier link"])
 st.bokeh_chart(p, use_container_width=True)
 
 st.markdown("<h4 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h4>", unsafe_allow_html=True)
