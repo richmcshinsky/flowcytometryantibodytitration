@@ -21,7 +21,6 @@ with st.sidebar:
     #st.page_link('pages/08_FAQ.py', label='FAQ')
     # References
     # Search
-    # Maybe cahnge purchase into tools?
 
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1> ", unsafe_allow_html=True)
 # st.html("""<a href="https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27"><img src="https://drive.google.com/file/d/1j4VZ_kqPD3r1DpsmHOiLVZyVF3zGRsEZ/view?usp=sharing" width="200" /></a>""")

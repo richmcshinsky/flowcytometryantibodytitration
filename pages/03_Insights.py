@@ -97,9 +97,6 @@ for i in lst:
     s += "- " + i + "\n"
 st.markdown(s)
 
-# TODO: add slicer for dot size
-# TODO: add slicer for text size
-# TODO: add slicer for legend options
 # TODO: click on dot sends you to link of supplier OR
 #       clicking a dot narrowed the rows on the table
 
@@ -138,6 +135,21 @@ fig1 = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution", color=s
 fig1.update_traces({'marker':{'size': size}}) 
 fig1.update_layout(hoverlabel=dict(font=dict(size=hover)))
 st.plotly_chart(fig1, use_container_width=True)
+
+import plotly.graph_objs as go
+df = pd.DataFrame({"x":[0,1],
+                  "y":[0,1],
+                   "text":["<a href=\"https://plot.ly/\">name1</a>",
+                           "<a href=\"https://google.com\">name2</a>"]})
+fig1 =  go.Figure()
+fig1.add_trace(go.Scatter(x=res_p["Supplier"], y=res_p["# of tests at optimal dilution"],
+               mode="markers+text",
+               # Just pick one of the two
+               hovertext=res_p["supplier link"],
+               # text=df["supplier link"],
+               textposition="top center", textfont_size=8))
+
+fig1.show()
 
 st.markdown("<h4 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h4>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color=st.session_state.legend,
