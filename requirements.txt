@@ -8,4 +8,4 @@ pandas==1.5.3
 plotly-express==0.4.1
 streamlit-dynamic-filters
 forex-python
-bokeh=2.4.3
+bokeh==2.4.3
