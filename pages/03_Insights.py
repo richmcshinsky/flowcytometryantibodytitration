@@ -146,7 +146,7 @@ fig1.add_trace(go.Scatter(x=res_p["Supplier"], y=res_p["# of tests at optimal di
                mode="markers+text",
                # Just pick one of the two
                # hovertext=res_p["supplier link"],
-               text=df["supplier link"],
+               text=res_p["supplier link"],
                textposition="top center", textfont_size=8))
 st.plotly_chart(fig1, use_container_width=True)
 
