@@ -143,7 +143,7 @@ p = figure(title="simple line example", tools="tap",  x_axis_label="Supplier", y
 source = ColumnDataSource(data=dict(x=res_p["Supplier"], y=res_p["# of tests at optimal dilution"]))
 p.circle('x', 'y', color='color', size=10, source=source)
 taptool = p.select(type=TapTool)
-taptool.callback = OpenURL(url=res_p["supplier link"])
+taptool.callback = OpenURL(url=res_p["supplier link"].fillna("").astype(str))
 st.bokeh_chart(p, use_container_width=True)
 
 st.markdown("<h4 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h4>", unsafe_allow_html=True)
