@@ -146,7 +146,7 @@ st.plotly_chart(fig, use_container_width=True)
 
 st.markdown("<h4 style='text-align: center; color: black;'>reorder frequency at 10 tests/week comparison between suppliers</h4>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week", color=st.session_state.legend,
-               hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week)"])
+               hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week"])
 fig.update_traces({'marker':{'size': size}})
 fig.update_layout(hoverlabel=dict(font=dict(size=hover)))
 st.plotly_chart(fig, use_container_width=True)
