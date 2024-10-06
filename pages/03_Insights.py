@@ -146,6 +146,21 @@ p.circle(x='x', y='y', size=10, source=source)
 # taptool.callback = OpenURL(url=url)
 st.bokeh_chart(p, use_container_width=True)
 
+from bokeh.models import ColumnDataSource
+from bokeh.plotting import figure, show
+from bokeh.sampledata.commits import data
+from bokeh.transform import jitter
+DAYS = ['Sun', 'Sat', 'Fri', 'Thu', 'Wed', 'Tue', 'Mon']
+source = ColumnDataSource(data)
+p = figure(width=800, height=300, y_range=DAYS, x_axis_type='datetime',
+           title="Commits by Time of Day (US/Central) 2012-2016")
+p.scatter(x='time', y=jitter('day', width=0.6, range=p.y_range),  source=source, alpha=0.3)
+p.xaxis.formatter.days = '%Hh'
+p.x_range.range_padding = 0
+p.ygrid.grid_line_color = None
+st.bokeh_chart(p, use_container_width=True)
+
+
 
 st.markdown("<h4 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h4>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color=st.session_state.legend,
