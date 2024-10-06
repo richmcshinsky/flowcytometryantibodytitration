@@ -153,7 +153,7 @@ def do_click(trace, points, state):
         webbrowser.open_new_tab(url)
         
 scatter.on_click(do_click)
-fig
+st.plotly_chart(fig, use_container_width=True)
 
 st.markdown("<h4 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h4>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color=st.session_state.legend,
