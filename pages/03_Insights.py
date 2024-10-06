@@ -139,9 +139,9 @@ st.plotly_chart(fig1, use_container_width=True)
 import webbrowser
 import matplotlib.pyplot as plt
 fig, ax = plt.subplots()
-ax.scatter(x=df["Supplier"], y=df["# of tests at optimal dilution"], picker=5)
+ax.scatter(x=res_p["Supplier"], y=res_p["# of tests at optimal dilution"], picker=5)
 def on_pick(event):
-    url = df["supplier link"].iloc[event.ind[0]]
+    url = res_p["supplier link"].iloc[event.ind[0]]
     webbrowser.open_new_tab(url)
 fig.canvas.mpl_connect('pick_event', on_pick)
 st.pyplot(fig, use_container_width=True)
