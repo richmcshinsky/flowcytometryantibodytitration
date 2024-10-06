@@ -82,7 +82,7 @@ st.markdown("<h3 style='text-align: center; color: black;'>Insights</h3>", unsaf
 
 st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data sources")
 
-t = res_p[["price per test", "price/test at optimal uL"]].dropna()
+t = res_p[["price per test", "price/test at optimal uL"]].replace("nan", None).dropna(how="any")
 st.write(t)
 avg_diff = round((pd.to_numeric(t["price per test"]) - pd.to_numeric(t["price/test at optimal uL"])).mean(),2)
 st.write(f"For the selected filters, on average the difference between the supplier recommended price per test and the price per test at the optimal dilution is: :blue[${avg_diff}]") 
