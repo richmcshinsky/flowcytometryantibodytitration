@@ -136,11 +136,24 @@ fig1.update_traces({'marker':{'size': size}})
 fig1.update_layout(hoverlabel=dict(font=dict(size=hover)))
 st.plotly_chart(fig1, use_container_width=True)
 
-import matplotlib.pyplot as plt
-fig = plt.figure()
-s = plt.scatter(res_p["Supplier"], res_p["# of tests at optimal dilution"])
-s.set_urls(res_p["supplier link"])
-st.pyplot(fig, use_container_width=True)
+import webbrowser
+import pandas as pd
+import plotly.graph_objs as go
+df = pd.DataFrame({'x': [1, 2, 3],
+                   'y': [1, 3, 2],
+                   'link': ['https://google.com', 'https://bing.com', 'https://duckduckgo.com']})
+
+fig = go.FigureWidget(layout={'hovermode': 'closest'})
+scatter = fig.add_scatter(x=df.x, y=df.y, mode='markers', marker={'size': 20})
+
+def do_click(trace, points, state):
+    if points.point_inds:
+        ind = points.point_inds[0]
+        url = df.link.iloc[ind]
+        webbrowser.open_new_tab(url)
+        
+scatter.on_click(do_click)
+fig
 
 st.markdown("<h4 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h4>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color=st.session_state.legend,
