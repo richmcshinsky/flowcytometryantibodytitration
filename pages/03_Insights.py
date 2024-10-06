@@ -146,18 +146,18 @@ p.scatter(x='Supplier', y='# of tests at optimal dilution', size=10, source=sour
 # taptool.callback = OpenURL(url=url)
 st.bokeh_chart(p, use_container_width=True)
 
-"""from bokeh.models import ColumnDataSource
+from bokeh.models import ColumnDataSource
 from bokeh.plotting import figure, show
 from bokeh.sampledata.commits import data
 from bokeh.transform import jitter
-SUP = res_p["Supplier"].unique()
+DAYS = res_p["Supplier"].unique()
 source = ColumnDataSource(res_p)
-p = figure(y_range=SUP)
-p.scatter(x='timSuppliere', y=jitter('# of tests at optimal dilution', width=0.6, range=p.y_range),  source=source, alpha=0.3)
+p = figure(width=800, height=300, y_range=DAYS)
+p.scatter(x='# of tests at optimal dilution', y=jitter('Supplier', width=0.6, range=p.y_range),  source=source, alpha=0.3)
 p.xaxis.formatter.days = '%Hh'
 p.x_range.range_padding = 0
 p.ygrid.grid_line_color = None
-st.bokeh_chart(p, use_container_width=True)"""
+st.bokeh_chart(p, use_container_width=True)
 
 
 
