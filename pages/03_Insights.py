@@ -136,18 +136,14 @@ fig1.update_traces({'marker':{'size': size}})
 fig1.update_layout(hoverlabel=dict(font=dict(size=hover)))
 st.plotly_chart(fig1, use_container_width=True)
 
-"""from bokeh.models import ColumnDataSource, OpenURL, TapTool
+from bokeh.models import ColumnDataSource, OpenURL, TapTool
 from bokeh.plotting import figure
 p = figure(tools="tap", x_range=res_p["Supplier"].unique(), x_axis_label="Supplier", y_axis_label="# of tests at optimal dilution")
-source = ColumnDataSource(data=dict(link=res_p["supplier link"]))
-p.scatter(data=res_p, x='Supplier', y='# of tests at optimal dilution', size=10, source=source)
+source = ColumnDataSource(data=dict(x=res_p["Supplier"], y=res_p["# of tests at optimal dilution"], link=res_p["supplier link"]))
+p.scatter(x='x', y='y', size=10, source=source)
 url = "@link"
 taptool = p.select(type=TapTool)
 taptool.callback = OpenURL(url=url)
-st.bokeh_chart(p, use_container_width=True)"""
-
-from bokeh import charts
-p = charts.Scatter(data=res_p, x='Supplier', y='# of tests at optimal dilution')
 st.bokeh_chart(p, use_container_width=True)
 
 
