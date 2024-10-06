@@ -139,7 +139,7 @@ st.plotly_chart(fig1, use_container_width=True)
 from bokeh.models import ColumnDataSource, OpenURL, TapTool
 from bokeh.plotting import figure
 p = figure(tools="tap", x_range=res_p["Supplier"].unique(), x_axis_label="Supplier", y_axis_label="# of tests at optimal dilution")
-source = ColumnDataSource(res_p.replace(' ', '_'))
+source = ColumnDataSource(res_p.replace(' ', '_').fillna("_"))
 p.scatter(x='Supplier', y='# of tests at optimal dilution', size=10, source=source)
 url = "@link"
 taptool = p.select(type=TapTool)
