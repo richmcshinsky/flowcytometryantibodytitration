@@ -140,7 +140,7 @@ import matplotlib.pyplot as plt
 fig = plt.figure()
 s = plt.scatter(res_p["Supplier"], res_p["# of tests at optimal dilution"])
 s.set_urls(res_p["supplier link"])
-st.pyplot(s, use_container_width=True)
+st.pyplot(fig, use_container_width=True)
 
 st.markdown("<h4 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h4>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color=st.session_state.legend,
