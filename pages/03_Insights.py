@@ -139,23 +139,11 @@ st.plotly_chart(fig1, use_container_width=True)
 from bokeh.models import ColumnDataSource, OpenURL, TapTool
 from bokeh.plotting import figure
 p = figure(tools="tap", x_range=res_p["Supplier"].unique(), x_axis_label="Supplier", y_axis_label="# of tests at optimal dilution")
-source = ColumnDataSource(res_p)
+source = ColumnDataSource(res_p.replace(' ', '_'))
 p.scatter(x='Supplier', y='# of tests at optimal dilution', size=10, source=source)
-# url = "@link"
-# taptool = p.select(type=TapTool)
-# taptool.callback = OpenURL(url=url)
-st.bokeh_chart(p, use_container_width=True)
-
-from bokeh.models import ColumnDataSource
-from bokeh.plotting import figure, show
-from bokeh.sampledata.commits import data
-from bokeh.transform import jitter
-DAYS = res_p["Supplier"].unique()
-source = ColumnDataSource(res_p)
-p = figure(width=800, height=300, y_range=DAYS)
-p.scatter(x='# of tests at optimal dilution', y=jitter('Supplier', width=0.6, range=p.y_range),  source=source, alpha=0.3)
-p.x_range.range_padding = 0
-p.ygrid.grid_line_color = None
+url = "@link"
+taptool = p.select(type=TapTool)
+taptool.callback = OpenURL(url=url)
 st.bokeh_chart(p, use_container_width=True)
 
 
