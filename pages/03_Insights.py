@@ -139,26 +139,25 @@ st.plotly_chart(fig1, use_container_width=True)
 from bokeh.models import ColumnDataSource, OpenURL, TapTool
 from bokeh.plotting import figure
 p = figure(tools="tap", x_range=res_p["Supplier"].unique(), x_axis_label="Supplier", y_axis_label="# of tests at optimal dilution")
-source = ColumnDataSource({"x":res_p["Supplier"], "y":res_p["# of tests at optimal dilution"], "link":res_p["supplier link"]})
-p.circle(x='x', y='y', size=10, source=source)
+source = ColumnDataSource(res_p)
+p.scatter(x='Supplier', y='# of tests at optimal dilution', size=10, source=source)
 # url = "@link"
 # taptool = p.select(type=TapTool)
 # taptool.callback = OpenURL(url=url)
 st.bokeh_chart(p, use_container_width=True)
 
-from bokeh.models import ColumnDataSource
+"""from bokeh.models import ColumnDataSource
 from bokeh.plotting import figure, show
 from bokeh.sampledata.commits import data
 from bokeh.transform import jitter
-DAYS = ['Sun', 'Sat', 'Fri', 'Thu', 'Wed', 'Tue', 'Mon']
-source = ColumnDataSource(data)
-p = figure(width=800, height=300, y_range=DAYS, x_axis_type='datetime',
-           title="Commits by Time of Day (US/Central) 2012-2016")
-p.scatter(x='time', y=jitter('day', width=0.6, range=p.y_range),  source=source, alpha=0.3)
+SUP = res_p["Supplier"].unique()
+source = ColumnDataSource(res_p)
+p = figure(y_range=SUP)
+p.scatter(x='timSuppliere', y=jitter('# of tests at optimal dilution', width=0.6, range=p.y_range),  source=source, alpha=0.3)
 p.xaxis.formatter.days = '%Hh'
 p.x_range.range_padding = 0
 p.ygrid.grid_line_color = None
-st.bokeh_chart(p, use_container_width=True)
+st.bokeh_chart(p, use_container_width=True)"""
 
 
 
