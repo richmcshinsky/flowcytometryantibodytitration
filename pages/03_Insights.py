@@ -154,7 +154,6 @@ DAYS = res_p["Supplier"].unique()
 source = ColumnDataSource(res_p)
 p = figure(width=800, height=300, y_range=DAYS)
 p.scatter(x='# of tests at optimal dilution', y=jitter('Supplier', width=0.6, range=p.y_range),  source=source, alpha=0.3)
-p.xaxis.formatter.days = '%Hh'
 p.x_range.range_padding = 0
 p.ygrid.grid_line_color = None
 st.bokeh_chart(p, use_container_width=True)
