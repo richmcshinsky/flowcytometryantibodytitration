@@ -136,16 +136,11 @@ fig1.update_traces({'marker':{'size': size}})
 fig1.update_layout(hoverlabel=dict(font=dict(size=hover)))
 st.plotly_chart(fig1, use_container_width=True)
 
-import webbrowser
 import matplotlib.pyplot as plt
-fig, ax = plt.subplots()
-ax.scatter(x=res_p["Supplier"], y=res_p["# of tests at optimal dilution"], picker=5)
-def on_pick(event):
-    url = res_p["supplier link"].iloc[event.ind[0]]
-    webbrowser.open_new_tab(url)
-fig.canvas.mpl_connect('pick_event', on_pick)
+#fig = plt.figure()
+fig = plt.scatter(res_p["Supplier"], res_p["# of tests at optimal dilution"])
+fig.set_urls(res_p["supplier link"])
 st.pyplot(fig, use_container_width=True)
-
 
 st.markdown("<h4 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h4>", unsafe_allow_html=True)
 fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL", color=st.session_state.legend,
