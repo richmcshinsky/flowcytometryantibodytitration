@@ -136,16 +136,15 @@ fig1.update_traces({'marker':{'size': size}})
 fig1.update_layout(hoverlabel=dict(font=dict(size=hover)))
 st.plotly_chart(fig1, use_container_width=True)
 
-from bokeh.models import ColumnDataSource, OpenURL, TapTool
-from bokeh.plotting import figure
-p = figure(tools="tap", x_range=res_p["Supplier"].unique(), x_axis_label="Supplier", y_axis_label="# of tests at optimal dilution")
-source = ColumnDataSource(res_p.replace(' ', '_').fillna("_"))
-p.scatter(x='Supplier', y='# of tests at optimal dilution', size=10, source=source)
-url = "@link"
-taptool = p.select(type=TapTool)
-taptool.callback = OpenURL(url=url)
-st.bokeh_chart(p, use_container_width=True)
-
+import webbrowser
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots()
+ax.scatter(x=df["Supplier"], y=df["# of tests at optimal dilution"], picker=5)
+def on_pick(event):
+    url = df["supplier link"].iloc[event.ind[0]]
+    webbrowser.open_new_tab(url)
+fig.canvas.mpl_connect('pick_event', on_pick)
+st.pyplot(fig, use_container_width=True)
 
 
 st.markdown("<h4 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h4>", unsafe_allow_html=True)
