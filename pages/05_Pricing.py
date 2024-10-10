@@ -44,7 +44,7 @@ with st.container():
     st.write("""A major savings in cost comes from employee time spent in optimizing or having to redo an expirement because
              and antibody failed due to a bad dilution. Traditionally, purchasing amounts have been done by a history kept at the lab,
              what someone did before that worked, or hours and hours of research. Assuming a lab manager salary of 
-             $90,000/year or $45/hour, not including benefits, then for every 8 hours spent reading published papers, optimizing, 
+             \$90,000/year or \$45/hour, not including benefits, then for every 8 hours spent reading published papers, optimizing, 
              reording, or other complications would correlate to :blue[$360/day] not counting material cost as well. 
              Assuming that the employee knows where to look and knows what to do.""")
 
