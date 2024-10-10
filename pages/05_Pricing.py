@@ -26,7 +26,7 @@ with st.container():
              For the 21 in the final, summing the difference between supplier
              recommended and optimal dilution pricing per test, the total savings would be :blue[$54.61/test].""")
     st.write(""""We aimed to test 192 samples per experiment, which translates to approximately \$42,000 of reagent costs 
-             (average cost of \∼\$2.5/reagent/sample) for three 28-color panels. 
+             (average cost of ∼\$2.5/reagent/sample) for three 28-color panels." 
              (https://www.cell.com/cell-reports-methods/fulltext/S2667-2375(23)00283-7). 
              Although antibodies may seem cheap, they add up fast and can have a dramatic overall savings. Even a 20% reduction here would have 
              reduced costs by :blue[$8,400] for the one paper.""")
