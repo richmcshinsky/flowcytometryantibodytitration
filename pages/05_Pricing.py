@@ -25,9 +25,9 @@ with st.container():
              33 commercially purchased antibodies tested, 21 included in the final. 
              For the 21 in the final, summing the difference between supplier
              recommended and optimal dilution pricing per test, the total savings would be :blue[$54.61/test].""")
-    st.write("""We aimed to test 192 samples per experiment, which translates to approximately $42,000 of reagent costs 
+    st.write("""We aimed to test 192 samples per experiment, which translates to approximately \$42,000 of reagent costs 
              (average cost of ∼$2.5/reagent/sample) for three 28-color panels. 
-             (https://www.cell.com/cell-reports-methods/fulltext/S2667-2375(23)00283-7?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2667237523002837%3Fshowall%3Dtrue). 
+             (https://www.cell.com/cell-reports-methods/fulltext/S2667-2375(23)00283-7). 
              Although antibodies may seem cheap, they add up fast and can have a dramatic overall savings. Even a 20% reduction here would have 
              reduced costs by :blue[$8,400] for the one paper.""")
     st.write("""For common cases, ordering appopriate amounts antibodies can draw from personal
