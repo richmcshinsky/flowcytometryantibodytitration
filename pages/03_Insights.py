@@ -61,7 +61,7 @@ columns_simple = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissu
                   "Test Preparation", "Target Species"]
 
 columns_df = ["Source", "supplier link", "Antigen", "Clone", "Conjugate", "Supplier", "# of tests at optimal dilution", 
-             "price per test", "price/test at optimal uL", "reorder frequency at 10 tests/week"]
+             "price per test (supplier)", "price/test at optimal uL", "reorder frequency at 10 tests/week"]
 
 #st.write("""Welecome to the insights page! Figures are visable to everyone, but in order to see the underlying 
 #         data and links a valid subscription is needed.""")
