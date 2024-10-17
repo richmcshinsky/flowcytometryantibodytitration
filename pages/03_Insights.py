@@ -27,7 +27,7 @@ def split_frame(input_df, rows):
 @st.cache_data(show_spinner=False)
 def load_data():
     conn = st.connection("gsheets", type=GSheetsConnection)
-    df = conn.read(worksheet="testing", ttl="30m")
+    df = conn.read(worksheet="database", ttl="30m")
     df["Supplier"] = df["Supplier"].replace(["Biolegend", "BL"], "BioLegend")
     df["Supplier"] = df["Supplier"].replace(["BD Horizon", "BD pharmingen", "BD Biosciences", "BD Pharm",
                                                     "BD Pharmingen", "BD Special order reagent", "BD OptiBuild",
