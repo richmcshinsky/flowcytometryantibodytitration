@@ -1,5 +1,4 @@
 import streamlit as st
-# import streamlit_pandas as sp
 import pandas as pd
 from streamlit_gsheets import GSheetsConnection
 from st_paywall import add_auth
@@ -15,8 +14,8 @@ def split_frame(input_df, rows):
 @st.cache_data(show_spinner=False)
 def load_data():
     conn = st.connection("gsheets", type=GSheetsConnection)
-    df = conn.read(worksheet="testing", ttl="30m")
-    df = normalize_antigens(df)
+    df = conn.read(worksheet="database", ttl="30m")
+    df = normalize_antigens(df)s
     return df
 
 def normalize_antigens(df):

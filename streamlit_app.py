@@ -1,10 +1,6 @@
 import streamlit as st
 from st_paywall import add_auth
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
-  
-# TODO: data: validation second pass
-# TODO: make repository sample a hard coded file saved in project to save hits to google sheets connection
-
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
@@ -17,10 +13,6 @@ with st.sidebar:
     st.page_link('pages/04_Contact.py', label='Contact')
     st.page_link('pages/05_Pricing.py', label='Pricing')
     st.page_link('pages/06_Guided.py', label='Guided')
-    #st.page_link('pages/07_Tools.py', label='Tools')
-    #st.page_link('pages/08_FAQ.py', label='FAQ')
-    # References
-    # Search
 
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1> ", unsafe_allow_html=True)
 # st.html("""<a href="https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27"><img src="https://drive.google.com/file/d/1j4VZ_kqPD3r1DpsmHOiLVZyVF3zGRsEZ/view?usp=sharing" width="200" /></a>""")
@@ -28,8 +20,8 @@ st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1> ", unsafe
 st.divider()
 
 st.subheader("Welcome")
-st.write("""This is a database of flow cytometry antibody titration data.
-            You can look up titration data for planning experiments and for making 
+st.write("""This is a database of flow cytometry antibody data.
+            You can look up antibody data for planning experiments and for making 
             informed purchasing decisions. Data is collected from various publications
             and through user contributions. """)
 
