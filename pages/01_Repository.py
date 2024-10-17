@@ -15,7 +15,7 @@ def split_frame(input_df, rows):
 def load_data():
     conn = st.connection("gsheets", type=GSheetsConnection)
     df = conn.read(worksheet="database", ttl="30m")
-    df = normalize_antigens(df)s
+    df = normalize_antigens(df)
     return df
 
 def normalize_antigens(df):
