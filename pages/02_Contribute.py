@@ -15,7 +15,7 @@ with st.sidebar:
     st.page_link('streamlit_app.py', label='Home')
     st.page_link('pages/01_Learn.py', label='Learn')               # educational materials, each to learn about titrations and how to's. Easy to add links to this tab from other parts of site
     st.page_link('pages/02_Contribute.py', label='Contribute')     # add data to repository
-    st.page_link('pages/03_Discover.py', label='Compare')          # tool: see pricing comparisons and other figures
+    st.page_link('pages/03_Discover.py', label='Discover')          # tool: see pricing comparisons and other figures
     st.page_link('pages/04_Create.py', label='Create')             # tool: to generate plots
     st.page_link('pages/05_Plan.py', label='Plan')                 # tool: guided walkthrough 
     st.page_link('pages/06_Pricing.py', label='Pricing')      # pricing, faq, contact
@@ -49,6 +49,7 @@ with st.expander("Option 1: Upload a CSV file for review with matching column na
             import smtplib
             from email.mime.text import MIMEText
             secret = os.getenv("SECRET")
+            u = os.getenv("U")
             msg = MIMEText("Success on contribution, review added data and reply")
             msg['From'] = "fcat.repository@gmail.com"
             msg['To'] = "fcat.repository@gmail.com"
@@ -63,5 +64,5 @@ with st.expander("Option 1: Upload a CSV file for review with matching column na
             st.error("File failed to upload, try. again or send over email.")
 
 with st.expander("Option 2: Connect over email"):
-    st.write("fcat.repository@gmail.com")
+    st.write("richard.mcshinsky@metrdy.com")
 
