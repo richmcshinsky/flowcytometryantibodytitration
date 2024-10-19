@@ -17,7 +17,6 @@ with st.sidebar:
 
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 st.divider()
-st.markdown("<h3 style='text-align: center; color: black;'>Pricing</h3>", unsafe_allow_html=True)
 
 with st.container():
     st.markdown("<h2 style='text-align: center; color: black;'>Repository benefits</h2>", unsafe_allow_html=True)
