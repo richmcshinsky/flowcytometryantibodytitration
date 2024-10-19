@@ -45,10 +45,10 @@ with col2:
     if st.button(label="Create", use_container_width=True, help="All in one tool to generate advanced figures"):
         st.switch_page("pages/04_Create.py")
 with col1:
-    if st.button(label="Plan", use_container_width=True, help="Guided walkthrough tool for painless results"):
+    if st.button(type="primary", label="Plan", use_container_width=True, help="Guided walkthrough tool for painless results"):
         st.switch_page("pages/05_Plan.py")
 with col2:
-    if st.button(type="primary", label="Pricing", use_container_width=True, help="Product pricing an access instructions"):
+    if st.button(label="Pricing", use_container_width=True, help="Product pricing an access instructions"):
         st.switch_page("pages/06_Pricing.py")
 
 st.subheader("Watch our short demo video to see what you can do!")

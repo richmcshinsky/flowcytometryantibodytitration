@@ -15,7 +15,7 @@ with st.sidebar:
     st.page_link('pages/03_Discover.py', label='Compare')          # tool: see pricing comparisons and other figures
     st.page_link('pages/04_Create.py', label='Create')             # tool: to generate plots
     st.page_link('pages/05_Plan.py', label='Plan')                 # tool: guided walkthrough 
-    st.page_link('pages/06_Pricing.py', label='Product Info')      # pricing, faq, contacts
+    st.page_link('pages/06_Pricing.py', label='Pricing')      # pricing, faq, contacts
 
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 st.divider()
