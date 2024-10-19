@@ -63,8 +63,26 @@ columns_simple = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissu
 columns_df = ["Source", "supplier link", "Antigen", "Clone", "Conjugate", "Supplier", "# of tests at optimal dilution", 
              "price per test (supplier)", "price/test at optimal uL", "reorder frequency at 10 tests/week"]
 
-#st.write("""Welecome to the insights page! Figures are visable to everyone, but in order to see the underlying 
-#         data and links a valid subscription is needed.""")
+
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["Explore", "Compare", "Learn", "Create", "Plan"])
+# explore: dig deep, research by finding target and looking deeper into titeration images and such
+# Compare: figures comparign price at optimal diultion
+# Learn: educational materials, each to learn about titrations and how to's. Easy to add links to this tab from other parts of site
+# Create: algorithms that will generate figures from user's input data
+# Plan: tool to design panels?
+
+with tab1:
+    st.header("A cat")
+with tab2:
+    st.header("A dog")
+with tab3:
+    st.header("An owl")
+with tab4:
+    st.header("A dog")
+with tab5:
+    st.header("An owl")
+
+
 
 st.divider()
 st.markdown("<h3 style='text-align: center; color: black;'>Filters</h3>", unsafe_allow_html=True)
