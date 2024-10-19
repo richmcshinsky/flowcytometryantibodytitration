@@ -54,7 +54,7 @@ def normalize_antigens(df):
 columns_simple = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Supplier", "Amount Tested (uL)", 
                "Amount Tested (ng)", "Optimal Amount (µL/100 µL)", "Seperation Index", "Samples/vial", 
                "Cost/sample ($USD)", "supplier price", "Source", "supplier link", "supplier # tests",
-               "# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]
+               "# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week"]
 
 if "step" not in st.session_state:
     st.session_state["step"] = "Step 1"
@@ -171,7 +171,7 @@ elif st.session_state["step"] == "Step 5":
     
     st.write("Number of tests at optimal dilution comparison between suppliers")
     res_p = df_g[["Source", "supplier link", "Antigen", "Supplier", "# of tests at optimal dilution", 
-                "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]].dropna(subset=["price/test at optimal uL"]).drop_duplicates()
+                "price/test at optimal uL", "reorder frequency at 10 tests/week"]].dropna(subset=["price/test at optimal uL"]).drop_duplicates()
     res_p = res_p[res_p["price/test at optimal uL"] != "nan"]
     res_p = res_p[res_p["price/test at optimal uL"] != 0]
     fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution")
@@ -181,12 +181,12 @@ elif st.session_state["step"] == "Step 5":
     fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL")
     st.plotly_chart(fig, use_container_width=True)
 
-    st.write("reorder frequency at 10 tests/week (years) comparison between suppliers")
-    fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week (years)")
+    st.write("reorder frequency at 10 tests/week comparison between suppliers")
+    fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week")
     st.plotly_chart(fig, use_container_width=True)
 
     st.dataframe(data=df_g[["Source", "supplier link", "Antigen", "Supplier", "# of tests at optimal dilution", 
-                "price/test at optimal uL", "reorder frequency at 10 tests/week (years)"]], use_container_width=True, 
+                "price/test at optimal uL", "reorder frequency at 10 tests/week"]], use_container_width=True, 
                 column_config={"Source": st.column_config.LinkColumn(display_text="Source"),
                                 "supplier link": st.column_config.LinkColumn(display_text="Supplier Link")})
     
