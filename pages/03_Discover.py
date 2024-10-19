@@ -8,14 +8,15 @@ import pandas as pd
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
+# builds the sidebar menu
 with st.sidebar:
     st.page_link('streamlit_app.py', label='Home')
-    st.page_link('pages/01_Repository.py', label='Repository')
-    st.page_link('pages/02_Contribute.py', label='Contribute')
-    st.page_link('pages/03_Insights.py', label='Insights')
-    st.page_link('pages/04_Contact.py', label='Contact')
-    st.page_link('pages/05_Pricing.py', label='Pricing')
-    st.page_link('pages/06_Guided.py', label='Guided')
+    st.page_link('pages/01_Learn.py', label='Learn')               # educational materials, each to learn about titrations and how to's. Easy to add links to this tab from other parts of site
+    st.page_link('pages/02_Contribute.py', label='Contribute')     # add data to repository
+    st.page_link('pages/03_Discover.py', label='Compare')          # tool: see pricing comparisons and other figures
+    st.page_link('pages/04_Create.py', label='Create')             # tool: to generate plots
+    st.page_link('pages/05_Plan.py', label='Plan')                 # tool: guided walkthrough 
+    st.page_link('pages/06_Pricing.py', label='Product Info')      # pricing, faq, contact
 
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 
@@ -62,26 +63,6 @@ columns_simple = ["Antigen", "Clone", "Conjugate", "Conjugate Type", "Test Tissu
 
 columns_df = ["Source", "supplier link", "Antigen", "Clone", "Conjugate", "Supplier", "# of tests at optimal dilution", 
              "price per test (supplier)", "price/test at optimal uL", "reorder frequency at 10 tests/week"]
-
-
-tab1, tab2, tab3, tab4, tab5 = st.tabs(["Explore", "Compare", "Learn", "Create", "Plan"])
-# explore: dig deep, research by finding target and looking deeper into titeration images and such
-# Compare: figures comparign price at optimal diultion
-# Learn: educational materials, each to learn about titrations and how to's. Easy to add links to this tab from other parts of site
-# Create: algorithms that will generate figures from user's input data
-# Plan: tool to design panels?
-
-with tab1:
-    st.header("A cat")
-with tab2:
-    st.header("A dog")
-with tab3:
-    st.header("An owl")
-with tab4:
-    st.header("A dog")
-with tab5:
-    st.header("An owl")
-
 
 
 st.divider()
