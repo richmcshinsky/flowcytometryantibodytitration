@@ -77,4 +77,5 @@ uploaded_files = st.file_uploader("Add single or multiple FCS files", accept_mul
 for uploaded_file in uploaded_files:
     st.write(uploaded_file)
     st.write(uploaded_file.name)
-    df_events = fk.Sample(uploaded_file.name).as_dataframe(source='raw')
+    st.write(uploaded_file._file_urls.upload_url)
+    df_events = fk.Sample(uploaded_file._file_urls.upload_url).as_dataframe(source='raw')
