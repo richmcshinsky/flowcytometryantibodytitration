@@ -1,9 +1,7 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
-
 
 # builds the sidebar menu
 with st.sidebar:
@@ -13,7 +11,6 @@ with st.sidebar:
     st.page_link('pages/05_Plan.py', label='Plan')                 # tool: guided walkthrough 
     st.page_link('pages/06_Pricing.py', label='Pricing')     
     st.page_link('pages/02_Contribute.py', label='Contribute') 
-
     
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 st.divider()
@@ -66,32 +63,32 @@ def calc_index(dfs, con, fl="FL12-A", ab="CD4 BV421-A"):
     return sep_l, sta_l
 
 
-uploaded_files = st.file_uploader("Add single or multiple FCS files", accept_multiple_files=True, type='fcs')
-dfs = []
-con_fs = []
-for uploaded_file in uploaded_files:
-    con_f = uploaded_file.name[:-4]
-    con_fs.append(con_f)
-    df_events = fk.Sample(uploaded_file).as_dataframe(source='raw')
-    dfs.append(df_events)
-sep_l, sta_l = calc_index(dfs, con_fs)
+col1, col2, col3 = st.columns([1, 5, 1])
+with col2:
+    uploaded_files = st.file_uploader("Add single or multiple FCS files", accept_multiple_files=True, type='fcs')
+    dfs = []
+    con_fs = []
+    for uploaded_file in uploaded_files:
+        con_f = uploaded_file.name[:-4]
+        con_fs.append(con_f)
+        df_events = fk.Sample(uploaded_file).as_dataframe(source='raw')
+        dfs.append(df_events)
+    sep_l, sta_l = calc_index(dfs, con_fs)
 
-df = pd.DataFrame(np.array([con_fs, sep_l, sta_l]).T, columns=["Concentration", "Seperation Index", "Stain Index"]).astype(float).sort_values(by=["Concentration"])
+    df = pd.DataFrame(np.array([con_fs, sep_l, sta_l]).T, columns=["Concentration", "Seperation Index", "Stain Index"]).astype(float).sort_values(by=["Concentration"])
 
-if not df.empty:
-    import matplotlib.pyplot as plt
-    from matplotlib.backends.backend_agg import RendererAgg
-    _lock = RendererAgg.lock
-    with _lock:
-        fig, ax = plt.subplots()
-        ax.plot([str(x) for x in df["Concentration"].to_list()], df["Seperation Index"],label="seperation index")
-        ax.plot([str(x) for x in df["Concentration"].to_list()], df["Stain Index"], label="stain index")
-        ax.set_xlabel("Index")
-        ax.set_ylabel("Concentration")
-        ax.set_title("Seperation and Stain Index for uploaded data")
-        col1, col2, col3 = st.columns([1, 3, 1])
-        with col2:
+    if not df.empty:
+        import matplotlib.pyplot as plt
+        from matplotlib.backends.backend_agg import RendererAgg
+        _lock = RendererAgg.lock
+        with _lock:
+            fig, ax = plt.subplots()
+            ax.plot([str(x) for x in df["Concentration"].to_list()], df["Seperation Index"],label="seperation index")
+            ax.plot([str(x) for x in df["Concentration"].to_list()], df["Stain Index"], label="stain index")
+            ax.set_xlabel("Index")
+            ax.set_ylabel("Concentration")
+            ax.set_title("Seperation and Stain Index for uploaded data")
             st.pyplot(fig)
 
-    st.line_chart(df, x="Concentration", y=["Seperation Index", "Stain Index"])
+        st.line_chart(df, x="Concentration", y=["Seperation Index", "Stain Index"])
 
