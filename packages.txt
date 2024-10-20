@@ -6,4 +6,3 @@ liblapack-dev
 libfreetype6-dev
 python-dev
 python-tk
-python-pip
