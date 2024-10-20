@@ -86,7 +86,6 @@ with col2:
         df_events = FlowCal.gate.high_low(df_events.to_numpy(), channels=[1, 3])
         df_events = FlowCal.gate.density2d(df_events, channels=[1, 3], gate_fraction=0.75)
         df_events = pd.DataFrame(df_events, columns=cols)
-        st.write(df_events)
         dfs.append(df_events)
     if not df_events.empty:
         channel_choice = st.selectbox("Select your target channel", options=df_events.columns, index=None)
