@@ -64,6 +64,7 @@ def calc_index(dfs, channel):
         sta_l.append(sta)
     return sep_l, sta_l
 
+st.markdown("<h3 style='text-align: center; color: black;'>Upload your FCS files and auto generate a seperation and stain index chart</h3>", unsafe_allow_html=True)
 
 col1, col2, col3 = st.columns([1, 5, 1])
 with col2:
@@ -92,6 +93,4 @@ with col2:
                     ax.set_ylabel("Concentration")
                     ax.set_title("Seperation and Stain Index for uploaded data")
                     st.pyplot(fig)
-
-                st.line_chart(df, x="Concentration", y=["Seperation Index", "Stain Index"])
 
