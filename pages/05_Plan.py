@@ -14,7 +14,10 @@ with st.sidebar:
     st.page_link('pages/06_Pricing.py', label='Pricing')     
     st.page_link('pages/02_Contribute.py', label='Contribute') 
 
-st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
+#st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
+col1, col2, col3 = st.columns([2,3,2], gap="small")
+with col2:
+    st.image("data/logoex.png")
 st.divider()
 
 
