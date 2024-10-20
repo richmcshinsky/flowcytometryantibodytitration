@@ -9,3 +9,4 @@ plotly-express==0.4.1
 streamlit-dynamic-filters
 matplotlib==3.7.3
 flowkit
+sklearn
