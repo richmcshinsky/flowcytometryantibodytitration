@@ -23,7 +23,6 @@ with col2:
 with col3:
     st.markdown('##')
     st.markdown('###')
-    st.markdown('###')
     st.link_button("Pronunciation", "https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27")
 
 # st.html("""<a href="https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27"><img src="https://drive.google.com/file/d/1j4VZ_kqPD3r1DpsmHOiLVZyVF3zGRsEZ/view?usp=sharing" width="200" /></a>""")
