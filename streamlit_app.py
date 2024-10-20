@@ -13,7 +13,7 @@ with st.sidebar:
     st.page_link('pages/06_Pricing.py', label='Pricing')     
     st.page_link('pages/02_Contribute.py', label='Contribute') 
     
-st.logo("data/logoex.png")
+st.logo("data/logoex.png", size="medium")
 
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 col1, col2, col3, col4 = st.columns([2,3,1,1], gap="small")
