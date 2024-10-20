@@ -6,7 +6,7 @@ from streamlit_dynamic_filters import DynamicFilters
 import pandas as pd
 
 
-st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
+st.set_page_config(page_title='Metrdy', layout="wide")
 
 with st.sidebar:
     st.page_link('streamlit_app.py', label='Home')

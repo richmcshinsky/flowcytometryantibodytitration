@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import RendererAgg
 
-st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
+st.set_page_config(page_title='Metrdy', layout="wide")
 
 # builds the sidebar menu
 with st.sidebar:

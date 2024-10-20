@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from streamlit_gsheets import GSheetsConnection
 
-st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
+st.set_page_config(page_title='Metrdy', layout="wide")
 
 @st.cache_data
 def convert_df(df):
