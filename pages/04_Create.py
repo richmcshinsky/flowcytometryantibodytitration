@@ -56,24 +56,26 @@ def seperation_stain_index_gauss(df, channel="FSC-H"):
         sta_ind = stain_index(neg, pos)
     return sep_ind, sta_ind
 
-def calc_index(con = [0.25, 0.5, 1, 2, 4], fl = "FL12-A", ab = "CD4 BV421-A"):
-    sep_l, sta_l, data, con_l = [], [], [], []
-    for f in con:
-        sample = fk.Sample(str(f) + ".fcs")
-        df_events = sample.as_dataframe(source='raw')
+def calc_index(dfs, con, fl="FL12-A", ab="CD4 BV421-A"):
+    sep_l, sta_l = [], []
+    for df_events in dfs:
         sep, sta = seperation_stain_index_gauss(df_events, channel=fl)
         sep_l.append(sep)
         sta_l.append(sta)
-        data += df_events[fl][ab].to_list()
-        con_l += [f] * len(df_events[fl])
-
-        plt.plot([str(x) for x in con], sep_l,label="seperation index")
-        plt.plot([str(x) for x in con], sta_l, label="stain index")
-        plt.legend()
-        plt.show()
+        st.write("seperation index = ", sep)
+        st.write("stain index = ", sta)
+    plt.plot([str(x) for x in con], sep_l,label="seperation index")
+    plt.plot([str(x) for x in con], sta_l, label="stain index")
+    plt.legend()
+    plt.show()
 
 
 uploaded_files = st.file_uploader("Add single or multiple FCS files", accept_multiple_files=True, type='fcs')
+dfs = []
+con_fs = []
 for uploaded_file in uploaded_files:
+    con_f = uploaded_file.name[:-4]
+    con_fs.append(con_f)
     df_events = fk.Sample(uploaded_file).as_dataframe(source='raw')
-    st.write(df_events["FL9-A"])
+    dfs.append(df_events)
+calc_index(dfs, con_fs)
