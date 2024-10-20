@@ -21,21 +21,21 @@ st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1> ", unsafe
 st.divider()
 
 st.subheader("Welcome")
-st.write("""This is a database of flow cytometry antibody data.
-            You can look up antibody data for planning experiments and for making 
-            informed purchasing decisions. Data is collected from various publications
-            and through user contributions. """)
+st.write("""We aim to democratize flow cytometry antibody data and make tools that save time and money.
+            You can look up curated data from publications and user contributions to
+            easily make informed purchasing decisions between suppliers at optimal 
+            concentrations from validated research. Use our tools to easily generate publication 
+            quality figures from your own data. Or contribute to the repository to be part of the
+            Metrdy movement.""")
 
 st.subheader("What brings you here today?")
 
-col1 = st.columns(1, gap="small")
-with col1:
-    if st.button(label="Discover", use_container_width=True, help="See visualizations and insights to compare pricing between suppliers and other data"):
-        st.switch_page("pages/03_Discover.py")
-    if st.button(label="Create", use_container_width=True, help="All in one tool to generate advanced figures"):
-        st.switch_page("pages/04_Create.py")
-    if st.button(type="primary", label="Plan", use_container_width=True, help="Guided walkthrough tool for painless results"):
-        st.switch_page("pages/05_Plan.py")
+if st.button(label="Discover", use_container_width=True, help="See visualizations and insights to compare pricing between suppliers and other data"):
+    st.switch_page("pages/03_Discover.py")
+if st.button(label="Create", use_container_width=True, help="All in one tool to generate advanced figures"):
+    st.switch_page("pages/04_Create.py")
+if st.button(type="primary", label="Plan", use_container_width=True, help="Guided walkthrough tool for painless results"):
+    st.switch_page("pages/05_Plan.py")
 
 st.subheader("Watch our short demo video to see what you can do!")
 
