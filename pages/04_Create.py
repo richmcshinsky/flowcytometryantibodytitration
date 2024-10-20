@@ -78,5 +78,6 @@ st.write(con_f)
 sep_l, sta_l = calc_index(dfs, con_fs)
 st.write("seperation index = ", sep_l)
 st.write("stain index = ", sta_l)
+st.write(pd.DataFrame(np.array([con_fs, sep_l, sta_l]).T, columns=["Concentration", "Seperation Index", "Stain Index"]))
 st.line_chart(pd.DataFrame(np.array([con_fs, sep_l, sta_l]).T, columns=["Concentration", "Seperation Index", "Stain Index"]),
               x="Concentration", y=["Seperation Index", "Stain Index"])
