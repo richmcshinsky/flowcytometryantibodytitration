@@ -83,9 +83,9 @@ from matplotlib.backends.backend_agg import RendererAgg
 _lock = RendererAgg.lock
 with _lock:
     fig, ax = plt.subplots()
-    ax = fig.plot([str(x) for x in df["Concentration"].to_list()], df["Seperation Index"],label="seperation index")
-    ax = fig.plot([str(x) for x in df["Concentration"].to_list()], df["Stain Index"], label="stain index")
-    st.pyplot(ax)
+    ax.plot([str(x) for x in df["Concentration"].to_list()], df["Seperation Index"],label="seperation index")
+    ax.plot([str(x) for x in df["Concentration"].to_list()], df["Stain Index"], label="stain index")
+    st.pyplot(fig)
 st.pyplot()
 
 st.line_chart(df, x="Concentration", y=["Seperation Index", "Stain Index"])
