@@ -83,9 +83,11 @@ with col2:
         con_fs.append(uploaded_file.name[:-4])
         df_events = fk.Sample(uploaded_file).as_dataframe(source='raw')
 
-        s = FlowCal.gate.high_low(df_events.to_numpy(), channels=[1, 3])
-        st.write(s)
-        s = FlowCal.gate.density2d(s, channels=[1, 3], gate_fraction=0.75)
+        st.write(len(df_events))
+        df_events = FlowCal.gate.high_low(df_events.to_numpy(), channels=[1, 3])
+        st.write(len(df_events))
+        df_events = FlowCal.gate.density2d(df_events, channels=[1, 3], gate_fraction=0.75)
+        st.write(len(df_events))
 
         dfs.append(df_events)
     if not df_events.empty:
