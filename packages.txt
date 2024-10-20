@@ -1,0 +1,9 @@
+gcc
+g++
+gfortran
+libblas-dev
+liblapack-dev
+libfreetype6-dev
+python-dev
+python-tk
+python-pip
