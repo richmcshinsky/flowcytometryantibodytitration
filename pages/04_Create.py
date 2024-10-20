@@ -89,9 +89,9 @@ if not df.empty:
         ax.set_xlabel("Index")
         ax.set_ylabel("Concentration")
         ax.set_title("Seperation and Stain Index for uploaded data")
-        st.pyplot(fig)
+        col1, col2, col3 = st.columns([1, 3, 1])
+        with col2:
+            st.pyplot(fig)
 
     st.line_chart(df, x="Concentration", y=["Seperation Index", "Stain Index"])
 
-    fig = px.line(df, x="Concentration", y=["Seperation Index", "Stain Index"], color=["Seperation Index", "Stain Index"])
-    st.plotly_chart(fig, use_container_width=True)
