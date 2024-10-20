@@ -15,8 +15,8 @@ with st.sidebar:
     
 
 
-st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1> ", unsafe_allow_html=True)
-st.markdown("<h3 style='text-align: center; color: black;'>Cyto<u>metr</u>y Antibo<u>dy</u> Database</h3> ", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
+st.markdown("""<h3 href="https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27" style='text-align: center; color: black;'>Cyto<u>metr</u>y Antibo<u>dy</u> Database</h3>""", unsafe_allow_html=True)
 
 # st.html("""<a href="https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27"><img src="https://drive.google.com/file/d/1j4VZ_kqPD3r1DpsmHOiLVZyVF3zGRsEZ/view?usp=sharing" width="200" /></a>""")
 # st.markdown("[![Click me](./app/static/soundicon.png)](https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27)")
