@@ -161,27 +161,56 @@ elif st.session_state["step"] == "Step 5":
                     (df["Clone"] == st.session_state["target"])]
     
     # show graph of cost/sample and graph of separation index by other (fluorophore or clone)
-    with st.expander("Without a subscription you can see one row of the repo data. With a subscription see all data as well as visualizations comparing supplier pricing"):
-         st.dataframe(df_g.iloc[0])
-
-    add_auth(required=True)
-
     st.write("If the plots are empty, it's becuase there wasn't good pricing data to show.")
     
-    st.write("Number of tests at optimal dilution comparison between suppliers")
-    res_p = df_g[["Source", "supplier link", "Antigen", "Supplier", "# of tests at optimal dilution", 
-                "price/test at optimal uL", "reorder frequency at 10 tests/week"]].dropna(subset=["price/test at optimal uL"]).drop_duplicates()
-    res_p = res_p[res_p["price/test at optimal uL"] != "nan"]
-    res_p = res_p[res_p["price/test at optimal uL"] != 0]
-    fig = px.strip(res_p, x="Supplier", y="# of tests at optimal dilution")
+    col1, col2, col3 = st.columns(3, gap="small")
+    with col1:
+        st.radio( "Plot dot size", ["S", "M", "L"], horizontal=True, key="size", index=1)
+    with col2:
+        st.radio( "Plot hover text size", ["S", "M", "L"], horizontal=True, key="hover", index=1)
+    with col3:
+        st.radio( "Plot legend choice", ["Antigen", "Clone", "Conjugate"], horizontal=True, key="legend", index=0)
+
+    if "size" not in st.session_state:
+        st.session_state.size = 10
+    if st.session_state.size == "S":
+        size = 5
+    elif st.session_state.size == "M":
+        size = 10
+    elif st.session_state.size == "L":
+        size = 15
+
+    if "hover" not in st.session_state:
+        st.session_state.hover = 18
+    if st.session_state.hover == "S":
+        hover = 12
+    elif st.session_state.hover == "M":
+        hover = 18
+    elif st.session_state.hover == "L":
+        hover = 24
+
+    if "legend" not in st.session_state:
+        st.session_state.legend = "Antigen"
+
+    st.markdown("<h4 style='text-align: center; color: black;'>Number of tests at optimal dilution comparison between suppliers</h4>", unsafe_allow_html=True)
+    fig1 = px.strip(df_g, x="Supplier", y="# of tests at optimal dilution", color=st.session_state.legend, 
+                hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week"])
+    fig1.update_traces({'marker':{'size': size}}) 
+    fig1.update_layout(hoverlabel=dict(font=dict(size=hover)))
+    st.plotly_chart(fig1, use_container_width=True)
+
+    st.markdown("<h4 style='text-align: center; color: black;'>price/test at optimal uL comparison between suppliers</h4>", unsafe_allow_html=True)
+    fig = px.strip(df_g, x="Supplier", y="price/test at optimal uL", color=st.session_state.legend,
+                hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week"])
+    fig.update_traces({'marker':{'size': size}})
+    fig.update_layout(hoverlabel=dict(font=dict(size=hover)))
     st.plotly_chart(fig, use_container_width=True)
 
-    st.write("price/test at optimal uL comparison between suppliers")
-    fig = px.strip(res_p, x="Supplier", y="price/test at optimal uL")
-    st.plotly_chart(fig, use_container_width=True)
-
-    st.write("reorder frequency at 10 tests/week comparison between suppliers")
-    fig = px.strip(res_p, x="Supplier", y="reorder frequency at 10 tests/week")
+    st.markdown("<h4 style='text-align: center; color: black;'>reorder frequency at 10 tests/week comparison between suppliers</h4>", unsafe_allow_html=True)
+    fig = px.strip(df_g, x="Supplier", y="reorder frequency at 10 tests/week", color=st.session_state.legend,
+                hover_data=["# of tests at optimal dilution", "price/test at optimal uL", "reorder frequency at 10 tests/week"])
+    fig.update_traces({'marker':{'size': size}})
+    fig.update_layout(hoverlabel=dict(font=dict(size=hover)))
     st.plotly_chart(fig, use_container_width=True)
 
     st.dataframe(data=df_g[["Source", "supplier link", "Antigen", "Supplier", "# of tests at optimal dilution", 
