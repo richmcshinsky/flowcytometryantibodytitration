@@ -30,12 +30,16 @@ st.write("""We aim to democratize flow cytometry antibody data and make tools th
 
 st.subheader("What brings you here today?")
 
-if st.button(label="Discover", use_container_width=True, help="See visualizations and insights to compare pricing between suppliers and other data"):
-    st.switch_page("pages/03_Discover.py")
-if st.button(label="Create", use_container_width=True, help="All in one tool to generate advanced figures"):
-    st.switch_page("pages/04_Create.py")
-if st.button(type="primary", label="Plan", use_container_width=True, help="Guided walkthrough tool for painless results"):
-    st.switch_page("pages/05_Plan.py")
+col1, col2, col3 = st.columns(3, gap="small")
+with col1:
+    if st.button(label="Discover", use_container_width=True, help="See visualizations and insights to compare pricing between suppliers and other data"):
+        st.switch_page("pages/03_Discover.py")
+with col2:
+    if st.button(label="Create", use_container_width=True, help="All in one tool to generate advanced figures"):
+        st.switch_page("pages/04_Create.py")
+with col3:
+    if st.button(type="primary", label="Plan", use_container_width=True, help="Guided walkthrough tool for painless results"):
+        st.switch_page("pages/05_Plan.py")
 
 st.subheader("Watch our short demo video to see what you can do!")
 
