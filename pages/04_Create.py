@@ -79,9 +79,11 @@ with col2:
                                       accept_multiple_files=True, type='fcs')
     dfs, con_fs, df_events = [], [], pd.DataFrame()
     for uploaded_file in uploaded_files:
+        df_events = fk.Sample(uploaded_file).as_dataframe(source='raw')
 
-        s = FlowCal.io.FCSData(uploaded_file)
-        s = FlowCal.transform.to_rfi(s)
+
+        #s = FlowCal.io.FCSData(uploaded_file)
+        s = FlowCal.transform.to_rfi(df_events)
         FlowCal.plot.density2d(s, channels=['FSC-A', 'SSC-A'], mode='scatter')
 
         con_fs.append(uploaded_file.name[:-4])
