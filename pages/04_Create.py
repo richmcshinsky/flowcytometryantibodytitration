@@ -83,7 +83,7 @@ with col2:
              submit button again will start the process from the beginning.""")
     
     with st.expander("Example: see examples of how the auto process works"):
-        col1, col2 = st.columns()
+        col1, col2 = st.columns(2)
         with col1:
             st.image("data/cleaningex1")
         with col2:
