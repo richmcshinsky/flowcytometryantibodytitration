@@ -75,9 +75,21 @@ for uploaded_file in uploaded_files:
     df_events = fk.Sample(uploaded_file).as_dataframe(source='raw')
     dfs.append(df_events)
 sep_l, sta_l = calc_index(dfs, con_fs)
-df = pd.DataFrame(np.array([con_fs, sep_l, sta_l]).T, columns=["Concentration", "Seperation Index", "Stain Index"]).astype(float)
+
+df = pd.DataFrame(np.array([con_fs, sep_l, sta_l]).T, columns=["Concentration", "Seperation Index", "Stain Index"]).astype(float).sort_values(by=["Concentration"])
+
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_agg import RendererAgg
+_lock = RendererAgg.lock
+
+fig, ax = plt.subplots()
+with _lock:
+    fig.plot([str(x) for x in df["Concentration"].to_list()], df["Seperation Index"],label="seperation index")
+    fig.plot([str(x) for x in df["Concentration"].to_list()], df["Stain Index"], label="stain index")
+    st.pyplot(fig)
+st.pyplot()
+
 st.line_chart(df, x="Concentration", y=["Seperation Index", "Stain Index"])
 
-df["Concentration"] = df["Concentration"].astype(str)
 fig = px.line(df, x="Concentration", y=["Seperation Index", "Stain Index"], color=["Seperation Index", "Stain Index"])
 st.plotly_chart(fig, use_container_width=True)
