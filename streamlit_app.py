@@ -52,3 +52,9 @@ st.markdown("<h3 style='text-align: center; color: black;'>Watch our short demo 
 st.write("To test login use https://docs.stripe.com/testing#cards")
 add_auth(required=True)
 st.write("Login successful!")
+
+
+html_content = """<div style="display: flex; align-items: center; justify-content: center; gap: 10px;"><a href="https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27" target="_blank">"https://drive.google.com/file/d/1j4VZ_kqPD3r1DpsmHOiLVZyVF3zGRsEZ/view?usp=sharing"</a></div>"""
+st.markdown(html_content, unsafe_allow_html=True)
+
+
