@@ -25,7 +25,7 @@ with col2:
 with col3:
     # st.link_button("Pronunciation", "https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27")
     button_html = """<a href='https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27' target='_blank'>
-    <img src='data/sound.png' alt='Button Image' style='width:100px;height:50px;'></a>
+    <img src='static/soundicon.png' alt='Button Image' style='width:100px;height:50px;'></a>
     """
     st.markdown(button_html, unsafe_allow_html=True)
 
