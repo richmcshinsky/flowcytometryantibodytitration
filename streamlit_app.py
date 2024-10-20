@@ -23,7 +23,7 @@ col1, col2, col3, col4 = st.columns([2,3,1,1], gap="small")
 with col2:
     st.markdown("""<h3 style='text-align: center; color: black;'>Cyto<u>metr</u>y Antibo<u>dy</u> Database</h3>""", unsafe_allow_html=True)
 with col3:
-    st.link_button(":sunglasses:", "https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27")
+    st.link_button(":brand_awareness:", "https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27")
     # button_html = """<a href='https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27' target='_blank'>
     # <img src='data/sound.png' alt='Button Image' style='width:100px;height:50px;'></a>"""
     # st.markdown(button_html, unsafe_allow_html=True)
