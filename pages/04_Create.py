@@ -80,13 +80,13 @@ with col2:
                                       accept_multiple_files=True, type='fcs')
     dfs, con_fs, df_events = [], [], pd.DataFrame()
     for uploaded_file in uploaded_files:
-        st.write(uploaded_file)
-        # s = FlowCal.io.FCSData(uploaded_file)
-        # s = FlowCal.transform.to_rfi(df_events)
-        # FlowCal.plot.density2d(s, channels=['FSC-A', 'SSC-A'], mode='scatter')
-
         con_fs.append(uploaded_file.name[:-4])
         df_events = fk.Sample(uploaded_file).as_dataframe(source='raw')
+
+        s = FlowCal.gate.high_low(df_events.to_numpy(), channels=[1, 3])
+        st.write(s)
+        s = FlowCal.gate.density2d(s, channels=[1, 3], gate_fraction=0.75)
+
         dfs.append(df_events)
     if not df_events.empty:
         channel_choice = st.selectbox("Select your target channel", options=df_events.columns, index=None)
