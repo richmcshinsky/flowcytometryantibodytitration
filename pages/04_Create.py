@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_agg import RendererAgg
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
@@ -54,10 +56,10 @@ def seperation_stain_index_gauss(df, channel="FSC-H"):
         sta_ind = stain_index(neg, pos)
     return sep_ind, sta_ind
 
-def calc_index(dfs, con, fl="FL12-A", ab="CD4 BV421-A"):
+def calc_index(dfs, channel):
     sep_l, sta_l = [], []
     for df_events in dfs:
-        sep, sta = seperation_stain_index_gauss(df_events, channel=fl)
+        sep, sta = seperation_stain_index_gauss(df_events, channel=channel)
         sep_l.append(sep)
         sta_l.append(sta)
     return sep_l, sta_l
@@ -65,7 +67,10 @@ def calc_index(dfs, con, fl="FL12-A", ab="CD4 BV421-A"):
 
 col1, col2, col3 = st.columns([1, 5, 1])
 with col2:
-    uploaded_files = st.file_uploader("Add single or multiple FCS files", accept_multiple_files=True, type='fcs')
+    uploaded_files = st.file_uploader("""Add single or multiple FCS files. Please note that the auto gating requires some heavyweight 
+                                      statistical models than are non deterministic and requires several folds of fitting for the 
+                                      best fit. Please wait a few moments for the process to finish. """, 
+                                      accept_multiple_files=True, type='fcs')
     dfs = []
     con_fs = []
     for uploaded_file in uploaded_files:
@@ -73,22 +78,22 @@ with col2:
         con_fs.append(con_f)
         df_events = fk.Sample(uploaded_file).as_dataframe(source='raw')
         dfs.append(df_events)
-    sep_l, sta_l = calc_index(dfs, con_fs)
 
-    df = pd.DataFrame(np.array([con_fs, sep_l, sta_l]).T, columns=["Concentration", "Seperation Index", "Stain Index"]).astype(float).sort_values(by=["Concentration"])
+    channel_choice = st.selectbox("Select your target channel", options=df_events.columns, index=None)
+    if st.button(label="Submit", type="primary"):
+        sep_l, sta_l = calc_index(dfs, channel=channel_choice)
+        df = pd.DataFrame(np.array([con_fs, sep_l, sta_l]).T, columns=["Concentration", "Seperation Index", "Stain Index"]).astype(float).sort_values(by=["Concentration"])
 
-    if not df.empty:
-        import matplotlib.pyplot as plt
-        from matplotlib.backends.backend_agg import RendererAgg
-        _lock = RendererAgg.lock
-        with _lock:
-            fig, ax = plt.subplots()
-            ax.plot([str(x) for x in df["Concentration"].to_list()], df["Seperation Index"],label="seperation index")
-            ax.plot([str(x) for x in df["Concentration"].to_list()], df["Stain Index"], label="stain index")
-            ax.set_xlabel("Index")
-            ax.set_ylabel("Concentration")
-            ax.set_title("Seperation and Stain Index for uploaded data")
-            st.pyplot(fig)
+        if not df.empty:
+            _lock = RendererAgg.lock
+            with _lock:
+                fig, ax = plt.subplots()
+                ax.plot([str(x) for x in df["Concentration"].to_list()], df["Seperation Index"],label="seperation index")
+                ax.plot([str(x) for x in df["Concentration"].to_list()], df["Stain Index"], label="stain index")
+                ax.set_xlabel("Index")
+                ax.set_ylabel("Concentration")
+                ax.set_title("Seperation and Stain Index for uploaded data")
+                st.pyplot(fig)
 
-        st.line_chart(df, x="Concentration", y=["Seperation Index", "Stain Index"])
+            st.line_chart(df, x="Concentration", y=["Seperation Index", "Stain Index"])
 
