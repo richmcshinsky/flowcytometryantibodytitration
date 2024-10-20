@@ -63,5 +63,5 @@ with st.expander("Option 1: Upload a CSV file for review with matching column na
             st.error("File failed to upload, try. again or send over email.")
 
 with st.expander("Option 2: Connect over email"):
-    st.write("richard.mcshinsky@metrdy.com")
+    st.link_button("Link to contact form", "https://metrdy.streamlit.app/Pricing#contact")
 
