@@ -14,3 +14,4 @@ with st.sidebar:
 
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 st.divider()
+

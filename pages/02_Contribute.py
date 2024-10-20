@@ -13,7 +13,7 @@ def convert_df(df):
 # builds the sidebar menu
 with st.sidebar:
     st.page_link('streamlit_app.py', label='Home')
-    st.page_link('pages/01_Learn.py', label='Learn')               # educational materials, each to learn about titrations and how to's. Easy to add links to this tab from other parts of site
+    # st.page_link('pages/01_Learn.py', label='Learn')               # educational materials, each to learn about titrations and how to's. Easy to add links to this tab from other parts of site
     st.page_link('pages/02_Contribute.py', label='Contribute')     # add data to repository
     st.page_link('pages/03_Discover.py', label='Discover')          # tool: see pricing comparisons and other figures
     st.page_link('pages/04_Create.py', label='Create')             # tool: to generate plots
