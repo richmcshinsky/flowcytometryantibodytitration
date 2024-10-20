@@ -85,9 +85,9 @@ with col2:
     with st.expander("Example: see examples of how the auto process works"):
         col1, col2 = st.columns(2)
         with col1:
-            st.image("data/cleaningex1")
+            st.image("data/cleaningex1.png")
         with col2:
-            st.image("data/cleaningex2")
+            st.image("data/cleaningex2.png")
 
     uploaded_files = st.file_uploader("""Add single or multiple FCS files.""", 
                                       accept_multiple_files=True, type='fcs')
