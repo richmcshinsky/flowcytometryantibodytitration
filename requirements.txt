@@ -1,6 +1,6 @@
 # altair==4
 openpyxl==3.1.4
-streamlit==1.39.0
+streamlit==1.35.0
 streamlit_pandas
 st-gsheets-connection==0.0.4
 st-paywall==0.1.8
