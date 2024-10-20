@@ -71,12 +71,6 @@ def calc_index(dfs, channel):
 st.markdown("<h3 style='text-align: center; color: black;'>Upload your FCS files and auto generate a seperation and stain index chart</h3>", unsafe_allow_html=True)
 
 
-from tempfile import NamedTemporaryFile
-file_temp = st.file_uploader("Upload an audio file", type=["fcs"])
-if file_temp is not None:
-    with NamedTemporaryFile(suffix="fcs") as temp:
-        s = FlowCal.io.FCSData(temp)
-
 col1, col2, col3 = st.columns([1, 5, 1])
 with col2:
     st.write("NOTE: name the files like 0.25.fcs, 0.5.fcs, 1.fcs, 2.fcs...! The name tells the plot what concentration to label the file as.")
@@ -86,6 +80,7 @@ with col2:
                                       accept_multiple_files=True, type='fcs')
     dfs, con_fs, df_events = [], [], pd.DataFrame()
     for uploaded_file in uploaded_files:
+        st.write(uploaded_file)
         # s = FlowCal.io.FCSData(uploaded_file)
         # s = FlowCal.transform.to_rfi(df_events)
         # FlowCal.plot.density2d(s, channels=['FSC-A', 'SSC-A'], mode='scatter')
