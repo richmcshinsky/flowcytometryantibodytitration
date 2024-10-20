@@ -19,7 +19,6 @@ with st.sidebar:
 col1, col2, col3, col4 = st.columns([2,3,1,1], gap="small")
 with col2:
     st.image("data/logoex.png")
-    st.markdown("""<h3 style='text-align: center; color: black;'>Cyto<u>metr</u>y Antibo<u>dy</u> Database</h3>""", unsafe_allow_html=True)
 col1, col2, col3, col4 = st.columns([2,3,1,1], gap="small")
 with col2:
     st.markdown("""<h3 style='text-align: center; color: black;'>Cyto<u>metr</u>y Antibo<u>dy</u> Database</h3>""", unsafe_allow_html=True)
