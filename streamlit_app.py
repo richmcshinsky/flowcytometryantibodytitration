@@ -10,7 +10,7 @@ with st.sidebar:
     st.page_link('pages/03_Discover.py', label='Discover')          # tool: see pricing comparisons and other figures
     st.page_link('pages/04_Create.py', label='Create')             # tool: to generate plots
     st.page_link('pages/05_Plan.py', label='Plan')                 # tool: guided walkthrough 
-    st.page_link('pages/06_Pricing.py', label='Product Info')      # pricing, faq, contact
+    st.page_link('pages/06_Pricing.py', label='Pricing')      # pricing, faq, contact
     st.page_link('pages/02_Contribute.py', label='Contribute') 
     
 
@@ -28,27 +28,14 @@ st.write("""This is a database of flow cytometry antibody data.
 
 st.subheader("What brings you here today?")
 
-col1, col2 = st.columns(2, gap="small")
-with col1:
-    if st.button(label="Learn", use_container_width=True, help="""Educational materials designed for simple and clear explanations
-                 of relevant topics"""):
-        st.switch_page("pages/01_Learn.py")
-with col2:
-    if st.button(label="Contribute", use_container_width=True, help="""Add to the repository using your own data. See Pricing page
-                 for rewards for contributing!"""):
-        st.switch_page("pages/02_Contribute.py")
+col1 = st.columns(1, gap="small")
 with col1:
     if st.button(label="Discover", use_container_width=True, help="See visualizations and insights to compare pricing between suppliers and other data"):
         st.switch_page("pages/03_Discover.py")
-with col2:
     if st.button(label="Create", use_container_width=True, help="All in one tool to generate advanced figures"):
         st.switch_page("pages/04_Create.py")
-with col1:
     if st.button(type="primary", label="Plan", use_container_width=True, help="Guided walkthrough tool for painless results"):
         st.switch_page("pages/05_Plan.py")
-with col2:
-    if st.button(label="Pricing", use_container_width=True, help="Product pricing an access instructions"):
-        st.switch_page("pages/06_Pricing.py")
 
 st.subheader("Watch our short demo video to see what you can do!")
 
