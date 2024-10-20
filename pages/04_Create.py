@@ -71,6 +71,8 @@ def calc_index(dfs, channel):
 st.markdown("<h3 style='text-align: center; color: black;'>Upload your FCS files and auto generate a seperation and stain index chart</h3>", unsafe_allow_html=True)
 
 
+# https://welcome.cytekbio.com/hubfs/DOC-00504-Rev.-A_Antibody-Titration-Protocol.pdf
+# https://flowcal.readthedocs.io/en/latest/python_tutorial/gate.html
 col1, col2, col3 = st.columns([1, 5, 1])
 with col2:
     st.write("NOTE: name the files like 0.25.fcs, 0.5.fcs, 1.fcs, 2.fcs...! The name tells the plot what concentration to label the file as.")
@@ -79,6 +81,14 @@ with col2:
              between the positive and negative groups using some heavyweight statistical moels that are non deterministic and 
              require several folds of fittiing for stable results. Please wait a few moments for the process to finish, clicking the
              submit button again will start the process from the beginning.""")
+    
+    with st.expander("Example: see examples of how the auto process works"):
+        col1, col2 = st.columns()
+        with col1:
+            st.image("data/cleaningex1")
+        with col2:
+            st.image("data/cleaningex2")
+
     uploaded_files = st.file_uploader("""Add single or multiple FCS files.""", 
                                       accept_multiple_files=True, type='fcs')
     dfs, con_fs, df_events = [], [], pd.DataFrame()
