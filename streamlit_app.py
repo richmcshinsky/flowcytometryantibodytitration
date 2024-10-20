@@ -16,7 +16,7 @@ with st.sidebar:
 
 
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
-col1, col2, col3, col4 = st.columns([1,2,1,1], gap="small")
+col1, col2, col3, col4 = st.columns([1,4,1,1], gap="small")
 with col2:
     st.markdown("""<h3 style='text-align: center; color: black;'>Cyto<u>metr</u>y Antibo<u>dy</u> Database</h3>""", unsafe_allow_html=True)
 with col3:
