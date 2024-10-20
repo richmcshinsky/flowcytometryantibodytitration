@@ -68,6 +68,7 @@ st.markdown("<h3 style='text-align: center; color: black;'>Upload your FCS files
 
 col1, col2, col3 = st.columns([1, 5, 1])
 with col2:
+    st.write("NOTE: name the files like 0.25.fcs, 0.5.fcs, 1.fcs, 2.fcs...! The name tells the plot what concentration to label the file as.")
     uploaded_files = st.file_uploader("""Add single or multiple FCS files. Please note that the auto gating requires some heavyweight 
                                       statistical models than are non deterministic and requires several folds of fitting for the 
                                       best fit. Please wait a few moments for the process to finish. """, 
@@ -89,8 +90,8 @@ with col2:
                     fig, ax = plt.subplots()
                     ax.plot([str(x) for x in df["Concentration"].to_list()], df["Seperation Index"],label="seperation index")
                     ax.plot([str(x) for x in df["Concentration"].to_list()], df["Stain Index"], label="stain index")
-                    ax.set_xlabel("Index")
-                    ax.set_ylabel("Concentration")
+                    ax.set_ylabel("Index")
+                    ax.set_xlabel("Concentration")
                     ax.set_title("Seperation and Stain Index for uploaded data")
                     st.pyplot(fig)
 
