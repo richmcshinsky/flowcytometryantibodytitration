@@ -76,4 +76,5 @@ def calc_index(con = [0.25, 0.5, 1, 2, 4], fl = "FL12-A", ab = "CD4 BV421-A"):
 uploaded_files = st.file_uploader("Add single or multiple FCS files", accept_multiple_files=True, type='fcs')
 for uploaded_file in uploaded_files:
     st.write(uploaded_file)
-    df_events = fk.Sample(str(uploaded_file)).as_dataframe(source='raw')
+    st.write(uploaded_file.name)
+    df_events = fk.Sample(uploaded_file.name).as_dataframe(source='raw')
