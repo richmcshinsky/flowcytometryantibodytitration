@@ -71,11 +71,9 @@ with col2:
                                       statistical models than are non deterministic and requires several folds of fitting for the 
                                       best fit. Please wait a few moments for the process to finish. """, 
                                       accept_multiple_files=True, type='fcs')
-    dfs = []
-    con_fs = []
+    dfs, con_fs, df_events = [], [], pd.DataFrame()
     for uploaded_file in uploaded_files:
-        con_f = uploaded_file.name[:-4]
-        con_fs.append(con_f)
+        con_fs.append(uploaded_file.name[:-4])
         df_events = fk.Sample(uploaded_file).as_dataframe(source='raw')
         dfs.append(df_events)
     if not df_events.empty:
