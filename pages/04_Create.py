@@ -82,13 +82,11 @@ with col2:
     for uploaded_file in uploaded_files:
         con_fs.append(uploaded_file.name[:-4])
         df_events = fk.Sample(uploaded_file).as_dataframe(source='raw')
-
-        st.write(len(df_events))
+        cols = df_events.columns
         df_events = FlowCal.gate.high_low(df_events.to_numpy(), channels=[1, 3])
-        st.write(len(df_events))
         df_events = FlowCal.gate.density2d(df_events, channels=[1, 3], gate_fraction=0.75)
-        st.write(len(df_events))
-
+        df_events = pd.DataFrame(df_events, columns=cols)
+        st.write(df_events)
         dfs.append(df_events)
     if not df_events.empty:
         channel_choice = st.selectbox("Select your target channel", options=df_events.columns, index=None)
