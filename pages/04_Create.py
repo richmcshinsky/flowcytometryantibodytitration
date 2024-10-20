@@ -78,4 +78,4 @@ for uploaded_file in uploaded_files:
     st.write(uploaded_file)
     st.write(uploaded_file.name)
     st.write(uploaded_file._file_urls.upload_url)
-    df_events = fk.Sample(uploaded_file._file_urls.upload_url).as_dataframe(source='raw')
+    df_events = fk.Sample(uploaded_file).as_dataframe(source='raw')
