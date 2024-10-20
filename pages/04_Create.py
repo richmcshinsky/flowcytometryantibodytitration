@@ -78,17 +78,20 @@ sep_l, sta_l = calc_index(dfs, con_fs)
 
 df = pd.DataFrame(np.array([con_fs, sep_l, sta_l]).T, columns=["Concentration", "Seperation Index", "Stain Index"]).astype(float).sort_values(by=["Concentration"])
 
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_agg import RendererAgg
-_lock = RendererAgg.lock
-with _lock:
-    fig, ax = plt.subplots()
-    ax.plot([str(x) for x in df["Concentration"].to_list()], df["Seperation Index"],label="seperation index")
-    ax.plot([str(x) for x in df["Concentration"].to_list()], df["Stain Index"], label="stain index")
-    st.pyplot(fig)
-st.pyplot()
+if not df.empty:
+    import matplotlib.pyplot as plt
+    from matplotlib.backends.backend_agg import RendererAgg
+    _lock = RendererAgg.lock
+    with _lock:
+        fig, ax = plt.subplots()
+        ax.plot([str(x) for x in df["Concentration"].to_list()], df["Seperation Index"],label="seperation index")
+        ax.plot([str(x) for x in df["Concentration"].to_list()], df["Stain Index"], label="stain index")
+        ax.set_xlabel("Index")
+        ax.set_ylabel("Concentration")
+        ax.set_title("Seperation and Stain Index for uploaded data")
+        st.pyplot(fig)
 
-st.line_chart(df, x="Concentration", y=["Seperation Index", "Stain Index"])
+    st.line_chart(df, x="Concentration", y=["Seperation Index", "Stain Index"])
 
-fig = px.line(df, x="Concentration", y=["Seperation Index", "Stain Index"], color=["Seperation Index", "Stain Index"])
-st.plotly_chart(fig, use_container_width=True)
+    fig = px.line(df, x="Concentration", y=["Seperation Index", "Stain Index"], color=["Seperation Index", "Stain Index"])
+    st.plotly_chart(fig, use_container_width=True)
