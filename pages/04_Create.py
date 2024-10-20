@@ -72,8 +72,8 @@ st.markdown("<h3 style='text-align: center; color: black;'>Upload your FCS files
 
 
 from tempfile import NamedTemporaryFile
-f = st.file_uploader("Upload an audio file", type=["fcs"])
-if f is not None:
+file_temp = st.file_uploader("Upload an audio file", type=["fcs"])
+if file_temp is not None:
     with NamedTemporaryFile(suffix="fcs") as temp:
         s = FlowCal.io.FCSData(temp)
 
