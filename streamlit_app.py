@@ -42,6 +42,10 @@ with col2:
 with col3:
     if st.button(type="primary", label="Plan", use_container_width=True, help="Guided walkthrough tool for painless results"):
         st.switch_page("pages/05_Plan.py")
+    st.image("data/ex3.1.png")
+    st.image("data/ex3.2.png")
+    st.image("data/ex3.3.png")
+    st.image("data/ex3.4.png")
 
 st.subheader("Watch our short demo video to see what you can do!")
 
