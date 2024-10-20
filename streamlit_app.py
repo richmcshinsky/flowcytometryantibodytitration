@@ -47,7 +47,7 @@ with col3:
     st.image("data/ex3.3.png")
     st.image("data/ex3.4.png")
 
-st.subheader("Watch our short demo video to see what you can do!")
+st.markdown("<h3 style='text-align: center; color: black;'>Watch our short demo video to see what you can do!</h3>", unsafe_allow_html=True)
 
 st.write("To test login use https://docs.stripe.com/testing#cards")
 add_auth(required=True)
