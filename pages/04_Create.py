@@ -79,7 +79,7 @@ with col2:
     if not df_events.empty:
         channel_choice = st.selectbox("Select your target channel", options=df_events.columns, index=None)
         if st.button(label="Submit", type="primary"):
-            sep_l, sta_l = calc_index(dfs, channel=channel_choice)
+            sep_l, sta_l = calc_index(dfs, channel=channel_choice[0])
             df = pd.DataFrame(np.array([con_fs, sep_l, sta_l]).T, columns=["Concentration", "Seperation Index", "Stain Index"]).astype(float).sort_values(by=["Concentration"])
 
             if not df.empty:
