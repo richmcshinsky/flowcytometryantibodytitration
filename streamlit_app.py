@@ -16,6 +16,8 @@ with st.sidebar:
 
 
 st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1> ", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center; color: black;'>Cyto<u>metr</u>y Antibo<u>dy</u> Database</h3> ", unsafe_allow_html=True)
+
 # st.html("""<a href="https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27"><img src="https://drive.google.com/file/d/1j4VZ_kqPD3r1DpsmHOiLVZyVF3zGRsEZ/view?usp=sharing" width="200" /></a>""")
 # st.markdown("[![Click me](./app/static/soundicon.png)](https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27)")
 st.divider()
@@ -52,9 +54,5 @@ st.markdown("<h3 style='text-align: center; color: black;'>Watch our short demo 
 st.write("To test login use https://docs.stripe.com/testing#cards")
 add_auth(required=True)
 st.write("Login successful!")
-
-
-html_content = """<div style="display: flex; align-items: center; justify-content: center; gap: 10px;"><a href="https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="25" height="25" fill="{color}"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg></a></div>"""
-st.markdown(html_content, unsafe_allow_html=True)
 
 
