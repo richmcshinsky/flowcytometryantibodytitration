@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
@@ -62,12 +63,7 @@ def calc_index(dfs, con, fl="FL12-A", ab="CD4 BV421-A"):
         sep, sta = seperation_stain_index_gauss(df_events, channel=fl)
         sep_l.append(sep)
         sta_l.append(sta)
-        st.write("seperation index = ", sep)
-        st.write("stain index = ", sta)
-    plt.plot([str(x) for x in con], sep_l,label="seperation index")
-    plt.plot([str(x) for x in con], sta_l, label="stain index")
-    plt.legend()
-    plt.show()
+    return sep_l, sta_l
 
 
 uploaded_files = st.file_uploader("Add single or multiple FCS files", accept_multiple_files=True, type='fcs')
@@ -78,4 +74,8 @@ for uploaded_file in uploaded_files:
     con_fs.append(con_f)
     df_events = fk.Sample(uploaded_file).as_dataframe(source='raw')
     dfs.append(df_events)
-calc_index(dfs, con_fs)
+sep_l, sta_l = calc_index(dfs, con_fs)
+st.write("seperation index = ", sep_l)
+st.write("stain index = ", sta_l)
+st.line_chart(pd.DataFrame(np.array([con_fs, sep_l, sta_l].T), columns=["Concentration", "Seperation Index", "Stain Index"]),
+              x="Concentration", y=["Seperation Index", "Stain Index"])
