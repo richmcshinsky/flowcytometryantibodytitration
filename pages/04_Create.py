@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import plotly.express as px
 
 st.set_page_config(page_title='Flow Cytometry Antibody Titration Repository', layout="wide")
 
@@ -20,7 +21,6 @@ st.divider()
 import flowkit as fk
 import numpy as np
 from sklearn.mixture import GaussianMixture
-import matplotlib.pyplot as plt
 
 def find_split_on_dist(m1,m2,std1,std2):
     a = 1/(2*std1**2) - 1/(2*std2**2)
@@ -77,3 +77,7 @@ for uploaded_file in uploaded_files:
 sep_l, sta_l = calc_index(dfs, con_fs)
 df = pd.DataFrame(np.array([con_fs, sep_l, sta_l]).T, columns=["Concentration", "Seperation Index", "Stain Index"]).astype(float)
 st.line_chart(df, x="Concentration", y=["Seperation Index", "Stain Index"])
+
+df["Concentration"] = df["Concentration"].astype(str)
+fig = px.line(df, x="Concentration", y=["Seperation Index", "Stain Index"], color=["Seperation Index", "Stain Index"])
+st.plotly_chart(fig, use_container_width=True)
