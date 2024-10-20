@@ -82,11 +82,11 @@ st.markdown("<h3 style='text-align: center; color: black;'>Insights</h3>", unsaf
 
 st.write("Plot data from " + str(len(res["Source"].unique())) + " unique data sources")
 
-t = res_p[["price per test (supplier)", "price/test at optimal uL"]].replace("nan", None).dropna(how="any")
-avg_diff = round((pd.to_numeric(t["price per test (supplier)"]) - pd.to_numeric(t["price/test at optimal uL"])).mean(),2)
-st.write(f"For the selected filters, on average the difference between the supplier recommended price per test and the price per test at the optimal dilution is: :blue[${avg_diff}]") 
-st.write(f"In addition, assuming 10 tests are done for the antibody, it would reflect a potential :blue[${round(10 * avg_diff,2)}] in savings. ")
-st.write(f"Assuming 30 different antibodies are ordered, then the overall potential saving for this expiriment would be  :blue[${round(10 * 30 * avg_diff,2)}]")
+# t = res_p[["price per test (supplier)", "price/test at optimal uL"]].replace("nan", None).dropna(how="any")
+# avg_diff = round((pd.to_numeric(t["price per test (supplier)"]) - pd.to_numeric(t["price/test at optimal uL"])).mean(),2)
+# st.write(f"For the selected filters, on average the difference between the supplier recommended price per test and the price per test at the optimal dilution is: :blue[${avg_diff}]") 
+# st.write(f"In addition, assuming 10 tests are done for the antibody, it would reflect a potential :blue[${round(10 * avg_diff,2)}] in savings. ")
+# st.write(f"Assuming 30 different antibodies are ordered, then the overall potential saving for this expiriment would be  :blue[${round(10 * 30 * avg_diff,2)}]")
 
 st.divider()
 st.markdown("<h3 style='text-align: center; color: black;'>Discovery</h3>", unsafe_allow_html=True)
