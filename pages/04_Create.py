@@ -78,22 +78,22 @@ with col2:
         con_fs.append(con_f)
         df_events = fk.Sample(uploaded_file).as_dataframe(source='raw')
         dfs.append(df_events)
+    if not df_events.empty:
+        channel_choice = st.selectbox("Select your target channel", options=df_events.columns, index=None)
+        if st.button(label="Submit", type="primary"):
+            sep_l, sta_l = calc_index(dfs, channel=channel_choice)
+            df = pd.DataFrame(np.array([con_fs, sep_l, sta_l]).T, columns=["Concentration", "Seperation Index", "Stain Index"]).astype(float).sort_values(by=["Concentration"])
 
-    channel_choice = st.selectbox("Select your target channel", options=df_events.columns, index=None)
-    if st.button(label="Submit", type="primary"):
-        sep_l, sta_l = calc_index(dfs, channel=channel_choice)
-        df = pd.DataFrame(np.array([con_fs, sep_l, sta_l]).T, columns=["Concentration", "Seperation Index", "Stain Index"]).astype(float).sort_values(by=["Concentration"])
+            if not df.empty:
+                _lock = RendererAgg.lock
+                with _lock:
+                    fig, ax = plt.subplots()
+                    ax.plot([str(x) for x in df["Concentration"].to_list()], df["Seperation Index"],label="seperation index")
+                    ax.plot([str(x) for x in df["Concentration"].to_list()], df["Stain Index"], label="stain index")
+                    ax.set_xlabel("Index")
+                    ax.set_ylabel("Concentration")
+                    ax.set_title("Seperation and Stain Index for uploaded data")
+                    st.pyplot(fig)
 
-        if not df.empty:
-            _lock = RendererAgg.lock
-            with _lock:
-                fig, ax = plt.subplots()
-                ax.plot([str(x) for x in df["Concentration"].to_list()], df["Seperation Index"],label="seperation index")
-                ax.plot([str(x) for x in df["Concentration"].to_list()], df["Stain Index"], label="stain index")
-                ax.set_xlabel("Index")
-                ax.set_ylabel("Concentration")
-                ax.set_title("Seperation and Stain Index for uploaded data")
-                st.pyplot(fig)
-
-            st.line_chart(df, x="Concentration", y=["Seperation Index", "Stain Index"])
+                st.line_chart(df, x="Concentration", y=["Seperation Index", "Stain Index"])
 
