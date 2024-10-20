@@ -16,7 +16,7 @@ with st.sidebar:
 
 # st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1>", unsafe_allow_html=True)
 #st.image("data/logoex.png")
-col1, col2, col3, col4 = st.columns([2,3,1,1], gap="small")
+col1, col2, col3 = st.columns([2,3,2], gap="small")
 with col2:
     st.image("data/logoex.png")
 col1, col2, col3, col4 = st.columns([2,3,1,1], gap="small")
