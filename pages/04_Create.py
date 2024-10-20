@@ -74,6 +74,7 @@ for uploaded_file in uploaded_files:
     con_fs.append(con_f)
     df_events = fk.Sample(uploaded_file).as_dataframe(source='raw')
     dfs.append(df_events)
+st.write(con_f)
 sep_l, sta_l = calc_index(dfs, con_fs)
 st.write("seperation index = ", sep_l)
 st.write("stain index = ", sta_l)
