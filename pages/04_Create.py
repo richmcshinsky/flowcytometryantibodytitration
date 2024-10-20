@@ -81,12 +81,11 @@ df = pd.DataFrame(np.array([con_fs, sep_l, sta_l]).T, columns=["Concentration", 
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import RendererAgg
 _lock = RendererAgg.lock
-
-fig, ax = plt.subplots()
 with _lock:
-    fig.plot([str(x) for x in df["Concentration"].to_list()], df["Seperation Index"],label="seperation index")
-    fig.plot([str(x) for x in df["Concentration"].to_list()], df["Stain Index"], label="stain index")
-    st.pyplot(fig)
+    fig, ax = plt.subplots()
+    ax = fig.plot([str(x) for x in df["Concentration"].to_list()], df["Seperation Index"],label="seperation index")
+    ax = fig.plot([str(x) for x in df["Concentration"].to_list()], df["Stain Index"], label="stain index")
+    st.pyplot(ax)
 st.pyplot()
 
 st.line_chart(df, x="Concentration", y=["Seperation Index", "Stain Index"])
