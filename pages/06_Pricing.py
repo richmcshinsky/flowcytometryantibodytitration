@@ -51,10 +51,6 @@ with st.container():
              Assuming that the employee knows where to look and knows what to do.""")
 
 with st.container():
-    st.markdown("<h2 style='text-align: center; color: black;'>Subscription benefits</h2>", unsafe_allow_html=True)
-    st.image("data/sub benifits.png")
-
-with st.container():
     st.markdown("<h2 style='text-align: center; color: black;'>Pricing</h2>", unsafe_allow_html=True)
     st.image("data/pricing.png")
 
