@@ -20,14 +20,15 @@ st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1> ", unsafe
 # st.markdown("[![Click me](./app/static/soundicon.png)](https://www.merriam-webster.com/dictionary/ma%C3%AEtre%20d%27)")
 st.divider()
 
-st.subheader("Welcome")
+st.markdown("<h3 style='text-align: center; color: black;'>Welcome</h3>", unsafe_allow_html=True)
+
 st.write("""Our aim is to democratize flow cytometry antibody data and give you the necessary tools to significantly 
          save your money and time. You will be able to look up curated data from publications and user contributions to 
          easily make informed purchasing decisions between suppliers, with optimal concentrations from validated research. 
          Another prime example of the potential use of our tools is the ability to painlessly generate publication quality figures 
          from your own data. Anyone is welcome to contribute to expanding the Metrdy repository.""")
 
-st.subheader("What brings you here today?")
+st.markdown("<h3 style='text-align: center; color: black;'>How can we serve you today?</h3>", unsafe_allow_html=True)
 
 col1, col2, col3 = st.columns(3, gap="small")
 with col1:
