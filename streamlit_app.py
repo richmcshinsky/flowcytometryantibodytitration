@@ -2,7 +2,9 @@ import streamlit as st
 from st_paywall import add_auth
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
-st.set_page_config(page_title='Metrdy', layout="wide", page_icon=st.image("data/hand.png"))
+st.set_page_config(page_title='Metrdy', layout="wide", page_icon=None)
+
+st.image("data/hand.png")
 
 # builds the sidebar menu
 with st.sidebar:
