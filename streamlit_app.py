@@ -21,12 +21,11 @@ st.markdown("<h1 style='text-align: center; color: black;'>Metrdy</h1> ", unsafe
 st.divider()
 
 st.subheader("Welcome")
-st.write("""We aim to democratize flow cytometry antibody data and make tools that save time and money.
-            You can look up curated data from publications and user contributions to
-            easily make informed purchasing decisions between suppliers at optimal 
-            concentrations from validated research. Use our tools to easily generate publication 
-            quality figures from your own data. Or contribute to the repository to be part of the
-            Metrdy movement.""")
+st.write("""Our aim is to democratize flow cytometry antibody data and give you the necessary tools to significantly 
+         save your money and time. You will be able to look up curated data from publications and user contributions to 
+         easily make informed purchasing decisions between suppliers, with optimal concentrations from validated research. 
+         Another prime example of the potential use of our tools is the ability to easily generating publication quality figures 
+         from your own data. Anyone is welcome to contribute to expanding the Metrdy repository. """)
 
 st.subheader("What brings you here today?")
 
