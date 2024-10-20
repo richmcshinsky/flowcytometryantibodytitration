@@ -161,7 +161,8 @@ elif st.session_state["step"] == "Step 5":
                     (df["Clone"] == st.session_state["target"])]
     
     # show graph of cost/sample and graph of separation index by other (fluorophore or clone)
-    st.write("If the plots are empty, it's becuase there wasn't good pricing data to show.")
+    st.write("""If the plots are empty, it's becuase there wasn't good pricing data to show. Please see table at bottom for 
+             data contained in the repository""")
     
     col1, col2, col3 = st.columns(3, gap="small")
     with col1:
