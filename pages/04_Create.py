@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import RendererAgg
+import FlowCal
 
 st.set_page_config(page_title='Metrdy', layout="wide")
 
@@ -78,6 +79,11 @@ with col2:
                                       accept_multiple_files=True, type='fcs')
     dfs, con_fs, df_events = [], [], pd.DataFrame()
     for uploaded_file in uploaded_files:
+
+        s = FlowCal.io.FCSData(uploaded_file)
+        s = FlowCal.transform.to_rfi(s)
+        FlowCal.plot.density2d(s, channels=['FSC-A', 'SSC-A'], mode='scatter')
+
         con_fs.append(uploaded_file.name[:-4])
         df_events = fk.Sample(uploaded_file).as_dataframe(source='raw')
         dfs.append(df_events)
@@ -86,7 +92,6 @@ with col2:
         if st.button(label="Submit", type="primary"):
             sep_l, sta_l = calc_index(dfs, channel=channel_choice[0])
             df = pd.DataFrame(np.array([con_fs, sep_l, sta_l]).T, columns=["Concentration", "Seperation Index", "Stain Index"]).astype(float).sort_values(by=["Concentration"])
-
             if not df.empty:
                 _lock = RendererAgg.lock
                 with _lock:
