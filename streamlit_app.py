@@ -32,7 +32,7 @@ st.subheader("What brings you here today?")
 
 col1, col2, col3 = st.columns(3, gap="small")
 with col1:
-    if st.button(label="Discover", use_container_width=True, help="See visualizations and insights to compare pricing between suppliers and other data"):
+    if st.button(type="primary", label="Discover", use_container_width=True, help="See visualizations and insights to compare pricing between suppliers and other data"):
         st.switch_page("pages/03_Discover.py")
     st.image("data/ex1.png")
 with col2:
@@ -40,7 +40,7 @@ with col2:
         st.switch_page("pages/04_Create.py")
     st.image("data/ex2.png")
 with col3:
-    if st.button(type="primary", label="Plan", use_container_width=True, help="Guided walkthrough tool for painless results"):
+    if st.button(label="Plan", use_container_width=True, help="Guided walkthrough tool for painless results"):
         st.switch_page("pages/05_Plan.py")
     st.image("data/ex3.1.png")
     st.image("data/ex3.2.png")
