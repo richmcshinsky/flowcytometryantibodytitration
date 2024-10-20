@@ -34,6 +34,7 @@ col1, col2, col3 = st.columns(3, gap="small")
 with col1:
     if st.button(label="Discover", use_container_width=True, help="See visualizations and insights to compare pricing between suppliers and other data"):
         st.switch_page("pages/03_Discover.py")
+    st.image("data/ex1.png")
 with col2:
     if st.button(label="Create", use_container_width=True, help="All in one tool to generate advanced figures"):
         st.switch_page("pages/04_Create.py")
