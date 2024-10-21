@@ -123,7 +123,7 @@ with col2:
                 df_t = pd.DataFrame(columns=["fl", "con", "seperation", "stain"])
                 fl, con_l, seper_l, stain_l = [], [], [], []
                 for d,c,s1,s2 in zip(dfs, con_fs, sep_l, sta_l):
-                    fl += d[channel_choice[0]].to_list()
+                    fl += d[channel_choice[0]][channel_choice[1]].to_list()
                     con_l += [c] * len(d)
                     stain_l += [str(round(s2,2))] * len(d)
                     seper_l += [str(round(s1,2))] * len(d)
