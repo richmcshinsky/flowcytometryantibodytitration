@@ -133,7 +133,7 @@ with col2:
                 df_t["stain"] = stain_l
                 
                 # strip plot of data
-                df_t = df.sample(10000)
+                df_t = df_t.sample(10000)
                 df_t = df_t[df_t["fl"].astype(float) < 500000]
                 df_t = df_t.sort_values(by=["con"])
                 df_t["axis"] = [str(x) + "<br>" + str(y) + "<br>" + str(z) for x,y, z in zip(df_t["con"], df_t["stain"], df_t["seperation"])]
