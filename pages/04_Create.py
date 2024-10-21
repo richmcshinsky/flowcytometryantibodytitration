@@ -81,8 +81,7 @@ with col2:
     st.write("""NOTE: process starts by cleaning the base data by removing staurated events with a density gate, which typically have better 
              performance than ellipse gates and manual gates. Once the overall data has been filtered, then there is an auto split
              between the positive and negative groups using some heavyweight statistical moels that are non deterministic and 
-             require several folds of fittiing for stable results. Please wait a few moments for the process to finish, clicking the
-             submit button again will start the process from the beginning.""")
+             require several folds of fittiing for stable results. Please wait a few moments for the process to finish.""")
     
     with st.expander("Example: see examples of how the auto process works"):
         col1, col2 = st.columns(2)
@@ -142,7 +141,7 @@ with col2:
                 fig.update_traces(marker_size=3)
                 fig.update_yaxes(type="log", exponentformat='power')
                 fig.update_layout(yaxis_title=channel_choice[1], xaxis_title=None, xaxis={'side': 'top'}, showlegend=False)
-                fig.add_annotation(dict(font=dict(color="black",size=12),x=-0.55,y=1.25,showarrow=False,xref="x",yref="paper",
+                fig.add_annotation(dict(font=dict(color="black",size=12),x=-0.55,y=1.12,showarrow=False,xref="x",yref="paper",
                                             text='Microliters:<br>Stain Index:<br>Seperation Index:',textangle=0))
                 st.plotly_chart(fig, use_container_width=True)
 
