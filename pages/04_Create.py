@@ -3,6 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import RendererAgg
 import FlowCal
+import plotly.express as px
+
 
 st.set_page_config(page_title='Metrdy', layout="wide")
 
@@ -89,6 +91,7 @@ with col2:
         with col2:
             st.image("data/cleaningex2.png")
 
+    # get data into pandas df
     uploaded_files = st.file_uploader("""Add single or multiple FCS files.""", 
                                       accept_multiple_files=True, type='fcs')
     dfs, con_fs, df_events = [], [], pd.DataFrame()
@@ -106,6 +109,7 @@ with col2:
             sep_l, sta_l = calc_index(dfs, channel=channel_choice[0])
             df = pd.DataFrame(np.array([con_fs, sep_l, sta_l]).T, columns=["Concentration", "Seperation Index", "Stain Index"]).astype(float).sort_values(by=["Concentration"])
             if not df.empty:
+                # line plot of seperation and stain index values
                 _lock = RendererAgg.lock
                 with _lock:
                     fig, ax = plt.subplots()
@@ -115,4 +119,31 @@ with col2:
                     ax.set_xlabel("Concentration")
                     ax.set_title("Seperation and Stain Index for uploaded data")
                     st.pyplot(fig)
+
+                df_t = pd.DataFrame(columns=["fl", "con", "seperation", "stain"])
+                fl, con_l, seper_l, stain_l = [], [], [], []
+                for d,c,s1,s2 in zip(dfs, con_fs, sep_l, sta_l):
+                    fl += d[channel_choice[0]].to_list()
+                    con_l += [c] * len(d)
+                    stain_l += [str(round(s2,2))] * len(d)
+                    seper_l += [str(round(s1,2))] * len(d)
+                df_t["fl"] = fl
+                df_t["con"] = con_l
+                df_t["seperation"] = seper_l
+                df_t["stain"] = stain_l
+                st.write(df_t)
+
+
+                # strip plot of data
+                """df_t = df.sample(10000)
+                df_t = df_t[df_t["fl"].astype(float) < 500000]
+                df_t = df_t.sort_values(by=["con"])
+                df_t["axis"] = [str(x) + "<br>" + str(y) + "<br>" + str(z) for x,y, z in zip(df_t["con"], df_t["stain"], df_t["seperation"])]
+                fig = px.strip(df_t, x="axis", y="fl")
+                fig.update_traces(marker_size=3)
+                fig.update_yaxes(type="log", exponentformat='power')
+                fig.update_layout(yaxis_title=channel_choice[1], xaxis_title=None, xaxis={'side': 'top'}, showlegend=False)
+                fig.add_annotation(dict(font=dict(color="black",size=12),x=-0.55,y=1.128,showarrow=False,xref="x",yref="paper",
+                                            text='Microliters:<br>Stain Index:<br>Seperation Index:',textangle=0))
+                st.plotly_chart(fig, use_container_width=True)"""
 
