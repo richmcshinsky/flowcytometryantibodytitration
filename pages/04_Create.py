@@ -133,7 +133,8 @@ with col2:
                 df_t["stain"] = stain_l
                 
                 # strip plot of data
-                df_t = df_t #.sample(10000)
+                sample_size = 30000 if len(df_t) > 30000 else len(df_t)
+                df_t = df_t.sample(sample_size)
                 df_t = df_t[df_t["fl"].astype(float) < 500000]
                 df_t = df_t.sort_values(by=["con"])
                 df_t["axis"] = [str(x) + "<br>" + str(y) + "<br>" + str(z) for x,y, z in zip(df_t["con"], df_t["stain"], df_t["seperation"])]
@@ -141,7 +142,7 @@ with col2:
                 fig.update_traces(marker_size=3)
                 fig.update_yaxes(type="log", exponentformat='power')
                 fig.update_layout(yaxis_title=channel_choice[1], xaxis_title=None, xaxis={'side': 'top'}, showlegend=False)
-                fig.add_annotation(dict(font=dict(color="black",size=12),x=-0.55,y=1.32,showarrow=False,xref="x",yref="paper",
+                fig.add_annotation(dict(font=dict(color="black",size=12),x=-0.55,y=1.25,showarrow=False,xref="x",yref="paper",
                                             text='Microliters:<br>Stain Index:<br>Seperation Index:',textangle=0))
                 st.plotly_chart(fig, use_container_width=True)
 
