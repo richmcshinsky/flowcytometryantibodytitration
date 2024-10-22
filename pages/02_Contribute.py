@@ -24,7 +24,7 @@ col1, col2, col3 = st.columns([2,3,2], gap="small")
 with col2:
     st.image("data/logoex.png")
 st.divider()
-st.write("""If you found this repository useful, it would greatly benefit everyone using it with any contirbutions you can make. 
+st.write("""If you found this repository useful, it would greatly benefit everyone using it with any contributions you can make. 
             By adding a successful contribution to the repository, you will recieve a free subscription for x months.""")
 
 conn = st.connection("gsheets", type=GSheetsConnection)
