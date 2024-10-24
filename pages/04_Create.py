@@ -78,10 +78,10 @@ st.markdown("<h3 style='text-align: center; color: black;'>Upload your FCS files
 col1, col2, col3 = st.columns([1, 5, 1])
 with col2:
     st.write("NOTE: name the files like 0.25.fcs, 0.5.fcs, 1.fcs, 2.fcs...! The name tells the plot what concentration to label the file as.")
-    st.write("""NOTE: process starts by cleaning the base data by removing staurated events with a density gate, which typically have better 
+    st.write("""NOTE: process starts by cleaning the base data by removing saturated events with a density gate, which typically have better 
              performance than ellipse gates and manual gates. Once the overall data has been filtered, then there is an auto split
-             between the positive and negative groups using some heavyweight statistical moels that are non deterministic and 
-             require several folds of fittiing for stable results. Please wait a few moments for the process to finish.""")
+             between the positive and negative groups using some heavyweight statistical models that are non deterministic and 
+             require several folds of fitting for stable results. Please wait a few moments for the process to finish.""")
     
     with st.expander("Example: see examples of how the auto process works"):
         st.subheader("Auto Gating Example")
@@ -120,13 +120,13 @@ with col2:
                 # line plot of seperation and stain index values
                 _lock = RendererAgg.lock
                 with _lock:
-                    fig, ax = plt.subplots()
+                    fig1, ax = plt.subplots()
                     ax.plot([str(x) for x in df["Concentration"].to_list()], df["Seperation Index"],label="seperation index")
                     ax.plot([str(x) for x in df["Concentration"].to_list()], df["Stain Index"], label="stain index")
                     ax.set_ylabel("Index")
                     ax.set_xlabel("Concentration")
                     ax.set_title("Seperation and Stain Index for uploaded data")
-                    st.pyplot(fig)
+                    st.pyplot(fig1)
 
                 df_t = pd.DataFrame(columns=["fl", "con", "seperation", "stain"])
                 fl, con_l, seper_l, stain_l = [], [], [], []
@@ -139,20 +139,6 @@ with col2:
                 df_t["con"] = con_l
                 df_t["seperation"] = seper_l
                 df_t["stain"] = stain_l
-                
-                # strip plot of data
-                # sample_size = 30000 if len(df_t) > 30000 else len(df_t)
-                # df_t = df_t.sample(sample_size)
-                # df_t = df_t[df_t["fl"].astype(float) < 1000000]
-                # df_t = df_t.sort_values(by=["con"])
-                # df_t["axis"] = [str(x) + "<br>" + str(y) + "<br>" + str(z) for x,y, z in zip(df_t["con"], df_t["stain"], df_t["seperation"])]
-                # fig = px.strip(df_t, x="axis", y="fl")
-                # fig.update_traces(marker_size=3)
-                # fig.update_yaxes(type="log", exponentformat='power')
-                # fig.update_layout(yaxis_title=channel_choice[1], xaxis_title=None, xaxis={'side': 'top'}, showlegend=False)
-                # fig.add_annotation(dict(font=dict(color="black",size=12),x=-0.55,y=1.18,showarrow=False,xref="x",yref="paper",
-                #                             text='Microliters:<br>Stain Index:<br>Seperation Index:',textangle=0))
-                # st.plotly_chart(fig, use_container_width=True)
 
                 import plotly.graph_objects as go
                 fig = go.Figure()
@@ -176,7 +162,14 @@ with col2:
 
                 # Create an in-memory buffer
                 import io
-                buffer = io.BytesIO()
-                fig.write_image(file=buffer, format="pdf")
-                st.download_button(label="Download PDF", data=buffer,file_name="figure.pdf",mime="application/pdf")
+                col1, col2 = st.columns(2)
+                with col1:
+                    buffer = io.BytesIO()
+                    fig.write_image(file=buffer, format="pdf")
+                    st.download_button(type="primary", label="Download Line Chart PDF", data=buffer,file_name="line.pdf",mime="application/pdf")
+                with col2:
+                    buffer = io.BytesIO()
+                    fig.write_image(file=buffer, format="pdf")
+                    st.download_button(type="primary", label="Download Titration PDF", data=buffer,file_name="titration.pdf",mime="application/pdf")
 
+             
