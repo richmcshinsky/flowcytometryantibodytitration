@@ -91,7 +91,11 @@ with col2:
         with col2:
             st.image("data/cleaningex2.png")
         st.subheader("Auto Split Example")
-        st.image("data/cleaningex3.png")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.image("data/cleaningex4.png")
+        with col2:
+            st.image("data/cleaningex3.png")
 
     # get data into pandas df
     uploaded_files = st.file_uploader("""Add single or multiple FCS files.""", 
