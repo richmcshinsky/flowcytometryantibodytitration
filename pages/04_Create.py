@@ -160,23 +160,15 @@ with col2:
                                             text='Microliters:<br>Stain Index:<br>Seperation Index:',textangle=0))
                 st.plotly_chart(fig, use_container_width=True)
 
-                # Create an in-memory buffer
                 import io
-
-                buffer1 = io.BytesIO()
-                fig1.write_image(file=buffer1, format="pdf")
-                buffer2 = io.BytesIO()
-                fig.write_image(file=buffer2, format="pdf")
-
                 col1, col2, col3, col4 = st.columns([1,2,2,1])
                 with col1:
-                    if 'download_click_1' not in st.session_state:
-                        st.session_state.download_click_1 = False
-                    if st.download_button(type="primary", label='Download Line Chart PDF', data=buffer1,file_name="line.pdf",mime="application/pdf",
-                                          on_click=lambda: setattr(st.session_state, 'download_click_1', True)):
-                        pass
-                    #st.download_button(type="primary", label="Download Line Chart PDF", data=buffer1,file_name="line.pdf",mime="application/pdf")
+                    buffer1 = io.BytesIO()
+                    fig1.write_image(file=buffer1, format="pdf")
+                    st.download_button(type="primary", label="Download Line Chart PDF", data=buffer1,file_name="line.pdf",mime="application/pdf")
                 with col2:
+                    buffer2 = io.BytesIO()
+                    fig.write_image(file=buffer2, format="pdf")
                     st.download_button(type="primary", label="Download Titration PDF", data=buffer2,file_name="titration.pdf",mime="application/pdf")
 
              
