@@ -156,7 +156,6 @@ with col2:
                 fig = go.Figure()
                 sample_size = 30000 if len(df_t) > 30000 else len(df_t)
                 df_t = df_t.sample(sample_size)
-                df_t = df.sample(sample_size)
                 df_t["fl"] = df_t["fl"].astype(float)
                 df_t = df_t[df_t["fl"] < 1000000]
                 df_t = df_t[df_t["fl"] > 0]
