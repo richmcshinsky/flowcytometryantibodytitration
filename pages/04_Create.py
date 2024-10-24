@@ -152,3 +152,25 @@ with col2:
                                             text='Microliters:<br>Stain Index:<br>Seperation Index:',textangle=0))
                 st.plotly_chart(fig, use_container_width=True)
 
+                import plotly.graph_objects as go
+                fig = go.Figure()
+                # sample_size = 30000 if len(df_t) > 30000 else len(df_t)
+                # df_t = df_t.sample(sample_size)
+                # df_t = df.sample(sample_size)
+                df_t["FL9-A"] = df_t["FL9-A"].astype(float)
+                df_t = df_t[df_t["FL9-A"] < 1000000]
+                df_t = df_t[df_t["FL9-A"] > 0]
+                df_t = df_t.dropna(subset=["FL9-A"])
+                df_t["FL9-A-log"] = np.log10(df_t["FL9-A"])
+                # df_t = df_t.sort_values(by=["Con"])
+                # df_t["axis"] = [str(x) + "<br>" + str(y) + "<br>" + str(z) for x,y, z in zip(df_t["Con"], df_t["SI"], df_t["SEI"])]
+                fig.add_trace(go.Violin(x=df_t["axis"], y=df_t["FL9-A-log"], points="all", side='positive', line_color='#203a6b', pointpos=-0.5))
+                fig.update_traces(marker_size=3)
+                #fig.update_yaxes(exponentformat='power')
+                fig.update_layout(yaxis_title=channel_choice[1], xaxis_title=None, xaxis={'side': 'top'}, showlegend=False,
+                                yaxis = dict(tickmode = 'array',tickvals = [-1, 0, 1, 2, 3, 4, 5, 6],
+                                            ticktext = ['10^-1', '10^0', '10^1', '10^2', '10^3', '10^4', '10^5', '10^6']))
+                fig.add_annotation(dict(font=dict(color="black",size=12),x=-0.5,y=1.14,showarrow=False,xref="x",yref="paper",
+                                            text='Microliters:<br>Stain Index:<br>Seperation Index:',textangle=0))
+                st.plotly_chart(fig, use_container_width=True)
+
