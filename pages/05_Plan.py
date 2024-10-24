@@ -167,6 +167,8 @@ elif st.session_state["step"] == "Step 5":
     st.write("""If the plots are empty, it's becuase there wasn't good pricing data to show. Please see table at bottom for 
              data contained in the repository""")
     
+    # add_auth(required=True)
+    
     col1, col2, col3 = st.columns(3, gap="small")
     with col1:
         st.radio( "Plot dot size", ["S", "M", "L"], horizontal=True, key="size", index=1)

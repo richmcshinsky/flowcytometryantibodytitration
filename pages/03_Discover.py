@@ -98,6 +98,8 @@ for i in lst:
     s += "- " + i + "\n"
 st.markdown(s)
 
+# add_auth(required=True)
+
 # TODO: click on dot sends you to link of supplier OR
 #       clicking a dot narrowed the rows on the table
 

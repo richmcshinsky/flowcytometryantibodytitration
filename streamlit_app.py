@@ -3,7 +3,6 @@ from st_paywall import add_auth
 # from streamlit_keycloak import login # https://github.com/bleumink/streamlit-keycloak
 
 st.set_page_config(page_title='Metrdy', layout="wide")
-#st.image("data/hand.png")
 
 # builds the sidebar menu
 with st.sidebar:
@@ -59,7 +58,7 @@ with col3:
 
 st.markdown("<h3 style='text-align: center; color: black;'>Watch our short demo video to see what you can do!</h3>", unsafe_allow_html=True)
 
-st.write("To test login use https://docs.stripe.com/testing#cards")
+# st.write("To test login use https://docs.stripe.com/testing#cards")
 add_auth(required=True)
 st.write("Login successful!")
 
