@@ -97,6 +97,7 @@ with col2:
         with col2:
             st.image("data/cleaningex3.png")
         st.subheader("SI Calculation")
+        st.write("https://med.uth.edu/imm/service-centers/flow-cytometry-services/protocols-and-guidelines/antibody-titration/")
 
     # get data into pandas df
     uploaded_files = st.file_uploader("""Add single or multiple FCS files.""", 
@@ -145,7 +146,7 @@ with col2:
                 # df_t = df_t[df_t["fl"].astype(float) < 1000000]
                 # df_t = df_t.sort_values(by=["con"])
                 # df_t["axis"] = [str(x) + "<br>" + str(y) + "<br>" + str(z) for x,y, z in zip(df_t["con"], df_t["stain"], df_t["seperation"])]
-                # ig = px.strip(df_t, x="axis", y="fl")
+                # fig = px.strip(df_t, x="axis", y="fl")
                 # fig.update_traces(marker_size=3)
                 # fig.update_yaxes(type="log", exponentformat='power')
                 # fig.update_layout(yaxis_title=channel_choice[1], xaxis_title=None, xaxis={'side': 'top'}, showlegend=False)
@@ -162,8 +163,8 @@ with col2:
                 df_t = df_t[df_t["fl"] > 0]
                 df_t = df_t.dropna(subset=["fl"])
                 df_t["fl"] = np.log10(df_t["fl"])
-                df_t = df_t.sort_values(by=["Con"])
-                df_t["axis"] = [str(x) + "<br>" + str(y) + "<br>" + str(z) for x,y, z in zip(df_t["Con"], df_t["SI"], df_t["SEI"])]
+                df_t = df_t.sort_values(by=["con"])
+                df_t["axis"] = [str(x) + "<br>" + str(y) + "<br>" + str(z) for x,y, z in zip(df_t["con"], df_t["stain"], df_t["seperation"])]
                 fig.add_trace(go.Violin(x=df_t["axis"], y=df_t["fl"], points="all", side='positive', line_color='#203a6b', pointpos=-0.5))
                 fig.update_traces(marker_size=3)
                 fig.update_layout(yaxis_title=channel_choice[1], xaxis_title=None, xaxis={'side': 'top'}, showlegend=False,
