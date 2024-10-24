@@ -162,10 +162,10 @@ with col2:
 
                 # Create an in-memory buffer
                 import io
-                col1, col2 = st.columns(2)
+                col1, col2, col3, col4 = st.columns([1,2,2,1])
                 with col1:
                     buffer = io.BytesIO()
-                    fig.write_image(file=buffer, format="pdf")
+                    fig1.write_image(file=buffer, format="pdf")
                     st.download_button(type="primary", label="Download Line Chart PDF", data=buffer,file_name="line.pdf",mime="application/pdf")
                 with col2:
                     buffer = io.BytesIO()
