@@ -96,6 +96,7 @@ with col2:
             st.image("data/cleaningex4.png")
         with col2:
             st.image("data/cleaningex3.png")
+        st.subheader("SI Calculation")
 
     # get data into pandas df
     uploaded_files = st.file_uploader("""Add single or multiple FCS files.""", 
