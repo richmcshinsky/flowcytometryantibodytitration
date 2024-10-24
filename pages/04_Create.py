@@ -84,6 +84,7 @@ with col2:
              require several folds of fittiing for stable results. Please wait a few moments for the process to finish.""")
     
     with st.expander("Example: see examples of how the auto process works"):
+        st.header("Auto Gating Example")
         col1, col2 = st.columns(2)
         with col1:
             st.image("data/cleaningex1.png")
