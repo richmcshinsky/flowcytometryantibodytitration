@@ -134,7 +134,7 @@ with col2:
                 # strip plot of data
                 sample_size = 30000 if len(df_t) > 30000 else len(df_t)
                 df_t = df_t.sample(sample_size)
-                df_t = df_t[df_t["fl"].astype(float) < 500000]
+                df_t = df_t[df_t["fl"].astype(float) < 1000000]
                 df_t = df_t.sort_values(by=["con"])
                 df_t["axis"] = [str(x) + "<br>" + str(y) + "<br>" + str(z) for x,y, z in zip(df_t["con"], df_t["stain"], df_t["seperation"])]
                 fig = px.strip(df_t, x="axis", y="fl")

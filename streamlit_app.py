@@ -48,7 +48,7 @@ with col1:
 with col2:
     if st.button(label="Create", use_container_width=True, help="All in one tool to generate advanced figures"):
         st.switch_page("pages/04_Create.py")
-    st.image("data/ex2.1.png")
+    st.image("data/ex2.2.png")
 with col3:
     if st.button(label="Plan", use_container_width=True, help="Guided walkthrough tool for painless results"):
         st.switch_page("pages/05_Plan.py")
