@@ -170,7 +170,7 @@ with col2:
                 fig.update_layout(yaxis_title=channel_choice[1], xaxis_title=None, xaxis={'side': 'top'}, showlegend=False,
                                 yaxis = dict(tickmode = 'array',tickvals = [-1, 0, 1, 2, 3, 4, 5, 6],
                                             ticktext = ['10^-1', '10^0', '10^1', '10^2', '10^3', '10^4', '10^5', '10^6']))
-                fig.add_annotation(dict(font=dict(color="black",size=12),x=-0.5,y=1.14,showarrow=False,xref="x",yref="paper",
+                fig.add_annotation(dict(font=dict(color="black",size=12),x=-0.5,y=1.18,showarrow=False,xref="x",yref="paper",
                                             text='Microliters:<br>Stain Index:<br>Seperation Index:',textangle=0))
                 st.plotly_chart(fig, use_container_width=True)
 
