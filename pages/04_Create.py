@@ -139,38 +139,43 @@ with col2:
                 df_t["stain"] = stain_l
                 
                 # strip plot of data
-                sample_size = 30000 if len(df_t) > 30000 else len(df_t)
-                df_t = df_t.sample(sample_size)
-                df_t = df_t[df_t["fl"].astype(float) < 1000000]
-                df_t = df_t.sort_values(by=["con"])
-                df_t["axis"] = [str(x) + "<br>" + str(y) + "<br>" + str(z) for x,y, z in zip(df_t["con"], df_t["stain"], df_t["seperation"])]
-                fig = px.strip(df_t, x="axis", y="fl")
-                fig.update_traces(marker_size=3)
-                fig.update_yaxes(type="log", exponentformat='power')
-                fig.update_layout(yaxis_title=channel_choice[1], xaxis_title=None, xaxis={'side': 'top'}, showlegend=False)
-                fig.add_annotation(dict(font=dict(color="black",size=12),x=-0.55,y=1.18,showarrow=False,xref="x",yref="paper",
-                                            text='Microliters:<br>Stain Index:<br>Seperation Index:',textangle=0))
-                st.plotly_chart(fig, use_container_width=True)
+                # sample_size = 30000 if len(df_t) > 30000 else len(df_t)
+                # df_t = df_t.sample(sample_size)
+                # df_t = df_t[df_t["fl"].astype(float) < 1000000]
+                # df_t = df_t.sort_values(by=["con"])
+                # df_t["axis"] = [str(x) + "<br>" + str(y) + "<br>" + str(z) for x,y, z in zip(df_t["con"], df_t["stain"], df_t["seperation"])]
+                # ig = px.strip(df_t, x="axis", y="fl")
+                # fig.update_traces(marker_size=3)
+                # fig.update_yaxes(type="log", exponentformat='power')
+                # fig.update_layout(yaxis_title=channel_choice[1], xaxis_title=None, xaxis={'side': 'top'}, showlegend=False)
+                # fig.add_annotation(dict(font=dict(color="black",size=12),x=-0.55,y=1.18,showarrow=False,xref="x",yref="paper",
+                #                             text='Microliters:<br>Stain Index:<br>Seperation Index:',textangle=0))
+                # st.plotly_chart(fig, use_container_width=True)
 
                 import plotly.graph_objects as go
                 fig = go.Figure()
-                # sample_size = 30000 if len(df_t) > 30000 else len(df_t)
-                # df_t = df_t.sample(sample_size)
-                # df_t = df.sample(sample_size)
+                sample_size = 30000 if len(df_t) > 30000 else len(df_t)
+                df_t = df_t.sample(sample_size)
+                df_t = df.sample(sample_size)
                 df_t["fl"] = df_t["fl"].astype(float)
                 df_t = df_t[df_t["fl"] < 1000000]
                 df_t = df_t[df_t["fl"] > 0]
                 df_t = df_t.dropna(subset=["fl"])
                 df_t["fl"] = np.log10(df_t["fl"])
-                # df_t = df_t.sort_values(by=["Con"])
-                # df_t["axis"] = [str(x) + "<br>" + str(y) + "<br>" + str(z) for x,y, z in zip(df_t["Con"], df_t["SI"], df_t["SEI"])]
+                df_t = df_t.sort_values(by=["Con"])
+                df_t["axis"] = [str(x) + "<br>" + str(y) + "<br>" + str(z) for x,y, z in zip(df_t["Con"], df_t["SI"], df_t["SEI"])]
                 fig.add_trace(go.Violin(x=df_t["axis"], y=df_t["fl"], points="all", side='positive', line_color='#203a6b', pointpos=-0.5))
                 fig.update_traces(marker_size=3)
-                #fig.update_yaxes(exponentformat='power')
                 fig.update_layout(yaxis_title=channel_choice[1], xaxis_title=None, xaxis={'side': 'top'}, showlegend=False,
                                 yaxis = dict(tickmode = 'array',tickvals = [-1, 0, 1, 2, 3, 4, 5, 6],
                                             ticktext = ['10^-1', '10^0', '10^1', '10^2', '10^3', '10^4', '10^5', '10^6']))
                 fig.add_annotation(dict(font=dict(color="black",size=12),x=-0.5,y=1.18,showarrow=False,xref="x",yref="paper",
                                             text='Microliters:<br>Stain Index:<br>Seperation Index:',textangle=0))
                 st.plotly_chart(fig, use_container_width=True)
+
+                # Create an in-memory buffer
+                import io
+                buffer = io.BytesIO()
+                fig.write_image(file=buffer, format="pdf")
+                st.download_button(label="Download PDF", data=buffer,file_name="figure.pdf",mime="application/pdf")
 
